@@ -137,7 +137,7 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson-databind-version}</version>
 		</dependency>
-		<!-- xml포맷을 java객체로 변환 or java객체를 json맷으로 변환 -->
+		<!-- xml포맷을 java객체로 변환 or java객체를 xml포맷으로 변환 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
@@ -201,6 +201,15 @@
 		    <version>${junit-jupiter-version}</version>
 		</dependency>			
 		<!-- Junit 종료 -->		
+		
+		<!-- 어노테이션을 사용해서 DTO,VO등의 객체에 setter,getter,constructor등 자동생성 -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.12</version>
+		    <scope>provided</scope>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

@@ -10,10 +10,12 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- annotation기반으로 해서 등록할 빈을 찾겠다는 의미 -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<!-- 정적 리소스에 대한 url매핑을 하고자할때 사용 -->
+	<resources mapping="/resources/**" location="/WEB-INF/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,7 +23,29 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.kh.portfolio" />
-	
+	<!-- @component :@Controller, @Service, @Repository중에서 
+									 @Controller 클래스만 인스턴스화 하도록 설정함 -->
+	<context:component-scan base-package="com.kh.portfolio"
+													use-default-filters="false">
+		<context:include-filter type="annotation" 
+														expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
