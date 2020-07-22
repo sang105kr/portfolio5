@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -19,12 +20,15 @@ import com.kh.portfolio.member.vo.MemberVO;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
-public class MemberDAOImplJDBCTest {
+public class MemberDAOImplXMLTest {
 
 	private final static Logger logger
-		= LoggerFactory.getLogger(MemberDAOImplJDBCTest.class);
+		= LoggerFactory.getLogger(MemberDAOImplXMLTest.class);
 	
 	@Inject
+	//@Qualifier : spring 컨테이너에 동일타입의 bean이 존재할경우 명시적으로 참조하고자하는 bean을 지정할때사용
+	//spring컨테이너에서 관리되는 bean이름은 특별히 지정해주지 않으면 클래스명을 기본값으로 갖는다(첫글자는 소문자)
+	@Qualifier("memberDAOImplXML")
 	MemberDAO memberDAO;	
 
 	@Test			//테스트 대상에서 포함할때
@@ -61,7 +65,7 @@ public class MemberDAOImplJDBCTest {
 		
 		int cnt = memberDAO.modifyMember(memberVO);
 		
-		Assertions.assertEquals(2,cnt);
+		Assertions.assertEquals(1,cnt);
 		logger.info("cnt:"+cnt);
 	}
 	
@@ -101,7 +105,7 @@ public class MemberDAOImplJDBCTest {
 	@Disabled
 	void login() {
 		String id = "test@test.com";
-		String pw = "1234";
+		String pw = "4444";
 		MemberVO memberVO = memberDAO.login(id, pw);
 		logger.info(memberVO.toString());
 	}	
@@ -126,15 +130,16 @@ public class MemberDAOImplJDBCTest {
 		String birth 	= "2000-03-01";
 		
 		String pw = memberDAO.findPW(id,tel,birth);
-		Assertions.assertEquals("1234", pw);
+		Assertions.assertEquals("4444", pw);
 		
 	}
 	
 	@Test
 	@DisplayName("비밀번호변경")
+//	@Disabled
 	void changePW() {
 		String id = "test@test.com";
-		String pw = "4444";
+		String pw = "3333";
 		int result = memberDAO.changePW(id, pw);
 //		Assertions.assertEquals(1,result);
 		
