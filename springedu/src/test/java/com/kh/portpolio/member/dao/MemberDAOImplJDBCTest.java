@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -25,6 +26,7 @@ public class MemberDAOImplJDBCTest {
 		= LoggerFactory.getLogger(MemberDAOImplJDBCTest.class);
 	
 	@Inject
+	@Qualifier("memberDAOImplJdbc")	
 	MemberDAO memberDAO;	
 
 	@Test			//테스트 대상에서 포함할때
