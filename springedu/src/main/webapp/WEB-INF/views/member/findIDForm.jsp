@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 공통 모듈 -->
-<%@ include file="/WEB-INF/common.jsp"%>
+<%@ include file="/WEB-INF/views/include/common.jsp"%>
 <title>아이디 찾기</title>
 <style>
   #findIDForm * {
@@ -51,9 +51,9 @@
     		  
     	  //부모창 접근은 window.opener속성 이용
 	    	  window.opener//
-	    	        .document.getElementById('id').value = findedIDTag.textContent;
+	    	        cument.getElementById('id').value = findedIDTag.textContent;
     	  	window.opener//
-    	  	 			.document.getElementById('pw').select();
+    	  	 			cument.getElementById('pw').select();
     	  	window.close();
     	  }
       }
@@ -130,7 +130,7 @@
         //4)서비스요청
         xhttp.open(
           "POST",
-          "http://localhost:9080/myweb/member/findIdByRestfull.do"
+          "http://localhost:9080/myweb/member/findIdByRestfull"
         );
         xhttp.setRequestHeader(
           "Content-Type",

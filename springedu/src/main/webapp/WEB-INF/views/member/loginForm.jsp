@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 공통 모듈 -->
-<%@ include file="/WEB-INF/common.jsp" %>
+<%@ include file="/WEB-INF/views/include/common.jsp" %>
 
 <title>로그인</title>
 <style>
@@ -149,7 +149,7 @@
 <body>
 	<div class="container">
 		<div class="content">
-			<form id="loginForm" method="post" action="${contextPath }/member/login.do">
+			<form id="loginForm" method="post" action="${contextPath }/login">
 				<div class="item">
 					<a href="${contextPath }">
 						<img src="${contextPath }/img/car.jpg" alt="" />
@@ -167,7 +167,7 @@
 						class="fas fa-key"></i>
 				</div>
 				<div class="item">
-					<span class="errmsg" id="errmsg_pw">${requestScope.errmsg }</span>
+					<span class="errmsg" id="errmsg_pw">${requestScope.svr_msg }</span>
 				</div>
 				<div class="item">
 					<button id="loginBtn">로그인</button>
@@ -177,9 +177,9 @@
 						for="login_chk" id="login_chk">로그인상태유지</label>
 				</div>
 				<div class="item find_info">
-					<a href="${contextPath }/member/findIDForm.do" id="findID">아이디 찾기</a> <span>|</span> 
-					<a href="${contextPath }/member/findPWForm.do" id="findPW">비밀번호 찾기</a> <span>|</span>
-					<a href="${contextPath }/member/joinForm.do">회원 가입</a>
+					<a href="${contextPath }/member/findIDForm" id="findID">아이디 찾기</a> <span>|</span> 
+					<a href="${contextPath }/member/findPWForm" id="findPW">비밀번호 찾기</a> <span>|</span>
+					<a href="${contextPath }/member/joinForm">회원 가입</a>
 				</div>
 			</form>
 		</div>

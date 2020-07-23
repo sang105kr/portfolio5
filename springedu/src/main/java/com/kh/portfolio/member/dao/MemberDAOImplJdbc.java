@@ -59,9 +59,10 @@ public class MemberDAOImplJdbc implements MemberDAO {
 		sql.append("       birth 		= ?, ");
 		sql.append("       udate 		= systimestamp ");
 		sql.append(" where id 			= ?   ");
+		sql.append("   and pw 			= ?   ");
 
 		result = jdbcTemplate.update(sql.toString(), memberVO.getTel(), memberVO.getNickname(), memberVO.getGender(),
-				memberVO.getRegion(), memberVO.getBirth(), memberVO.getId());
+				memberVO.getRegion(), memberVO.getBirth(), memberVO.getId(), memberVO.getPw());
 
 		return result;
 	}

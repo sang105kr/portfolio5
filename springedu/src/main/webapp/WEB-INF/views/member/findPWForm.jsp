@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 공통 모듈 -->
-<%@ include file="/WEB-INF/common.jsp"%>
+<%@ include file="/WEB-INF/views/include/common.jsp"%>
 <title>비밀번호 찾기</title>
 <style>
   #findPWForm * {
@@ -51,7 +51,7 @@
     		  
     	  //부모창 접근은 window.opener속성 이용
 	    	  window.opener//
-	    	        .document.getElementById('pw').value = findedPWTag.textContent;
+	    	        cument.getElementById('pw').value = findedPWTag.textContent;
     	  	window.close();
     	  }
       }
@@ -137,7 +137,7 @@
         //4)서비스요청
         xhttp.open(
           "POST",
-          "http://localhost:9080/myweb/member/findPwByRestfull.do"
+          "http://localhost:9080/myweb/member/findPwByRestfull"
         );
         xhttp.setRequestHeader(
           "Content-Type",

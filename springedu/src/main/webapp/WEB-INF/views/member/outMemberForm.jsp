@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 공통 모듈 -->
-<%@ include file="/WEB-INF/common.jsp" %>
+<%@ include file="/WEB-INF/views/include/common.jsp" %>
 <title>회원탈퇴</title>
 <link rel="stylesheet" href="${contextPath }/css/main.css">
 <style>
@@ -51,19 +51,19 @@
 </head>
 <body>
 	<!-- 최상위메뉴 -->
-	<%@ include file="/WEB-INF/uppermost.jsp" %>
+	<%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
 
   <!-- header -->
   <%--@ include file="/header.jsp" --%>
 
   <!-- 메뉴 -->
-  <%@ include file="/WEB-INF/member/menu.jsp" %>
+  <%@ include file="/WEB-INF/views/member/menu.jsp" %>
 	  
 	<main>
 		<div class="container">
 			<div class="content">
 				<section>
-					<form method="post" action="${pageContext.request.contextPath}/member/outMember.do">
+					<form method="post" action="${pageContext.request.contextPath}/member/outMember">
 					 <ul>
 						<li><label for="id">아이디</label></li>					 
 						<li><input type="text" name="id" readonly="readonly" value="${sessionScope.member.id}"></li>
@@ -79,6 +79,6 @@
 	</main>
 
   <!-- 푸터 -->
-  <%@ include file="/WEB-INF/footer.jsp" %>  
+  <%@ include file="/WEB-INF/views/include/footer.jsp" %>  
 </body>
 </html>  

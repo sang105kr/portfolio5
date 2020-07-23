@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 공통 모듈 -->
-<%@ include file="/WEB-INF/common.jsp" %>
+<%@ include file="/WEB-INF/views/include/common.jsp" %>
 <title>내정보</title>
 <link rel="stylesheet" href="${contextPath }/css/main.css">
 <style>
@@ -68,26 +68,26 @@
 </head>
 <body>
 	<!-- 최상위메뉴 -->
-	<%@ include file="/WEB-INF/uppermost.jsp" %>
+	<%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
 
   <!-- header -->
   <%--@ include file="/header.jsp" --%>
 
   <!-- 메뉴 -->
-  <%@ include file="/WEB-INF/member/menu.jsp" %>
+  <%@ include file="/WEB-INF/views/member/menu.jsp" %>
 	  
 	<main>
 		<div class="container">
 			<div class="content">
 				<section>
 					<form id="modifyForm" method="post"
-							action="${contextPath}/member/modify.do">
+							action="${contextPath}/member/modify">
 							<ul>
 								<li><label for="id">아이디</label></li>
 								<li><input type="text" name="id" id="id" value='${sessionScope.member.id }' readonly="readonly"/></li>
 								<li><label for="pw">비밀번호</label></li>
 								<li><input type="password" name="pw" id="pw"/></li>
-								<li><span class="errmsg" id="errmsg_pw">${requestScope.errmsg }</span></li>								
+								<li><span class="errmsg" id="errmsg_pw">${requestScope.svr_msg }</span></li>								
 								<li><label for="tel">전화번호</label></li>
 								<li><input type="tel" name="tel" id="tel" value='${sessionScope.member.tel }'/></li>
 								<li><label for="nickname">별칭</label></li>
@@ -118,6 +118,6 @@
 	</main>
 
   <!-- 푸터 -->
-  <%@ include file="/WEB-INF/footer.jsp" %>  
+  <%@ include file="/WEB-INF/views/include/footer.jsp" %>  
 </body>
 </html>  

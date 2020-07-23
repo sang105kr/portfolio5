@@ -33,8 +33,11 @@ public class MemberSVCImpl implements MemberSVC{
 	//회원 수정
 	@Override
 	public int modifyMember(MemberVO memberVO) {
-
-		return 0;
+		int result = 0;
+		
+		result = memberDAO.modifyMember(memberVO);
+		
+		return result;
 	}
 	//회원 전체조회
 	@Override
@@ -45,8 +48,11 @@ public class MemberSVCImpl implements MemberSVC{
 	//회원 개별조회
 	@Override
 	public MemberVO listOneMember(String id) {
-
-		return null;
+		MemberVO memberVO = null;
+		
+		memberVO = memberDAO.listOneMember(id);
+		
+		return memberVO;
 	}
 	//회원 탈퇴
 	@Override

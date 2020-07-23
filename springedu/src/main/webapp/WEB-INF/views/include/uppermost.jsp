@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
-<c:set var="url_login" value="${contextPath }/member/loginForm.do"/>  
-<c:set var="url_logout" value="${contextPath }/member/logout.do"/>  
-<c:set var="url_myPage" value="${contextPath }/member/myPage.do"/>   
+<c:set var="url_login" value="${contextPath }/loginForm"/>  
+<c:set var="url_logout" value="${contextPath }/logout"/>  
+<c:set var="url_myPage" value="${contextPath }/member/myPage"/>   
 <%-- ${sessionScope.member } --%>  
 <style>
 	.uppermost .container.container-upm{

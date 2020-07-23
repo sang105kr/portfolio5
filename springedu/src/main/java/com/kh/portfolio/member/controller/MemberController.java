@@ -2,6 +2,7 @@ package com.kh.portfolio.member.controller;
 
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,10 +42,48 @@ public class MemberController {
 		if(result == 1) {
 			return "/member/loginForm";			
 		}else {
-			model.addAttribute("errmsg", "error");
+			model.addAttribute("svr_msg", "error");
 			return "/member/joinForm";
 		}
 	}
+	
+	//내정보
+	@GetMapping("/myPage")
+	public String mypage() {
+		
+		return "/member/myPage";
+	}
+	
+	//회원정보수정 화면
+	@GetMapping("/modifyForm")
+	public String modifyForm() {
+		
+		return "/member/modifyForm";
+	}
+	
+	//회원정보수정 처리
+	@PostMapping("/modify")
+	public String modify(
+			MemberVO memberVO, 
+			Model model,
+			HttpSession session) {
+		
+		int result = memberSVC.modifyMember(memberVO);
+		//회원수정  실패
+		if(result != 1 ) {
+			model.addAttribute("svr_msg", "비밀번호가 일치하지 않습니다.");
+			return "/member/modifyForm";
+		}
+		
+		//세션에서 id정보를 가져온다.
+		String id = ((MemberVO)session.getAttribute("member")).getId();
+		
+		//수정된  회원 정보를 다시 읽어온다.
+		session.setAttribute("member", memberSVC.listOneMember(id));
+		
+		return "redirect:/member/modifyForm";
+	}
+	
 }
 
 

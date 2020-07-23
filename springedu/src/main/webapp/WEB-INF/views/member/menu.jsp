@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<c:set var="url_modifyForm" value="${contextPath }/member/modifyForm.do"/>
-<c:set var="url_chagePWForm" value="${contextPath }/member/chagePWForm.do" /> 
-<c:set var="url_outMember" value="${contextPath }/member/outMemberForm.do"/>     
+<c:set var="url_modifyForm" value="${contextPath }/member/modifyForm"/>
+<c:set var="url_chagePWForm" value="${contextPath }/member/chagePWForm" /> 
+<c:set var="url_outMember" value="${contextPath }/member/outMemberForm"/>     
   <nav>
     <div class="container container-n">
       <ul>

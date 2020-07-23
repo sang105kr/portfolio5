@@ -18,6 +18,7 @@
 		       birth 		= #{birth},
 		       udate 		= systimestamp
 		 where id 			= #{id}
+		   and pw       = #{pw} 
 </update>
 <!-- 	회원 전체조회 -->
 <select id="listAllMember"
