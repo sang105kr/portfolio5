@@ -15,7 +15,10 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!-- 정적 리소스에 대한 url매핑을 하고자할때 사용 -->
-	<resources mapping="/resources/**" location="/WEB-INF/resources/" />
+	<resources mapping="/**" location="/WEB-INF/resources/" />
+	<resources mapping="/css/**" location="/WEB-INF/resources/css/" />
+	<resources mapping="/js/**" location="/WEB-INF/resources/js/" />
+	<resources mapping="/img/**" location="/WEB-INF/resources/img/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

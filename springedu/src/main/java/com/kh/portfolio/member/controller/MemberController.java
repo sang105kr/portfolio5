@@ -44,9 +44,9 @@ public class MemberController {
 			model.addAttribute("errmsg", "error");
 			return "/member/joinForm";
 		}
-		
 	}
 }
+
 
 
 

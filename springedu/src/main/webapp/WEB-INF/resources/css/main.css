@@ -1,0 +1,65 @@
+@charset "utf-8";
+  /* * { outline:1px solid red;} */
+  /* 공통 */
+  * { margin:0px; padding:0px}
+  
+	body {
+		margin: 0px;
+		font-family: "Noto Sans KR", sans-serif;
+		font-weight: 400px;
+	}
+	
+	a {
+		text-decoration: none;
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
+  
+  ul {
+  	list-style-type: none;
+  }
+  
+  .msg{
+  
+  }
+  
+  .errmsg{
+  	color:red;
+  	font-size: 0.7em;
+		font-weight: bold;  	
+  }
+  
+  .container{ width:800px; margin:0px auto; }
+
+  /* 최상위 메뉴 */
+  .uppermost { background-color: black; position:sticky; top:0px; z-index:100;}
+  .uppermost > .container-upm{ height:30px; line-height: 30px; text-align: right; background-color: black; }
+  .uppermost > .container-upm > p { margin-right:10px; font-size: 0.8rem; color: white; font-weight:bold; }
+  .uppermost > .container-upm > p > a { text-decoration: none; color: white; }
+  .uppermost > .container-upm > p > a:hover { text-decoration: underline; color: white; }
+  
+  /* 헤더 영역 */
+  header { }
+  header > .container-h { background-image: url("https://cdn.pixabay.com/photo/2020/01/26/20/14/computer-4795762__340.jpg") ; 
+    background-size: 800px 150px; height:150px; text-align: center; background-color: gray; opacity: 0.8; }
+
+  /* 메뉴 영역 */
+  nav{}
+  nav > .container-n{ height:50px; background-color: black; }
+  nav > .container-n > ul{ display:flex; list-style-type: none; height:50px; width:500px; margin: 0px auto; line-height: 50px; }
+  nav > .container-n > ul > li { width:100px; text-align: center; font-size:0.8rem; }
+  nav > .container-n > ul > li > a{ color:white; text-decoration: none; font-weight: bold; }
+  nav > .container-n > ul > li > a:hover{ text-decoration: underline; }
+  
+  /* 본문 영역 */
+  main{ display:flex; justify-content: center}
+
+  /* 푸터 영역 */
+  footer{position:sticky; bottom:0px; z-index:100px;}
+  footer > .container-f{ height:70px; line-height: 70px; text-align: center; background-color: gray;
+    color:white; font-weight: bold; font-size:0.8rem; }
+
+  /* 기타 */
+  .clearfix{ content:"";display:block;clear:both; }
