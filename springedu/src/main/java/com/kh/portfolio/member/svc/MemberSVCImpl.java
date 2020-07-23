@@ -1,5 +1,6 @@
 package com.kh.portfolio.member.svc;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -57,8 +58,11 @@ public class MemberSVCImpl implements MemberSVC{
 	//회원 탈퇴
 	@Override
 	public int outMember(String id, String pw) {
-
-		return 0;
+		int result = 0;
+		
+		result = memberDAO.outMember(id, pw);
+				
+		return result;
 	}
 	//로그인
 	@Override
@@ -68,21 +72,24 @@ public class MemberSVCImpl implements MemberSVC{
 	}
 	//아이디 찾기
 	@Override
-	public String findID(String tel, String birth) {
-
-		return null;
+	public String findID(String tel, Date birth) {
+		String id = null;
+		id = memberDAO.findID(tel, birth);
+		return id;
 	}
 	//비밀번호 찾기
 	@Override
-	public String findPW(String id, String tel, String birth) {
-
-		return null;
+	public String findPW(String id, String tel, Date birth) {
+		String pw = null;
+		pw = memberDAO.findPW(id, tel, birth);
+		return pw;
 	}
 	//비밀번호 변경
 	@Override
-	public int changePW(String id, String pw) {
-
-		return 0;
+	public int changePW(String id, String prepw, String postpw) {
+		int result = 0;
+		result = memberDAO.changePW(id, prepw, postpw);
+		return result;
 	}
 	//프로파일 이미지 조회
 	@Override

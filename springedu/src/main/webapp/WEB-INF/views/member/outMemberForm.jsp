@@ -63,13 +63,13 @@
 		<div class="container">
 			<div class="content">
 				<section>
-					<form method="post" action="${pageContext.request.contextPath}/member/outMember">
+					<form method="post" action="${contextPath}/member/outMember">
 					 <ul>
 						<li><label for="id">아이디</label></li>					 
 						<li><input type="text" name="id" readonly="readonly" value="${sessionScope.member.id}"></li>
 						<li><label for="pw">비밀번호</label></li>
 						<li><input type="password" name="pw" placeholder="비밀번호를 입력하세요"></li>
-						<li><span class="errmsg">${requestScope.errmsg }</span></li>
+						<li><span class="errmsg">${requestScope.svr_msg }</span></li>
 						<li><button>탈퇴</button></li>
 						</ul>
 					</form>	

@@ -1,5 +1,6 @@
 package com.kh.portfolio.member.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.kh.portfolio.member.vo.MemberVO;
@@ -18,11 +19,11 @@ public interface MemberDAO {
 	//로그인
 	MemberVO login(String id, String pw);
 	//아이디 찾기
-	String findID(String tel, String birth);
+	String findID(String tel, Date birth);
 	//비밀번호 찾기
-	String findPW(String id, String tel, String birth);
+	String findPW(String id, String tel, Date birth);
 	//비밀번호 변경
-	int changePW(String id, String pw);
+	int changePW(String id, String prepw, String postpw);
 	//프로파일 이미지 조회
 	byte[] findProfileImg(String id);
 }

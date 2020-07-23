@@ -1,5 +1,6 @@
 package com.kh.portfolio.member.dao;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -160,7 +161,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 
 	// 아이디 찾기
 	@Override
-	public String findID(String tel, String birth) {
+	public String findID(String tel, Date birth) {
 		logger.info("MemberDAOImpl.findID(String tel, String birth) 호출됨");		
 		String id = null;
 		
@@ -180,7 +181,7 @@ public class MemberDAOImplJdbc implements MemberDAO {
 
 	// 비밀번호 찾기
 	@Override
-	public String findPW(String id, String tel, String birth) {
+	public String findPW(String id, String tel, Date birth) {
 		logger.info("MemberDAOImpl.findPW(String id, String tel, String birth) 호출됨");
 		String pw = null;
 		
@@ -201,16 +202,17 @@ public class MemberDAOImplJdbc implements MemberDAO {
 
 	// 비밀번호 변경
 	@Override
-	public int changePW(String id, String pw) {
-		logger.info("MemberDAOImpl.changePW(String id, String pw) 호출됨");
+	public int changePW(String id, String prepw, String postpw) {
+		logger.info("MemberDAOImpl.changePWchangePW(String id, String prepw, String postpw) 호출됨");
 		int result = 0;
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("update member ");
 		sql.append("   set pw = ? ");
 		sql.append(" where id = ? ");
+		sql.append("   and pw = ? ");
 		
-		result = jdbcTemplate.update(sql.toString(), pw,id);
+		result = jdbcTemplate.update(sql.toString(), postpw, id, prepw);
 		
 		return result;
 	}
