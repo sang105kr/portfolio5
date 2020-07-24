@@ -6,6 +6,7 @@
 <style>
   #findIDForm * {
   	box-sizing: border-box;
+  	margin:2px;
   }
 	#findIDForm input {
 			width:100%;
@@ -51,9 +52,9 @@
     		  
     	  //부모창 접근은 window.opener속성 이용
 	    	  window.opener//
-	    	        cument.getElementById('id').value = findedIDTag.textContent;
+	    	        .document.getElementById('id').value = findedIDTag.textContent;
     	  	window.opener//
-    	  	 			cument.getElementById('pw').select();
+    	  	 			.document.getElementById('pw').select();
     	  	window.close();
     	  }
       }
@@ -66,22 +67,22 @@
     		  document.getElementById('tel').select();
     		  return false;
     	  }
-    	  
+    	  console.log(document.getElementById('birth').value);
     	  //생년월일체크
     	  if(!document.getElementById('birth').value) {
     		  document.getElementById('errmsg').textContent = '생년월일 입력바랍니다!';
     		  document.getElementById('birth').select();
     		  return false;    		  
     	  }
-    	  
+    	  return true;
       }
            
       //아이디 찾기 버튼 클릭시
       function findID_f(event) {
         event.preventDefault(); //<button>의 기본 이벤트 차단
-				
+
         if(!chkValidation()) return;
-        
+
         const telTag 		= document.getElementById("tel");
         const birthTag 	= document.getElementById("birth");
         
@@ -108,12 +109,12 @@
             const jsonObj = JSON.parse(this.responseText);
             
             switch(jsonObj.rtcode){
-            case "success" :
-            	findedIDTag.textContent = jsonObj.value;
+            case "00" :
+            	findedIDTag.textContent = jsonObj.result;
             	errmsgTag.textContent = '';
             	break;
-            case "fail" :
-            	errmsgTag.textContent = jsonObj.value;            	
+            case "01" :
+            	errmsgTag.textContent = jsonObj.result;            	
             	break;
             }          
           }
@@ -130,13 +131,23 @@
         //4)서비스요청
         xhttp.open(
           "POST",
-          "http://localhost:9080/myweb/member/findIdByRestfull"
+          "http://localhost:9080${contextPath}/member/id"
         );
-        xhttp.setRequestHeader(
+        //post form 요청시 필요
+/*         xhttp.setRequestHeader(
           "Content-Type",
           "application/x-www-form-urlencoded"
-        );
-        xhttp.send("result=" + result);
+        ); */
+        
+        //post json 요청시 필요
+        xhttp.setRequestHeader(
+                  "Content-Type",
+                  "application/json;charset=utf-8"
+        );    
+        //querystring 전송 필요시
+        //xhttp.send("result=" + result);
+        //queryString 불필요시
+        xhttp.send(result);
       }
     </script>
 </head>

@@ -6,6 +6,7 @@
 <style>
   #findPWForm * {
   	box-sizing: border-box;
+  	margin:2px;
   }
 	#findPWForm input {
 			width:100%;
@@ -51,7 +52,7 @@
     		  
     	  //부모창 접근은 window.opener속성 이용
 	    	  window.opener//
-	    	        cument.getElementById('pw').value = findedPWTag.textContent;
+	    	        .document.getElementById('pw').value = findedPWTag.textContent;
     	  	window.close();
     	  }
       }
@@ -79,6 +80,7 @@
     		  return false;    		  
     	  }
     	  
+    	  return true;
       }
       
       //비밀번호 찾기 버튼 클릭시
@@ -114,12 +116,12 @@
             const jsonObj = JSON.parse(this.responseText);
             
             switch(jsonObj.rtcode){
-            case "success" :
-            	findedPWTag.textContent = jsonObj.value;
+            case "00" :
+            	findedPWTag.textContent = jsonObj.result;
             	errmsgTag.textContent = '';
             	break;
-            case "fail" :
-            	errmsgTag.textContent = jsonObj.value;            	
+            case "01" :
+            	errmsgTag.textContent = jsonObj.result;            	
             	break;
             } 
           }
@@ -137,13 +139,13 @@
         //4)서비스요청
         xhttp.open(
           "POST",
-          "http://localhost:9080/myweb/member/findPwByRestfull"
+          "http://localhost:9080/${contextPath}/member/pw"
         );
         xhttp.setRequestHeader(
-          "Content-Type",
-          "application/x-www-form-urlencoded"
-        );
-        xhttp.send("result=" + result);
+                "Content-Type",
+                "application/json;charset=utf-8"
+      	); 
+        xhttp.send(result);
       }
     </script>
 </head>
