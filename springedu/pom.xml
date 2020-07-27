@@ -245,6 +245,39 @@
 		</dependency>
 		
 		<!-- 웹관련 라이브러리 종료 -->
+		
+		<!-- mail 시작-->
+		<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>javax.mail-api</artifactId>
+	    <version>1.6.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+		<!-- mail 종료-->
+		
+		<!-- Jasypt(Java Simplified Encryption)를 이용한 Properties 파일 암호화 -->
+		<dependency>
+    	<groupId>org.jasypt</groupId>
+    	<artifactId>jasypt</artifactId>
+    	<version>1.9.3</version>
+		</dependency>
+		<dependency>
+	    <groupId>org.jasypt</groupId>
+	    <artifactId>jasypt-spring31</artifactId>
+	    <version>1.9.3</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

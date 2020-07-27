@@ -1,0 +1,4 @@
+db.driverClass=oracle.jdbc.driver.OracleDriver
+db.url=jdbc:oracle:thin:@127.0.0.1:1521:orcl
+db.username:portfolio
+db.password:
