@@ -1,0 +1,32 @@
+@charset "UTF-8";
+form {
+  min-width: 400px;
+  margin : 50px;
+}
+form * {
+  box-sizing: border-box;
+}
+form legend {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  font-weight: bold;
+}
+form label {
+  display: inline-block;
+  width: 70px;
+}
+form ul > li {
+  display: flex;
+  margin: 5px;
+}
+form ul > li:nth-last-child(1) {
+  display: flex;
+  justify-content: flex-end;
+}
+form ul > li:nth-last-child(1) > button {
+  margin-left: 3px;
+}
+form #bcontent {
+  width: 100%;
+}

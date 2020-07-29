@@ -5,7 +5,7 @@
     	<fmt:bundle basename="resource.menu">
       <ul>
         <!-- 웹표준 -->
-        <li><a href="#"><fmt:message key="menu.webstd"/></a></li>
+        <li><a href="${contextPath }/board/writeForm"><fmt:message key="menu.webstd"/></a></li>
         <!-- 자바 -->
         <li><a href="#"><fmt:message key="menu.java"/></a></li>
         <!-- 안드로이드 -->
