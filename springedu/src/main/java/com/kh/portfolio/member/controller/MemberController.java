@@ -54,8 +54,8 @@ public class MemberController {
 	// 회원가입처리
 	@PostMapping("/join")
 	public String join(MemberVO memberVO, Model model) {
-		logger.info("MemberController.join(MemberVO memberVO)호출됨!");
-		logger.info(memberVO.toString());
+//		logger.info("MemberController.join(MemberVO memberVO)호출됨!");
+//		logger.info(memberVO.toString());
 
 		int result = memberSVC.joinMember(memberVO);
 		if (result == 1) {
@@ -159,9 +159,9 @@ public class MemberController {
 	@PostMapping(value = "/id", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Map> findID(@RequestBody MemberVO memberVO) {
-		logger.info("ResponseEntity<Map> findID() 호출됨!!");
-		logger.info("tel:" + memberVO.getTel());
-		logger.info("birth:" + memberVO.getBirth());
+//		logger.info("ResponseEntity<Map> findID() 호출됨!!");
+//		logger.info("tel:" + memberVO.getTel());
+//		logger.info("birth:" + memberVO.getBirth());
 		ResponseEntity<Map> res = null;
 		String findID = null;
 
@@ -195,10 +195,10 @@ public class MemberController {
 	@PostMapping(value = "/pw", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<Map> findPW(@RequestBody MemberVO memberVO) {
-		logger.info("ResponseEntity<Map> findPW() 호출됨!!");
-		logger.info("tel:" + memberVO.getId());
-		logger.info("tel:" + memberVO.getTel());
-		logger.info("birth:" + memberVO.getBirth());
+//		logger.info("ResponseEntity<Map> findPW() 호출됨!!");
+//		logger.info("tel:" + memberVO.getId());
+//		logger.info("tel:" + memberVO.getTel());
+//		logger.info("birth:" + memberVO.getBirth());
 		ResponseEntity<Map> res = null;
 		String findPW = null;
 
@@ -226,11 +226,11 @@ public class MemberController {
 	@ResponseBody
 	public ResponseEntity<Map> findPWMail(@RequestBody MemberVO memberVO, HttpServletRequest request,
 			HttpServletResponse response) {
-
-		logger.info("ResponseEntity<Map> findPW() 호출됨!!");
-		logger.info("id:" + memberVO.getId());
-		logger.info("tel:" + memberVO.getTel());
-		logger.info("birth:" + memberVO.getBirth());
+//
+//		logger.info("ResponseEntity<Map> findPW() 호출됨!!");
+//		logger.info("id:" + memberVO.getId());
+//		logger.info("tel:" + memberVO.getTel());
+//		logger.info("birth:" + memberVO.getBirth());
 		ResponseEntity<Map> res = null;
 		String findPW = null;
 

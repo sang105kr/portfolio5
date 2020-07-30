@@ -20,7 +20,7 @@ import com.kh.portfolio.member.dao.MemberDAO;
 import com.kh.portfolio.member.vo.MemberVO;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/*.xml"})
 public class MemberDAOImplXMLTest {
 
 	private final static Logger logger
@@ -84,9 +84,9 @@ public class MemberDAOImplXMLTest {
 	
 	@Test
 	@DisplayName("회원조회(개인)")
-	@Disabled
+//	@Disabled
 	void listOneMember() {
-		String id = "test@test.com";
+		String id = "sang105kr@gmail.com";
 		MemberVO memberVO = memberDAO.listOneMember(id);
 		logger.info(memberVO.toString());
 	}
@@ -137,6 +137,7 @@ public class MemberDAOImplXMLTest {
 	
 	@Test
 	@DisplayName("비밀번호변경")
+	@Disabled
 	void changePW() {
 		String id = "test@test.com";
 		String postpw = "4444";

@@ -26,19 +26,19 @@ public class MemberDAOImplXML implements MemberDAO{
 	//회원 등록
 	@Override
 	public int joinMember(MemberVO memberVO) {
-		logger.info("MemberDAOImplXML.joinMember(MemberVO memberVO) 호출됨");	
+//		logger.info("MemberDAOImplXML.joinMember(MemberVO memberVO) 호출됨");	
 		return sqlSession.insert("mappers.MemberDAO-mapper.joinMember",memberVO);
 	}
 	//회원 수정
 	@Override
 	public int modifyMember(MemberVO memberVO) {
-		logger.info("MemberDAOImplXML.modifyMember(MemberVO memberVO) 호출됨");	
+//		logger.info("MemberDAOImplXML.modifyMember(MemberVO memberVO) 호출됨");	
 		return sqlSession.update("mappers.MemberDAO-mapper.modifyMember", memberVO);
 	}
 	//회원 전체조회
 	@Override
 	public List<MemberVO> listAllMember() {
-		logger.info("MemberDAOImplXML.listAllMember() 호출됨");
+//		logger.info("MemberDAOImplXML.listAllMember() 호출됨");
 		return sqlSession.selectList("mappers.MemberDAO-mapper.listAllMember");
 	}
 	//회원 개별조회
@@ -50,7 +50,7 @@ public class MemberDAOImplXML implements MemberDAO{
 	//회원 탈퇴
 	@Override
 	public int outMember(String id, String pw) {
-		logger.info("MemberDAOImplXML.outMember(String id, String pw) 호출됨");
+//		logger.info("MemberDAOImplXML.outMember(String id, String pw) 호출됨");
 		Map<String,String> map = new HashMap<>();
 		map.put("id",id);
 		map.put("pw",pw);
@@ -60,7 +60,7 @@ public class MemberDAOImplXML implements MemberDAO{
 	//로그인
 	@Override
 	public MemberVO login(String id, String pw) {
-		logger.info("MemberDAOImplXML.login(String id, String pw) 호출됨");
+//		logger.info("MemberDAOImplXML.login(String id, String pw) 호출됨");
 		Map<String,String> map = new HashMap<>();
 		map.put("id",id);
 		map.put("pw",pw);
@@ -69,7 +69,7 @@ public class MemberDAOImplXML implements MemberDAO{
 	//아이디 찾기
 	@Override
 	public String findID(String tel, Date birth) {
-		logger.info("MemberDAOImplXML.findID(String tel, Date birth) 호출됨");
+//		logger.info("MemberDAOImplXML.findID(String tel, Date birth) 호출됨");
 		MemberVO memberVO = new MemberVO();
 		memberVO.setTel(tel);
 		memberVO.setBirth(birth);
@@ -78,7 +78,7 @@ public class MemberDAOImplXML implements MemberDAO{
 	//비밀번호 찾기
 	@Override
 	public String findPW(String id, String tel, Date birth) {
-		logger.info("MemberDAOImplXML.findPW(String id, String tel, Date birth) 호출됨");
+//		logger.info("MemberDAOImplXML.findPW(String id, String tel, Date birth) 호출됨");
 		MemberVO memberVO = new MemberVO();
 		memberVO.setId(id);
 		memberVO.setTel(tel);
@@ -88,7 +88,7 @@ public class MemberDAOImplXML implements MemberDAO{
 	//비밀번호 변경
 	@Override
 	public int changePW(String id, String prepw, String postpw) {
-		logger.info("MemberDAOImplXML.changePW(String id, String pw) 호출됨");
+//		logger.info("MemberDAOImplXML.changePW(String id, String pw) 호출됨");
 		Map<String,String> map = new HashMap<>();
 		map.put("id",id);
 		map.put("prepw",prepw);

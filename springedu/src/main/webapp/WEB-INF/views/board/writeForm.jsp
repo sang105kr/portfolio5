@@ -6,7 +6,7 @@
 <title>게시글 작성</title>
 <link rel="stylesheet" href="${contextPath }/css/board/board.css">
 <link rel="stylesheet" href="${contextPath }/css/board/writeForm.css">
-<script defer src="href="${contextPath }/js/board/writeForm.js"></script>
+<script defer src="${contextPath }/js/board/writeForm.js"></script>
 </head>
 <body>
 	<!-- 최상위메뉴 -->
@@ -22,7 +22,10 @@
 	<main>
 		<div class="container">
 			<div class="content">
-				<form method="post" action="${contextPath }/board/write">
+				<form id="writeForm" 
+							method="post" 
+							action="${contextPath }/board/write"
+							enctype="multipart/form-data">
 					<legend>게시글 작성</legend>
 					<ul>
 						<li><label for="">분류</label> <select
@@ -38,15 +41,17 @@
 							id="bid" /></li>
 						<li><label for="bcontent">내용</label>
 						<textarea name="bcontent" id="bcontent" rows="10"></textarea></li>
-						<li><label for="">첨부</label> <input type="file" name="" id=""
+						<li><label for="">첨부</label> <input type="file" name="files" id="files"
 							multiple /></li>
 						<li>
-							<button>등록</button>
-							<button>취소</button>
-							<button>목록</button>
+							<button id="writeBtn" type="button"
+								class="btn btn-outline-success">등록</button>
+							<button id="cancelBtn" type="button"
+								class="btn btn-outline-danger">취소</button>
+							<button id="listBtn" type="button" class="btn btn-outline-info">
+								목록</button>
 						</li>
 					</ul>
-
 				</form>
 			</div>
 		</div>

@@ -37,9 +37,9 @@ public class LoginController {
 			@RequestParam("pw") String pw,
 			HttpSession session,
 			Model model) {
-		logger.info("String login()호출됨");
-		logger.info("id : " + id);
-		logger.info("pw : " + pw);
+//		logger.info("String login()호출됨");
+//		logger.info("id : " + id);
+//		logger.info("pw : " + pw);
 		
 		MemberVO memberVO = memberSVC.listOneMember(id);
 

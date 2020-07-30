@@ -23,12 +23,19 @@ public class BoardController {
 		return "/board/writeForm";
 	}
 	
-	
 	//게시글 작성처리
 	@PostMapping("/write")
 	public String write(BoardVO boardVO) {
-		
+		logger.info("boardVO :" + boardVO.toString());
+
 		return "/board/list"; 
+	}
+	
+	//게시글 목록
+	@GetMapping("list")
+	public String list() {
+		
+		return "/board/list";
 	}
 }
 
