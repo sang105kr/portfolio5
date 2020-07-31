@@ -20,13 +20,40 @@
 	    #{boardCategoryVO.cid},
 	    #{btitle},
 	    #{bid},
-	    #{nickname},
+	    #{bnickname},
 	    #{bcontent},
 	    BOARD_BNUM_SEQ.nextval,
 	    0,
 	    0
 	)
+	<!-- 게시글 생성후 게시글번호가 생성되고 이생성된 번호를 읽어와서 BoardVO.setBnum()에 넣어줌 -->
+	<selectKey keyProperty="bnum" resultType="long" order="AFTER">
+		select BOARD_BNUM_SEQ.currval
+		  from dual
+	</selectKey>
 </insert>
+<!-- 파일첨부 -->
+<insert id="addFile"
+				parameterType="com.kh.portfolio.board.vo.BoardFileVO">
+	
+	INSERT INTO board_upload_file (
+	    fid,
+	    bnum,
+	    fname,
+	    fsize,
+	    ftype,
+	    fdata
+	) VALUES (
+	    board_upload_file_sql.nextval,
+	    #{bnum},
+	    #{fname},
+	    #{fsize},
+	    #{ftype},
+	    #{fdata}
+	)
+
+</insert>
+
 <!-- 게시글 수정 -->
 <!-- 게시글 삭제 -->
 <!-- 게시글 보기 -->

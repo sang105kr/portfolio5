@@ -40,7 +40,7 @@ public class BoardDAOImplXMLTEST {
 		boardVO.getBoardCategoryVO().setCid(1001);
 		boardVO.setBtitle("테스트 제목");
 		boardVO.setBid("sang105kr@gmail.com");
-		boardVO.setNickname("별칭1");
+		boardVO.setBnickname("별칭1");
 		boardVO.setBcontent("본문1");
 		
 		int result = boardDAO.write(boardVO);

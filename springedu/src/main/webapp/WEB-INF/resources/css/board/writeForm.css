@@ -22,21 +22,26 @@ form label {
 	letter-spacing: 0.3em; /*부모요소 폰트의 30%*/
 }
 
-form input[name="btitle"] {
+/* form input[name="btitle"] {
 	width: 80%;
 }
 
 form input[name="bid"] {
 	width: 50%;
-}
+} */
 
 form ul {
 	padding-left: 0px;
 }
 
 form ul>li {
-	display: flex;
-	margin: 5px;
+ 	display:grid;
+ 	grid-template-columns:15% 1fr;
+	margin : 10px 0;
+ }
+ 
+form ul>li span{
+	grid-column:2/3;
 }
 
 form ul>li:nth-last-child(1) {
@@ -51,6 +56,12 @@ form ul>li:nth-last-child(1)>button {
 form #bcontent {
 	width: 100%;
 }
+form .svr_msg {
+	font-size: 0.7em;
+	font-weight: bold;
+	color:red;
+}
+
 
 .btn {
 	display: inline-block;
@@ -71,3 +82,4 @@ form #bcontent {
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+

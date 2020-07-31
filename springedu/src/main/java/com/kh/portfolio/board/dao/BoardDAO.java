@@ -2,6 +2,7 @@ package com.kh.portfolio.board.dao;
 
 import java.util.List;
 
+import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
 
 public interface BoardDAO {
@@ -16,4 +17,6 @@ public interface BoardDAO {
 	BoardVO view(String bnum);
 	//게시글 목록
 	List<BoardVO> list();
+	//파일첨부
+	int addFile(BoardFileVO boardFileVO);
 }

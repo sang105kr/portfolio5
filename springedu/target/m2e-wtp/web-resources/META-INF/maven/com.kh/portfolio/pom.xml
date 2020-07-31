@@ -15,17 +15,18 @@
 		<org.slf4j-version>1.7.30</org.slf4j-version>
 		<jackson-databind-version>2.11.1</jackson-databind-version>
 		<junit-jupiter-version>5.6.2</junit-jupiter-version>
+		<hibernate-core-version>5.4.19.Final</hibernate-core-version>
 	</properties>
-	
+
 	<!-- oracle dirver 저장소 -->
-  <repositories>
-  	<repository>
-  		<id>oracle</id>
-  		<name>ORACLE JDBC Repository</name>
-  		<url>https://maven.xwiki.org/externals/</url>
-  	</repository>
-  </repositories>
-  	
+	<repositories>
+		<repository>
+			<id>oracle</id>
+			<name>ORACLE JDBC Repository</name>
+			<url>https://maven.xwiki.org/externals/</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -53,7 +54,7 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -61,12 +62,12 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-aop</artifactId>
-		    <version>${org.springframework-version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<!-- AOP 의존성 끝 -->
-		
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -161,144 +162,162 @@
 		<!-- DB연동 시작 -->
 		<!-- spring jdbc -->
 		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-jdbc</artifactId>
-		    <version>${org.springframework-version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
-		
-  	<!-- oracle 드라이버 -->
-  	<dependency>
-  		<groupId>com.oracle.jdbc</groupId>
-  		<artifactId>ojdbc8</artifactId>
-  		<version>12.2.0.1</version>
-  	</dependency>
-  	
-  	<!-- 커넥션 풀 -->
+
+		<!-- oracle 드라이버 -->
 		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-dbcp2</artifactId>
-		    <version>2.7.0</version>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>12.2.0.1</version>
 		</dependency>
-		
+
+		<!-- 커넥션 풀 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+
 		<!-- mybatis -->
 		<dependency>
-	    <groupId>org.mybatis</groupId>
-	    <artifactId>mybatis</artifactId>
-	    <version>3.5.5</version>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.5</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>org.mybatis</groupId>
-		    <artifactId>mybatis-spring</artifactId>
-		    <version>2.0.5</version>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.5</version>
 		</dependency>
 		<!-- DB연동 종료 -->
-			
-		<!-- Spring-test 시작 -->	
+
+		<!-- Spring-test 시작 -->
 		<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-test</artifactId>
-	    <version>${org.springframework-version}</version>
-	    <scope>test</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- Spring-test 종료 -->
-			
+
 		<!-- Junit 단위 테스트를 하기위한 프레임워크 시작 -->
 		<dependency>
-	    <groupId>org.junit.jupiter</groupId>
-	    <artifactId>junit-jupiter-api</artifactId>
-	    <version>${junit-jupiter-version}</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit-jupiter-version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.junit.jupiter</groupId>
-		    <artifactId>junit-jupiter-engine</artifactId>
-		    <version>${junit-jupiter-version}</version>
-		</dependency>			
-		<!-- Junit 종료 -->		
-		
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${junit-jupiter-version}</version>
+		</dependency>
+		<!-- Junit 종료 -->
+
 		<!-- 어노테이션을 사용해서 DTO,VO등의 객체에 setter,getter,constructor등 자동생성 -->
 		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.12</version>
-		    <scope>provided</scope>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.12</version>
+			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- 웹관련 라이브러리 시작 -->
 		<!-- fontawesome -->
 		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>font-awesome</artifactId>
-		    <version>5.13.1</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>5.13.1</version>
 		</dependency>
-			
+
 		<!-- jquery -->
 		<dependency>
-    	<groupId>org.webjars</groupId>
-    	<artifactId>jquery</artifactId>
-    	<version>3.5.1</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.5.1</version>
 		</dependency>
-		
+
 		<!-- bootstrap -->
 		<dependency>
-    	<groupId>org.webjars</groupId>
-    	<artifactId>bootstrap</artifactId>
-    	<version>4.5.0</version>
-		</dependency>			
-		<dependency>
-    	<groupId>org.webjars</groupId>
-    	<artifactId>popper.js</artifactId>
-    	<version>2.0.2</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.5.0</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>popper.js</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
 		<!-- 시각화 라이브러리 d3.js -->
 		<dependency>
-    	<groupId>org.webjars</groupId>
-    	<artifactId>d3js</artifactId>
-    	<version>5.16.0</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>d3js</artifactId>
+			<version>5.16.0</version>
 		</dependency>
-		
+
 		<!-- 웹관련 라이브러리 종료 -->
-		
-		<!-- mail 시작-->
+
+		<!-- mail 시작 -->
 		<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-context-support</artifactId>
-	    <version>${org.springframework-version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
 		<dependency>
-	    <groupId>javax.mail</groupId>
-	    <artifactId>javax.mail-api</artifactId>
-	    <version>1.6.2</version>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.6.2</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>javax.mail</artifactId>
-		    <version>1.6.2</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
 		</dependency>
-		<!-- mail 종료-->
-		
+		<!-- mail 종료 -->
+
 		<!-- Jasypt(Java Simplified Encryption)를 이용한 Properties 파일 암호화 -->
 		<dependency>
-    	<groupId>org.jasypt</groupId>
-    	<artifactId>jasypt</artifactId>
-    	<version>1.9.3</version>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>1.9.3</version>
 		</dependency>
 		<dependency>
-	    <groupId>org.jasypt</groupId>
-	    <artifactId>jasypt-spring31</artifactId>
-	    <version>1.9.3</version>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt-spring31</artifactId>
+			<version>1.9.3</version>
 		</dependency>
-		
-		<!-- 파일 업로드 -->		
+
+		<!-- 파일 업로드 -->
 		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>1.4</version>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
 		</dependency>
-		
+
+		<!-- JPA(Java Persitence API) Validation 시작 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-core-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate-core-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.5.Final</version>
+		</dependency>
+		<!-- JPA(Java Persitence API) Validation 종료 -->
+
 	</dependencies>
 	<build>
 		<plugins>
