@@ -1,0 +1,47 @@
+@charset "UTF-8";
+#boardList .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr 6fr 2fr 1fr 1fr;
+  grid-auto-rows: minmax(20px, auto);
+}
+#boardList .wrapper div {
+  border: 1px solid gray;
+}
+/* 게시글 타이 틀 */
+#boardList > div {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+/* 게시글 컬럼 제목 */
+#boardList .wrapper .head {
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  background-color: #212121;
+  color: white;
+  padding: 5px;
+}
+/* 게시글 내용 */
+#boardList .wrapper .rec {
+  font-size: 0.7em;
+  padding: 5px;
+}
+/* 버튼 그룹 */
+#boardList .btnGrp {
+  display: flex;
+  justify-content: flex-end;
+}
+/* 페이징 */
+#boardList .paging {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* 검색 */
+#boardList .paging {
+  display: flex;
+  justify-content: center;
+}

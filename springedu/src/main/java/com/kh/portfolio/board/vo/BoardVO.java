@@ -29,9 +29,9 @@ public class BoardVO {
 					 message = "이메일 형식으로 입력바랍니다. ex)test@gmail.com")
 	private String bid;													//	BID				VARCHAR2(40 BYTE)	Yes		4	작성자ID
 	private String bnickname;										//	BNICKNAME	VARCHAR2(30 BYTE)	Yes		5	별칭
-	private Timestamp bdate;										//	BCDATE		TIMESTAMP(6)	Yes	"systimestamp "	6	작성일
-	private Timestamp udate;										//	BUDATE		TIMESTAMP(6)	Yes	"systimestamp "	7	수정일
-	private int hit;														//	BHIT			NUMBER(5,0)	Yes	"0 "	8	조회수
+	private Timestamp bcdate;										//	BCDATE		TIMESTAMP(6)	Yes	"systimestamp "	6	작성일
+	private Timestamp budate;										//	BUDATE		TIMESTAMP(6)	Yes	"systimestamp "	7	수정일
+	private int bhit;														//	BHIT			NUMBER(5,0)	Yes	"0 "	8	조회수
 	@NotNull(message = "내용을 입력바랍니다!")
 	@Size(min=4, message = "내용은 최소4자 이상 입력바랍니다!!")
 	private String bcontent;										//	BCONTENT	CLOB	Yes		9	본문내용

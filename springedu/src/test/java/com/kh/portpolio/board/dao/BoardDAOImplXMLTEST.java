@@ -1,8 +1,11 @@
 package com.kh.portpolio.board.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,6 +30,7 @@ public class BoardDAOImplXMLTEST {
 	
 	@Test
 	@DisplayName("게시글 작성")
+	@Disabled
 	void write() {
 //    #{cid},
 //    #{btitle},
@@ -45,6 +49,21 @@ public class BoardDAOImplXMLTEST {
 		
 		int result = boardDAO.write(boardVO);
 		Assertions.assertEquals(1, result);
+	}
+	
+	@Test
+	@DisplayName("게시글목록")
+	void list() {
+		
+		List<BoardVO> list = boardDAO.list();
+		logger.info("레코드갯수:" + list.size());
+		
+//		list.stream().forEach((board)->{
+//			System.out.println(board);
+//		});
+		list.stream().forEach(System.out::println);
+		
+//		logger.info("게시글 목록:" + list.toString());
 	}
 }
 

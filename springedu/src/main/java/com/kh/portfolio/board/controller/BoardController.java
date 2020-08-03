@@ -54,7 +54,9 @@ public class BoardController {
 	
 	//게시글 목록
 	@GetMapping("list")
-	public String list() {
+	public String list(Model model) {
+		
+		model.addAttribute("list", boardSVC.list());
 		
 		return "/board/list";
 	}
