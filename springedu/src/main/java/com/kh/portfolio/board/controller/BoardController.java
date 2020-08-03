@@ -28,8 +28,11 @@ public class BoardController {
 	
 	//게시글 작성(화면)
 	@GetMapping("/writeForm")
-	public String writeForm(Model model) {
-		model.addAttribute("boardVO", new BoardVO());
+	public String writeForm(
+			@ModelAttribute("boardVO") BoardVO boardVO, //case 1)  
+			Model model) {
+//case 2)		
+//		model.addAttribute("boardVO", new BoardVO());
 		
 		return "/board/writeForm";
 	}

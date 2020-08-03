@@ -56,6 +56,7 @@ form ul>li:nth-last-child(1)>button {
 form #bcontent {
 	width: 100%;
 }
+form .client_msg,
 form .svr_msg {
 	font-size: 0.7em;
 	font-weight: bold;
