@@ -44,7 +44,9 @@ public class BoardDAOImplXML implements BoardDAO {
 	//게시글 보기
 	@Override
 	public BoardVO view(String bnum) {
-		return null;
+		BoardVO boardVO = null;
+		boardVO = sqlSession.selectOne("mappers.BoardDAO-mapper.view", Long.valueOf(bnum));
+		return boardVO;
 	}
 	//게시글 목록
 	@Override

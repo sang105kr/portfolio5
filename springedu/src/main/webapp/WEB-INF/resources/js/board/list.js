@@ -10,6 +10,7 @@ findBtn.addEventListener("click", findBtn_f);
 //글쓰기 클릭시
 function writeBtn_f(e) {
   console.log("글쓰기 클릭됨!");
+	window.location.href="./writeForm";
 }
 
 //검색 클릭시

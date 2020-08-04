@@ -14,7 +14,7 @@
 	<%@ include file="/WEB-INF/views/include/uppermost.jsp" %>
 
   <!-- header -->
-  <%@ include file="/WEB-INF/views/include/header.jsp" %>
+<%--   <%@ include file="/WEB-INF/views/include/header.jsp" %> --%>
 
   <!-- 메뉴 -->
   <%@ include file="/WEB-INF/views/include/menu.jsp" %>
@@ -35,7 +35,7 @@
 		        <c:forEach var="rec" items="${requestScope.list }">
 		        <div class="rec">${rec.bnum }</div>
 		        <div class="rec">${rec.boardCategoryVO.cname }</div>
-		        <div class="rec">${rec.btitle }</div>
+		        <div class="rec"><a href="./view/${rec.bnum }">${rec.btitle }</a></div>
 		        <div class="rec">${rec.bnickname }</div>
 		        <div class="rec">${rec.bcdate }</div>
 		        <div class="rec">${rec.bhit }</div>

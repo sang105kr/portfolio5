@@ -53,6 +53,7 @@ public class BoardDAOImplXMLTEST {
 	
 	@Test
 	@DisplayName("게시글목록")
+	@Disabled
 	void list() {
 		
 		List<BoardVO> list = boardDAO.list();
@@ -64,6 +65,14 @@ public class BoardDAOImplXMLTEST {
 		list.stream().forEach(System.out::println);
 		
 //		logger.info("게시글 목록:" + list.toString());
+	}
+	@Test
+	@DisplayName("게시글 보기")
+	void view() {
+		String bnum = "66";
+		
+		BoardVO boardVO = boardDAO.view(bnum);
+		logger.info(boardVO.toString());
 	}
 }
 

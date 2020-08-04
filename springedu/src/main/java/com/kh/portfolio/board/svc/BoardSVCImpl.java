@@ -89,7 +89,9 @@ public class BoardSVCImpl implements BoardSVC {
 	// 게시글 보기
 	@Override
 	public BoardVO view(String bnum) {
-		return null;
+		BoardVO boardVO = null;
+		boardVO = boardDAO.view(bnum);
+		return boardVO;
 	}
 
 	// 게시글 목록

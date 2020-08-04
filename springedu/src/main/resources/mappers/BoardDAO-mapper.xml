@@ -57,6 +57,28 @@
 <!-- 게시글 수정 -->
 <!-- 게시글 삭제 -->
 <!-- 게시글 보기 -->
+<select id="view"
+				parameterType="long"
+				resultType="com.kh.portfolio.board.vo.BoardVO">
+				
+SELECT t1.bnum,
+	     t2.cid      as "boardCategoryVO.cid",
+	     t2.cname    as "boardCategoryVO.cname",
+	     t1.btitle,
+	     t1.bid,
+	     t1.bnickname,
+	     t1.bcdate,
+	     t1.budate,
+	     t1.bhit,
+	     t1.bcontent,
+	     t1.bgroup,
+	     t1.bstep,
+	     t1.bindent
+  FROM board t1, board_category t2
+ where t1.bcategory = t2.cid
+   and t1.bnum = #{bnum}
+   				
+</select>
 <!-- 게시글 목록 -->
 <select id="list"
 				resultType="com.kh.portfolio.board.vo.BoardVO">

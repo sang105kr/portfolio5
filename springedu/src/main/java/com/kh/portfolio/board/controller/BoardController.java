@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -53,14 +54,27 @@ public class BoardController {
 	}
 	
 	//게시글 목록
-	@GetMapping("list")
+	@GetMapping("/list")
 	public String list(Model model) {
 		
 		model.addAttribute("list", boardSVC.list());
 		
 		return "/board/list";
 	}
+	
+	//게시글 보기
+	@GetMapping("/view/{bnum}")
+	public String view(
+			@PathVariable("bnum") String bnum,
+			Model model) {
+		
+		model.addAttribute("boardVO", boardSVC.view(bnum));
+		
+		return "/board/readForm";
+	}
 }
+
+
 
 
 
