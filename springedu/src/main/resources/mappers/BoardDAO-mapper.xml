@@ -95,10 +95,34 @@ SELECT t1.bnum,
  
 </select>
 
+<!-- 첨부파일조회 -->
+<select id="getFiles"
+				parameterType="long"
+				resultType="com.kh.portfolio.board.vo.BoardFileVO">
 
-
-
-
-
-
+	SELECT fid,
+         bnum,
+         fname,
+         fsize,
+         ftype,
+         fdata,
+         cdate,
+         udate
+    FROM board_upload_file
+   where bnum = #{bnum}
+  
+</select>
+<!-- 조회수 +1증가 -->
+<update id="updateBhit"
+				parameterType="long">
+				
+	update board
+	   set bhit = bhit + 1
+	 where bnum = #{bnum}
+	 
+</update>
 </mapper>
+
+
+
+

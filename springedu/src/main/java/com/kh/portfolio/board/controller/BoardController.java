@@ -1,5 +1,8 @@
 package com.kh.portfolio.board.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.portfolio.board.svc.BoardSVC;
+import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
 
 @Controller
@@ -68,7 +72,17 @@ public class BoardController {
 			@PathVariable("bnum") String bnum,
 			Model model) {
 		
-		model.addAttribute("boardVO", boardSVC.view(bnum));
+		Map<String,Object> map = boardSVC.view(bnum);
+		
+		BoardVO boardVO = (BoardVO)map.get("board");
+		
+		List<BoardFileVO> files = null;
+		if(map.get("files") != null) {
+			files = (List<BoardFileVO>)map.get("files");
+		}
+		
+		model.addAttribute("boardVO", boardVO);
+		model.addAttribute("files", files);
 		
 		return "/board/readForm";
 	}
