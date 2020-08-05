@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.portfolio.board.dao.BoardDAO;
+import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
 
@@ -25,6 +26,12 @@ public class BoardSVCImpl implements BoardSVC {
 	@Inject
 	BoardDAO boardDAO;
 
+	//게시판 카테고리 읽어오기
+	@Override
+	public List<BoardCategoryVO> getCategory() {		
+		return boardDAO.getCategory();
+	}
+	
 	// 게시글 작성
 	@Transactional //트랜션 처리가 필요하다고 알려준다.
 	@Override
@@ -121,5 +128,7 @@ public class BoardSVCImpl implements BoardSVC {
 		
 		return list;
 	}
+
+
 
 }

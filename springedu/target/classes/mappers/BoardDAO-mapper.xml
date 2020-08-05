@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.BoardDAO-mapper">
+<!-- 게시판 카테고리 읽어오기 -->
+<select id="getCategory"
+				resultType="com.kh.portfolio.board.vo.BoardCategoryVO">
+
+	select cid, cname
+	  from board_category
+
+</select>
+
 <!-- 게시글 작성 -->
 <insert id="write"
 				parameterType="com.kh.portfolio.board.vo.BoardVO">

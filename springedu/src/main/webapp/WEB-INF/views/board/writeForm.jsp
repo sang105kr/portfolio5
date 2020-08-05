@@ -32,10 +32,11 @@
 						<li>
 							<form:label path="boardCategoryVO.cid">분류</form:label> 
 							<form:select	path="boardCategoryVO.cid">
-								<form:option value="0">선택</form:option>
-								<form:option value="1001">SPRING</form:option>
-								<form:option value="1002">DATABASE</form:option>
-								<form:option value="1003">JAVA</form:option>
+								<option value="0">선택</option>
+								<form:options path="boardCategoryVO.cid"
+															items="${boardCategory }"
+															itemValue="cid"
+															itemLabel="cname"/>
 							</form:select>
 							<span class="client_msg" id="boardCategoryVO.cid.error"></sapn>
 							<form:errors cssClass="svr_msg" path="boardCategoryVO.cid"/>

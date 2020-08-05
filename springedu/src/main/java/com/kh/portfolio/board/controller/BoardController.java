@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.portfolio.board.svc.BoardSVC;
+import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
 
@@ -30,6 +31,12 @@ public class BoardController {
 	
 	@Inject
 	BoardSVC boardSVC;
+	
+	//현재 컨트롤러에서 만들어지는 view페이지내에서  boardCategoryVO 이름으로 참조가 가능하다
+	@ModelAttribute("boardCategory") 
+	public List<BoardCategoryVO> getCategory() {
+		return boardSVC.getCategory();
+	}
 	
 	//게시글 작성(화면)
 	@GetMapping("/writeForm")
@@ -45,16 +52,19 @@ public class BoardController {
 	//게시글 작성처리
 	@PostMapping("/write")
 	public String write(
-			@Valid BoardVO boardVO,
-			BindingResult result ) {
+			@Valid @ModelAttribute("boardVO") BoardVO boardVO,
+			BindingResult result
+			//Model model
+			) {
 
 		if(result.hasErrors()) {
+			//model.addAttribute("boardVO", boardVO);
 			return "/board/writeForm";
 		}
 		
 		boardSVC.write(boardVO);
 
-		return "/board/list"; 
+		return "redirect:/board/list"; 
 	}
 	
 	//게시글 목록

@@ -30,6 +30,26 @@ public class BoardDAOImplXMLTEST {
 	BoardDAO boardDAO;
 	
 	@Test
+	@DisplayName("게시판 카테고리 읽어오기")
+	void getCategory() {
+		List<BoardCategoryVO> list = boardDAO.getCategory();
+		//case1) 일반for문 
+		for(int i=0; i<list.size(); i++) {
+			logger.info(list.get(i).toString());
+		}
+		//case2) 향상된for문
+		for(BoardCategoryVO boardCategoryVO: list) {
+			logger.info(boardCategoryVO.toString());
+		}
+		//case3) 스트림사용
+		list.stream().forEach(boardCategoryVO->{
+			System.out.println(boardCategoryVO);
+		});
+		//case4) 스트림사용(메소드참드)
+		list.stream().forEach(System.out::println);
+	}
+	
+	@Test
 	@DisplayName("게시글 작성")
 	@Disabled
 	void write() {

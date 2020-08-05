@@ -9,15 +9,33 @@ const saveBtn  	= document.getElementById("saveBtn");
 const listBtn   = document.getElementById("listBtn");
 
 if(replyBtn) 	replyBtn.addEventListener("click", replyBtn_f);
-if(modifyBtn) cancelBtn.addEventListener("click", modifyBtn_f);
-if(deleteBtn) listBtn.addEventListener("click", deleteBtn_f);
+if(modifyBtn) modifyBtn.addEventListener("click", modifyBtn_f);
+if(deleteBtn) deleteBtn.addEventListener("click", deleteBtn_f);
 
 if(cancelBtn) cancelBtn.addEventListener("click", cancelBtn_f);
-if(saveBtn) 	writeBtn.addEventListener("click", saveBtn_f);
+if(saveBtn) 	saveBtn.addEventListener("click", saveBtn_f);
 if(listBtn) 	listBtn.addEventListener("click", listBtn_f);
+//답글
+function replyBtn_f(e){
+	console.log('답글');
+}
+//수정
+function modifyBtn_f(e){
+	console.log('수정');
+}
+//삭제
+function deleteBtn_f(e){
+	console.log('삭제');
+}
+//취소
+function cancelBtn_f(e) {
+  console.log("취소");
+  //입력한 내용 clear
+  writeForm.reset();
+}
 
 //저장
-function modifyBtn_f(e) {
+function saveBtn_f(e) {
 	e.preventDefault();
   console.log("등록");
 
@@ -29,12 +47,7 @@ function modifyBtn_f(e) {
   //2) 서버전송
   writeFrm.submit();
 }
-//취소
-function cancelBtn_f(e) {
-  console.log("취소");
-  //입력한 내용 clear
-  writeForm.reset();
-}
+
 //목록
 function listBtn_f(e) {
   console.log("목록");
