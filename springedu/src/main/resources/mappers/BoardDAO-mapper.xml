@@ -65,6 +65,18 @@
 
 <!-- 게시글 수정 -->
 <!-- 게시글 삭제 -->
+<delete id="delete" parameterType="long">
+	delete from board where bnum = #{bnum}
+</delete>
+<!-- 게시글 첨부파일 개별 삭제 -->
+<delete id="deleteFile" parameterType="long">
+	delete from board_upload_file where fid = #{fid}
+</delete>
+<!-- 게시글 첨부파일 전체 삭제 -->
+<delete id="deleteFiles" parameterType="long">
+	delete from board_upload_file where bnum = #{bnum}
+</delete>
+
 <!-- 게시글 보기 -->
 <select id="view"
 				parameterType="long"

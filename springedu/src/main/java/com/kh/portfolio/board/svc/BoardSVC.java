@@ -15,6 +15,8 @@ public interface BoardSVC {
 	int modify(BoardVO boardVO);	
 	//게시글 삭제
 	int delete(String bnum);
+	//게시글 첨부파일 개별 삭제
+	int deleteFile(String fid);	
 	//게시글 보기
 	Map<String, Object> view(String bnum);
 	//게시글 목록

@@ -15,6 +15,9 @@ if(deleteBtn) deleteBtn.addEventListener("click", deleteBtn_f);
 if(cancelBtn) cancelBtn.addEventListener("click", cancelBtn_f);
 if(saveBtn) 	saveBtn.addEventListener("click", saveBtn_f);
 if(listBtn) 	listBtn.addEventListener("click", listBtn_f);
+
+changeMode(false); //읽기모드
+
 //답글
 function replyBtn_f(e){
 	console.log('답글');
@@ -22,16 +25,61 @@ function replyBtn_f(e){
 //수정
 function modifyBtn_f(e){
 	console.log('수정');
+	changeMode(true); //수정모드
 }
+
+function changeMode(modeFlag){
+	const rmodes = document.getElementsByClassName("rmode");
+	const umodes = document.getElementsByClassName("umode");
+	
+	//읽기모드 -> 수정모드
+	if(modeFlag){
+		
+		//제목변경 => 게시글보기
+		document.getElementById('title').textContent = '게시글 수정';
+		//카테고리,제목,내용 활성화
+		document.getElementById('boardCategoryVO.cid').removeAttribute('disabled');
+		document.getElementById('btitle').removeAttribute('readOnly');
+		document.getElementById('bcontent').removeAttribute('readOnly');
+		
+		Array.from(rmodes).forEach(rmode=>{rmode.style.display="none";});
+		Array.from(umodes).forEach(umode=>{umode.style.display="block";});
+		
+		modeFlag = false;
+	//수정모드	-> 읽기모드
+	}else{
+		//제목변경 => 게시글수정
+		document.getElementById('title').textContent = '게시글 보기';
+		//카테고리,제목,내용 비활성화
+		document.getElementById('boardCategoryVO.cid').setAttribute('disabled',true);
+		document.getElementById('btitle').setAttribute('readOnly',true);
+		document.getElementById('bcontent').setAttribute('readOnly',true);
+		
+		Array.from(rmodes).forEach(rmode=>{rmode.style.display="block";});
+		Array.from(umodes).forEach(umode=>{umode.style.display="none";});		
+		
+		modeFlag = true;
+	}
+}
+
+
 //삭제
 function deleteBtn_f(e){
 	console.log('삭제');
+	if(confirm("삭제하시겠습니까?")){
+		const bnum = e.target.getAttribute("data-bnum");
+		const url = `/portfolio/board/delete/${bnum}`;
+		window.location.href = url;
+	}
 }
 //취소
 function cancelBtn_f(e) {
+	e.preventDefault();
   console.log("취소");
-  //입력한 내용 clear
-  writeForm.reset();
+	
+	//수정모드=>읽기모드
+	changeMode(false); 
+	
 }
 
 //저장

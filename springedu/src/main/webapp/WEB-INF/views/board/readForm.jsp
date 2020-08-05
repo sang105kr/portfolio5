@@ -27,7 +27,7 @@
 									 action="${contextPath }/board/write" 
 									 enctype="multipart/form-data"
 									 modelAttribute="boardVO">
-					<legend>게시글 보기</legend>
+					<legend id="title">게시글 보기</legend>
 					<ul>
 						<li>
 							<form:label path="boardCategoryVO.cid">분류</form:label> 
@@ -65,17 +65,15 @@
 							<span class="client_msg" id="files.error"></sapn>	
 							<form:errors cssClass="svr_msg" path="files"/>
 						</li>	
-						<!-- 읽기모드 버튼 -->	
-						<li class="btnGrp rmode">
-							<form:button id="replyBtn" 	type="button" class="btn btn-outline-success">답글</form:button>
-							<form:button id="modifyBtn" type="button" class="btn btn-outline-danger">수정</form:button>
-							<form:button id="deleteBtn" type="button" class="btn btn-outline-info"> 삭제</form:button>
-							<form:button id="listBtn" 	type="button" class="btn btn-outline-info"> 목록</form:button>
-						</li>
-						<!-- 수정모드 버튼 -->
-						<li class="btnGrp umode">
-							<form:button id="cancelBtn" type="button" class="btn btn-outline-danger">취소</form:button>
-							<form:button id="saveBtn" 	type="button" class="btn btn-outline-success">저장</form:button>
+						<li class="btnGrp">
+							<!-- 읽기모드 버튼 -->	
+							<form:button id="replyBtn" 	type="button" class="btn rmode btn-outline-success">답글</form:button>
+							<form:button id="modifyBtn" type="button" class="btn rmode btn-outline-danger">수정</form:button>
+							<form:button id="deleteBtn" type="button" class="btn rmode btn-outline-info" data-bnum="${requestScope.boardVO.bnum }"> 삭제</form:button>
+							<!-- 수정모드 버튼 -->
+							<form:button id="cancelBtn" type="button" class="btn umode btn-outline-danger">취소</form:button>
+							<form:button id="saveBtn" 	type="button" class="btn umode btn-outline-success">저장</form:button>
+							<!-- 공통버튼 -->	
 							<form:button id="listBtn" 	type="button" class="btn btn-outline-info"> 목록</form:button>
 						</li>
 						<!-- 첨부목록 -->

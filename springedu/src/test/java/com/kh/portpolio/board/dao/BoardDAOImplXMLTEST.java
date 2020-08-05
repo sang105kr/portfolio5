@@ -31,6 +31,7 @@ public class BoardDAOImplXMLTEST {
 	
 	@Test
 	@DisplayName("게시판 카테고리 읽어오기")
+	@Disabled
 	void getCategory() {
 		List<BoardCategoryVO> list = boardDAO.getCategory();
 		//case1) 일반for문 
@@ -109,12 +110,30 @@ public class BoardDAOImplXMLTEST {
 	}
 	@Test
 	@DisplayName("조회수+1증가")
+	@Disabled
 	void updateBhit() {
 		String bnum = "66";
 		int preBhit = boardDAO.view(bnum).getBhit();
 		boardDAO.updateBhit(bnum);
 		int postBhit = boardDAO.view(bnum).getBhit();
 		Assertions.assertEquals(preBhit+1, postBhit);
+	}
+	
+	@Test
+	@DisplayName("게시글삭제")
+	@Disabled
+	void delete() {
+		String bnum = "69";
+		int result = boardDAO.delete(bnum);
+		Assertions.assertEquals(1, 1);
+	}
+	
+	@Test
+	@DisplayName("게시글 첨부파일 개별삭제")
+	void deleteFile() {
+		String fid = "21";
+		int result = boardDAO.deleteFile(fid);
+		Assertions.assertEquals(1, 1);
 	}
 }
 

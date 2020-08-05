@@ -96,6 +96,15 @@ public class BoardController {
 		
 		return "/board/readForm";
 	}
+	
+	//게시글삭제
+	@GetMapping("/delete/{bnum}")
+	public String delete(@PathVariable("bnum") String bnum) {
+		
+		boardSVC.delete(bnum);
+		
+		return "redirect:/board/list";
+	}
 }
 
 

@@ -92,8 +92,13 @@ public class BoardSVCImpl implements BoardSVC {
 	// 게시글 삭제
 	@Override
 	public int delete(String bnum) {
-		return 0;
+		return boardDAO.delete(bnum);
 	}
+  //게시글 첨부파일 개별 삭제
+	@Override
+	public int deleteFile(String fid) {
+		return boardDAO.deleteFile(fid);
+	}	
 
 	// 게시글 보기
 	@Transactional
@@ -128,6 +133,7 @@ public class BoardSVCImpl implements BoardSVC {
 		
 		return list;
 	}
+
 
 
 
