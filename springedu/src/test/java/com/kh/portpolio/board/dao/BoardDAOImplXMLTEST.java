@@ -139,12 +139,54 @@ public class BoardDAOImplXMLTEST {
 	
 	@Test
 	@DisplayName("첨부파일 다운로드")
+	@Disabled
 	void viewFile() {
 		String fid = "19";
 		BoardFileVO boardFileVO = boardDAO.viewFile(fid);
 		logger.info(boardFileVO.toString());
 		
 	}
+	
+	
+//	INSERT INTO board (
+//	    bnum,
+//	    bcategory,
+//	    btitle,
+//	    bid,
+//	    bnickname,
+//	    bcontent,
+//	    bgroup,
+//	    bstep,
+//	    bindent
+//	) VALUES (
+//	    BOARD_BNUM_SEQ.nextval,
+//	    #{boardCategoryVO.cid},
+//	    #{btitle},
+//	    #{bid},
+//	    #{bnickname},
+//	    #{bcontent},
+//	    BOARD_BNUM_SEQ.nextval,
+//	    #{bstep} + 1, 
+//	    #{bindent} + 1
+//	)	
+	@Test
+	@DisplayName("게시글 답글")
+	void reply() {
+		BoardVO boardVO = new BoardVO();
+		BoardCategoryVO boardVoCategoryVO = new BoardCategoryVO();
+		
+		boardVO.setBnum(130);
+		boardVO.setBoardCategoryVO(boardVoCategoryVO);
+		boardVO.getBoardCategoryVO().setCid(1002);
+		boardVO.setBtitle("[답글][답글]제목2");
+		boardVO.setBgroup(66);
+		boardVO.setBstep(1);
+		boardVO.setBindent(1);
+		
+		int result = boardDAO.reply(boardVO);
+		
+	}
+	
 }
 
 

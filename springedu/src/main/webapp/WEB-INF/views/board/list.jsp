@@ -35,10 +35,18 @@
 		        <c:forEach var="rec" items="${requestScope.list }">
 		        <div class="rec">${rec.bnum }</div>
 		        <div class="rec">${rec.boardCategoryVO.cname }</div>
-		        <div class="rec"><a href="./view/${rec.bnum }">${rec.btitle }</a></div>
+		        <div class="rec">
+		        	<c:forEach begin="1" end="${rec.bindent }">&nbsp;&nbsp;</c:forEach>
+		        	<c:if test="${rec.bindent > 0 }">
+		        		<i class="fas fa-reply"></i>
+		        	</c:if>
+		        	<a href="./view/${rec.bnum }">${rec.btitle }</a>
+		        </div>
 		        <div class="rec">${rec.bnickname }</div>
-		        <div class="rec">${rec.bcdate }</div>
-		        <div class="rec">${rec.bhit }</div>
+		        <div class="rec">
+		        	<fmt:formatDate value="${rec.bcdate }" pattern="yyyy/MM/dd"/>
+		        </div>
+		        <div class="rec" style="text-align:right">${rec.bhit }</div>
 		        </c:forEach>
 		      </div>
 		      <div class="btnGrp"><button id="writeBtn">글쓰기</button></div>
