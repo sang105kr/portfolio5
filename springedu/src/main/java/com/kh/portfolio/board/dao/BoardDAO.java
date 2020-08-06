@@ -29,4 +29,23 @@ public interface BoardDAO {
 	List<BoardFileVO> getFiles(String bnum);
 	//조회수 + 1 증가
 	void updateBhit(String bnum);
+	
+	//첨부파일 다운로드
+	BoardFileVO viewFile(String fid);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,21 +1,29 @@
 package com.kh.portfolio.board.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.apache.ibatis.annotations.Delete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.portfolio.board.svc.BoardSVC;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
@@ -105,7 +113,83 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
+	//첨부파일 다운로드
+	@GetMapping("/file/{fid}")
+	public ResponseEntity<byte[]> getFile(@PathVariable("fid") String fid){
+		ResponseEntity<byte[]> res = null;
+		
+		BoardFileVO boardFileVO = boardSVC.viewFile(fid);
+		
+		//응답 헤더에 mymeType과 파일사이즈 정보를 설정
+		final HttpHeaders headers = new HttpHeaders();
+		String[] mimeTypes = boardFileVO.getFtype().split("/");
+		headers.setContentType(new MediaType(mimeTypes[0], mimeTypes[1]));
+		headers.setContentLength(boardFileVO.getFsize());
+		
+		/* 첨부파일 명이 한글일경우 깨짐 방지 */
+		String filename = null;
+		try {
+			filename =	new String(boardFileVO.getFname().getBytes("UTF-8"),"ISO-8859-1");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		//응답 헤더에 첨부파일이 있음을 알려줌.
+		headers.setContentDispositionFormData("attatchment", filename);
+		
+		res = new ResponseEntity<byte[]>(boardFileVO.getFdata(),headers,HttpStatus.OK);
+		return res;
+	}
+	
+	//게시글 수정
+	@PostMapping("/modify")
+	public String modify(
+			@Valid @ModelAttribute("boardVO") BoardVO boardVO,
+			BindingResult result) {
+		//바인딩시 오류가 발생할경우
+		if(result.hasErrors()) {
+			return "/board/readForm";
+		}
+		
+		//수정
+		boardSVC.modify(boardVO);
+		
+		return "redirect:/board/view/"+boardVO.getBnum();
+	}
+	
+	//게시글 첨부파일 개별 삭제
+	@DeleteMapping("/file/{fid}")
+	@ResponseBody
+	public ResponseEntity<String> fileDelete(
+			@PathVariable("fid") String fid
+			){
+		ResponseEntity<String> res = null;
+		
+		int result = boardSVC.deleteFile(fid);
+		if(result == 1) {
+			res = new ResponseEntity<String>("success",HttpStatus.OK);
+		}else {
+			res = new ResponseEntity<String>("file",HttpStatus.OK);
+		}
+		
+		return res;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

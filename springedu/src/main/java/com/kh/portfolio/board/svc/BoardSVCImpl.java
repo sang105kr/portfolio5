@@ -85,8 +85,22 @@ public class BoardSVCImpl implements BoardSVC {
 
 	// 게시글 수정
 	@Override
+	@Transactional
 	public int modify(BoardVO boardVO) {
-		return 0;
+		int result = 0;
+		
+		//1) 게시글 수정
+		result = boardDAO.modify(boardVO);
+		
+		// 2) 첨부파일 저장
+		// 첨부파일이 존재하면
+		List<MultipartFile> files = boardVO.getFiles();
+		if (files != null && files.size() > 0) {
+
+			addFiles(files, boardVO.getBnum());
+		}
+		
+		return result;
 	}
 
 	// 게시글 삭제
@@ -134,7 +148,19 @@ public class BoardSVCImpl implements BoardSVC {
 		return list;
 	}
 
+	// 첨부파일 다운로드
+	@Override
+	public BoardFileVO viewFile(String fid) {
 
-
+		return boardDAO.viewFile(fid);
+	}
 
 }
+
+
+
+
+
+
+
+

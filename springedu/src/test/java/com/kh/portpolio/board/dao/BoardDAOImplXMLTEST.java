@@ -130,10 +130,20 @@ public class BoardDAOImplXMLTEST {
 	
 	@Test
 	@DisplayName("게시글 첨부파일 개별삭제")
+	@Disabled
 	void deleteFile() {
 		String fid = "21";
 		int result = boardDAO.deleteFile(fid);
 		Assertions.assertEquals(1, 1);
+	}
+	
+	@Test
+	@DisplayName("첨부파일 다운로드")
+	void viewFile() {
+		String fid = "19";
+		BoardFileVO boardFileVO = boardDAO.viewFile(fid);
+		logger.info(boardFileVO.toString());
+		
 	}
 }
 

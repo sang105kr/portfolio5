@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.portfolio.board.vo.BoardCategoryVO;
+import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
 
 public interface BoardSVC {
@@ -21,4 +22,8 @@ public interface BoardSVC {
 	Map<String, Object> view(String bnum);
 	//게시글 목록
 	List<BoardVO> list();
+	
+	//첨부파일 다운로드
+	BoardFileVO viewFile(String fid);
+	
 }

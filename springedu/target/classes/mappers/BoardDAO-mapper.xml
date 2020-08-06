@@ -64,6 +64,18 @@
 </insert>
 
 <!-- 게시글 수정 -->
+<update id="modify"
+				parameterType="com.kh.portfolio.board.vo.BoardVO">
+
+	update board
+	   set bcategory 	= #{boardCategoryVO.cid},
+	   		 btitle   	= #{btitle},
+	   		 bcontent 	= #{bcontent},
+	   		 budate   	= systimestamp
+	 where bnum = #{bnum}
+	 
+</update>
+
 <!-- 게시글 삭제 -->
 <delete id="delete" parameterType="long">
 	delete from board where bnum = #{bnum}
@@ -126,7 +138,6 @@ SELECT t1.bnum,
          fname,
          fsize,
          ftype,
-         fdata,
          cdate,
          udate
     FROM board_upload_file
@@ -142,7 +153,26 @@ SELECT t1.bnum,
 	 where bnum = #{bnum}
 	 
 </update>
+<!-- 첨부파일 다운로드 -->
+<select id="viewFile" 
+				parameterType="long"
+				resultType="com.kh.portfolio.board.vo.BoardFileVO">
+
+	SELECT fid,
+         bnum,
+         fname,
+         fsize,
+         ftype,
+         fdata,
+         cdate,
+         udate
+    FROM board_upload_file
+   where fid = #{fid}
+   
+</select>
 </mapper>
+
+
 
 
 
