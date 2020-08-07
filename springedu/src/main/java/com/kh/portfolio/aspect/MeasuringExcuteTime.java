@@ -24,7 +24,7 @@ public class MeasuringExcuteTime {
 		StringBuilder methodName = new StringBuilder();
 		methodName.append(signature.getDeclaringTypeName()).append(".").append(signature.getName());
 
-		logger.info("[Log: Around]Before:" + methodName + " start : " + Arrays.toString(joinPoint.getArgs()));
+		logger.info("[Log: Arround] Before:" + methodName + " start : " + Arrays.toString(joinPoint.getArgs()));
 		long startTime = System.nanoTime(); // 시작시간
 
 		try {
@@ -37,15 +37,15 @@ public class MeasuringExcuteTime {
 			logger.info("[Log: Arround] finally: " + methodName);
 			// 핵심기능이 정상적으로 수행된경우
 			if (result != null) {
-				logger.info("Log: Arround] result: " + result.toString());
+				logger.info("[Log: Arround] result: " + result.toString());
 			}
 		}
 
 		long endTime = System.nanoTime(); // 종료시간
 //		long takenTime = TimeUnit.NANOSECONDS.toSeconds(endTime-startTime);
 		double takenTime = (endTime - startTime) / (double) 1000000000;
-		logger.info("[Log: Around]After:" + methodName + " end");
-		logger.info("[Log: Around] : " + methodName + " Processing time : " + takenTime + " sec");
+		logger.info("[Log: Arround] After:" + methodName + " end");
+		logger.info("[Log: Arround] : " + methodName + " Processing time : " + takenTime + " sec");
 		return result;
 	}
 }
