@@ -11,6 +11,7 @@
 	
 	a {
 		text-decoration: none;
+		color:black;
 	}
 	
 	a:hover {
@@ -31,7 +32,7 @@
 		font-weight: bold;  	
   }
   
-  .container{ width:800px; margin:0px auto; }
+  .container{ width:80%; margin:0px auto; }
 
   /* 최상위 메뉴 */
   .uppermost { background-color: black; position:sticky; top:0px; z-index:100;}

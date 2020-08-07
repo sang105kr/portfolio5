@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/include/common.jsp"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <title>게시글 보기</title>
-<link rel="stylesheet" href="${contextPath }/css/main.css">
+<link rel="stylesheet" href="${contextPath }/css/board/board.css">
 <link rel="stylesheet" href="${contextPath }/css/board/readForm.css">
 <script defer src="${contextPath }/js/board/readForm.js"></script>
 </head>

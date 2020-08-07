@@ -6,8 +6,10 @@
   display: grid;
   grid-template-columns: 1fr 2fr 6fr 2fr 1fr 1fr;
   grid-auto-rows: minmax(20px, auto);
-	border-top:1px solid;
+ 	border-top:1px solid;
 	border-left:1px solid;
+	padding:0px;
+	
 }
 #boardList .wrapper div {
   border-bottom:1px solid;
@@ -17,7 +19,7 @@
 #boardList > div {
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+  padding: 10px 0 20px;
 }
 /* 게시글 타이틀 폰트 굵기 */
 #boardList >div > h2{
