@@ -49,6 +49,17 @@
   display: flex;
   justify-content: center;
 }
+#boardList .paging div{
+	padding:2px;
+}
+#boardList .paging div.active{
+	background-color:#ffcc80;
+}
+/*
+#boardList .paging div.active a{
+	color:white;
+}
+*/
 
 /* 검색 */
 #boardList .find {

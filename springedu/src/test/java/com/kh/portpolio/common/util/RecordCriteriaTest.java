@@ -1,4 +1,4 @@
-package com.kh.portpolio.common;
+package com.kh.portpolio.common.util;
 
 import javax.inject.Inject;
 
@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.kh.portfolio.common.RecordCriteria;
+import com.kh.portfolio.common.page.RecordCriteria;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/*.xml"})
@@ -24,7 +24,8 @@ public class RecordCriteriaTest {
 	@Test
 	void test() {
 		recordCriteria.setReqPage(3);
-		recordCriteria.setNumPerPage(10);
+		recordCriteria.setRecNumPerPage(10);
+		
 		
 		logger.info("시작레코드:" + recordCriteria.getStarRec());
 		logger.info("종료레코드:" + recordCriteria.getEndRec());

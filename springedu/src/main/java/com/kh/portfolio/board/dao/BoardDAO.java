@@ -23,6 +23,9 @@ public interface BoardDAO {
 	BoardVO view(String bnum);
 	//게시글 목록
 	List<BoardVO> list();
+	//게시글 목록
+	List<BoardVO> list(int startRec, int endRec);
+	
 	//파일첨부
 	int addFile(BoardFileVO boardFileVO);
 	//첨부파일조회
@@ -35,6 +38,9 @@ public interface BoardDAO {
 	
 	//게시글 답글
 	int reply(BoardVO boardVO);
+	
+	//게시글 총 레코드 수 
+	int totalRecordCount();
 }
 
 

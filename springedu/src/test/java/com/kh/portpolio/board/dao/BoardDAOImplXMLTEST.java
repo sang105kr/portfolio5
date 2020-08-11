@@ -18,6 +18,7 @@ import com.kh.portfolio.board.dao.BoardDAO;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
+import com.kh.portfolio.common.page.RecordCriteria;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/*.xml"})
@@ -28,6 +29,9 @@ public class BoardDAOImplXMLTEST {
 
 	@Inject
 	BoardDAO boardDAO;
+	
+	@Inject
+	RecordCriteria recordCriteria;
 	
 	@Test
 	@DisplayName("게시판 카테고리 읽어오기")
@@ -76,7 +80,7 @@ public class BoardDAOImplXMLTEST {
 	@Test
 	@DisplayName("게시글목록")
 	@Disabled
-	void list() {
+	void list2() {
 		
 		List<BoardVO> list = boardDAO.list();
 		logger.info("레코드갯수:" + list.size());
@@ -88,6 +92,25 @@ public class BoardDAOImplXMLTEST {
 		
 //		logger.info("게시글 목록:" + list.toString());
 	}
+	@Test
+	@DisplayName("게시글목록")
+	@Disabled
+	void list() {
+		
+		recordCriteria.setReqPage(1);  			//요청페이지
+		recordCriteria.setRecNumPerPage(10);		//한페이지에 보여줄 레코드 수
+		
+		List<BoardVO> list = boardDAO.list(recordCriteria.getStarRec(),
+																			 recordCriteria.getEndRec());
+		logger.info("레코드갯수:" + list.size());
+		
+//		list.stream().forEach((board)->{
+//			System.out.println(board);
+//		});
+		list.stream().forEach(System.out::println);
+		
+//		logger.info("게시글 목록:" + list.toString());
+	}	
 	@Test
 	@DisplayName("게시글 보기")
 	@Disabled
@@ -171,6 +194,7 @@ public class BoardDAOImplXMLTEST {
 //	)	
 	@Test
 	@DisplayName("게시글 답글")
+	@Disabled
 	void reply() {
 		BoardVO boardVO = new BoardVO();
 		BoardCategoryVO boardVoCategoryVO = new BoardCategoryVO();
@@ -187,6 +211,28 @@ public class BoardDAOImplXMLTEST {
 		
 	}
 	
+	@Test
+	@DisplayName("샘플 게시글 작성")
+	void writeSampleData() {
+//    #{cid},
+//    #{btitle},
+//    #{id},
+//    #{nickname},
+//    #{bcontent},	
+		for(int i=1; i < 325; i++) {
+			BoardVO boardVO = new BoardVO();
+			BoardCategoryVO boardCategoryVO = new BoardCategoryVO();
+			
+			boardVO.setBoardCategoryVO(boardCategoryVO);
+			boardVO.getBoardCategoryVO().setCid(1001);
+			boardVO.setBtitle("테스트 제목"+i);
+			boardVO.setBid("sang105kr@gmail.com");
+			boardVO.setBnickname("별칭"+i);
+			boardVO.setBcontent("본문"+i);
+			
+			boardDAO.write(boardVO);
+		}
+	}
 }
 
 

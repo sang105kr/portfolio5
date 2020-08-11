@@ -113,7 +113,7 @@ SELECT t1.bnum,
    				
 </select>
 <!-- 게시글 목록 -->
-<select id="list"
+<select id="list2"
 				resultType="com.kh.portfolio.board.vo.BoardVO">
 				
 	 select t1.bnum, 
@@ -132,6 +132,36 @@ SELECT t1.bnum,
           t1.bstep asc
  
 </select>
+
+<select id="list"
+				parameterType="map"
+				resultType="com.kh.portfolio.board.vo.BoardVO">
+  select   		bnum,        
+              cid     as "boardCategoryVO.cid",
+              cname   as "boardCategoryVO.cname",
+              btitle, 
+              bnickname,	
+              bcdate, 
+              bhit,
+              bgroup,
+              bstep,
+              bindent
+    from (  select  row_number() over( order by bgroup desc, bstep asc) as num,
+                    t1.bnum, 
+                    t2.cid, 	 
+                    t2.cname,
+                    t1.btitle, 
+                    t1.bnickname,	
+                    t1.bcdate, 
+                    t1.bhit,
+                    t1.bgroup,
+                    t1.bstep,
+                    t1.bindent
+            	from  board t1, board_category t2
+           	 where  t1.bcategory = t2.cid  )
+  where  num between #{startRec} and #{endRec} 
+</select>
+
 
 <!-- 첨부파일조회 -->
 <select id="getFiles"
@@ -219,6 +249,17 @@ SELECT t1.bnum,
      and bstep > #{bstep}	   
 
 </update>
+
+<!-- 게시글 총 레코드 수 -->
+<select id="totalRecordCount"
+				resultType="int">
+
+	 select count(*) as totalRecCnt
+	   from board t1, board_category t2
+	  where t1.bcategory = t2.cid
+
+</select>
+
 </mapper>
 
 

@@ -17,6 +17,8 @@ import com.kh.portfolio.board.dao.BoardDAO;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
+import com.kh.portfolio.common.page.PageCriteria;
+import com.kh.portfolio.common.page.RecordCriteria;
 
 @Service
 public class BoardSVCImpl implements BoardSVC {
@@ -26,6 +28,12 @@ public class BoardSVCImpl implements BoardSVC {
 	@Inject
 	BoardDAO boardDAO;
 
+	@Inject
+	RecordCriteria recordCriteria;
+	
+	@Inject
+	PageCriteria pageCriteria;
+		
 	//게시판 카테고리 읽어오기
 	@Override
 	public List<BoardCategoryVO> getCategory() {		
@@ -147,7 +155,21 @@ public class BoardSVCImpl implements BoardSVC {
 		
 		return list;
 	}
+	// 게시글 목록
+	@Override
+	public List<BoardVO> list(int reqPage) {
+		List<BoardVO> list = null;
+		
+		//요청페이지
+		recordCriteria.setReqPage(reqPage);
+		//한페이이지에보여줄 레코드수 셋팅
+		recordCriteria.setRecNumPerPage(20);
+		list = boardDAO.list(recordCriteria.getStarRec(),
+												 recordCriteria.getEndRec());
 
+		return list;
+	}
+	
 	// 첨부파일 다운로드
 	@Override
 	public BoardFileVO viewFile(String fid) {
@@ -174,6 +196,30 @@ public class BoardSVCImpl implements BoardSVC {
 
 		return result;
 	}
+
+	//페이징제어 반환
+	@Override
+	public PageCriteria getPageCriteria(int reqPage) {
+
+		//한페이지에 보여줄 레코드수
+		recordCriteria.setRecNumPerPage(20);
+		//사용자의 요청페이지
+		recordCriteria.setReqPage(reqPage);
+		//한페이지에보여줄 페이지수
+		pageCriteria.setPageNumPerPage(10);
+		//레코드정보
+		pageCriteria.setRc(recordCriteria);
+		//페이징계산
+		pageCriteria.calculatePaging();
+		
+		//게시글 총 레코드 건수
+		pageCriteria.setTotalRec(boardDAO.totalRecordCount());
+		
+		
+		return pageCriteria;
+	}
+
+
 
 }
 
