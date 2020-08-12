@@ -133,7 +133,7 @@ SELECT t1.bnum,
  
 </select>
 
-<select id="list"
+<select id="list3"
 				parameterType="map"
 				resultType="com.kh.portfolio.board.vo.BoardVO">
   select   		bnum,        
@@ -162,6 +162,69 @@ SELECT t1.bnum,
   where  num between #{startRec} and #{endRec} 
 </select>
 
+<!-- 게시글 목록(검색포함) -->
+<select id="list"
+				parameterType="map"
+				resultType="com.kh.portfolio.board.vo.BoardVO">
+  select   		bnum,        
+              cid     as "boardCategoryVO.cid",
+              cname   as "boardCategoryVO.cname",
+              btitle, 
+              bnickname,	
+              bcdate, 
+              bhit,
+              bgroup,
+              bstep,
+              bindent
+    from (  select  row_number() over( order by bgroup desc, bstep asc) as num,
+                    t1.bnum, 
+                    t2.cid, 	 
+                    t2.cname,
+                    t1.btitle, 
+                    t1.bnickname,	
+                    t1.bcdate, 
+                    t1.bhit,
+                    t1.bgroup,
+                    t1.bstep,
+                    t1.bindent
+            	from  board t1, board_category t2
+           	 where  t1.bcategory = t2.cid
+           	 <if test="searchType != null" >
+           	 	 and  
+           	 <choose>
+           	 		<!-- 제목+내용 -->
+								<when test="searchType == 'TC'.toString()">
+							      t1.btitle    like '%' || #{keyword} || '%' or	
+							  	  t1.bcontent  like '%' || #{keyword} || '%'	
+								</when> 
+								<!-- 제목 -->          	 
+           	 		<when test="searchType == 'T'.toString()">
+							 		  t1.btitle    like '%' || #{keyword} || '%'	           	 		
+           	 		</when>
+           	 		<!-- 내용 -->
+           	 		<when test="searchType == 'C'.toString()">
+							 		  t1.bcontent  like '%' || #{keyword} || '%'	             	 		
+           	 		</when>
+           	 		<!-- 별칭 -->
+           	 		<when test="searchType == 'N'.toString()">
+							 	  	t1.bnickname  like '%' || #{keyword} || '%'           	 		
+           	 		</when>
+           	 		<!-- 아이디 -->
+           	 		<when test="searchType == 'I'.toString()">
+							 		  t1.bid  like '%' || #{keyword} || '%'           	 		
+           	 		</when>
+           	 		<!-- 전체 -->
+            	 	<when test="searchType == 'A'.toString()">
+							 		  t1.btitle    like '%' || #{keyword} || '%' or	
+							      t1.bcontent  like '%' || #{keyword} || '%' or	            	 	
+							      t1.bnickname like '%' || #{keyword} || '%' or	            	 	
+							      t1.bid  		 like '%' || #{keyword} || '%' 	            	 	
+            	 	</when>
+           	 </choose>
+           	 </if>
+         )
+  where  num between #{startRec} and #{endRec} 
+</select>
 
 <!-- 첨부파일조회 -->
 <select id="getFiles"
@@ -254,12 +317,52 @@ SELECT t1.bnum,
 <select id="totalRecordCount"
 				resultType="int">
 
-	 select count(*) as totalRecCnt
-	   from board t1, board_category t2
-	  where t1.bcategory = t2.cid
-
+					 select count(*) as totalRecCnt
+					   from board t1, board_category t2
+					  where t1.bcategory = t2.cid
 </select>
 
+<select id="searchedTotalRecordCount"
+				parameterType="map"
+				resultType="int">
+
+					 select count(*) as totalRecCnt
+					   from board t1, board_category t2
+					  where t1.bcategory = t2.cid
+          	 <if test="searchType != null" >
+          	 	 and  
+          	 <choose>
+          	 		<!-- 제목+내용 -->
+							<when test="searchType == 'TC'.toString()">
+						      t1.btitle    like '%' || #{keyword} || '%' or	
+						  	  t1.bcontent  like '%' || #{keyword} || '%'	
+							</when> 
+							<!-- 제목 -->          	 
+          	 		<when test="searchType == 'T'.toString()">
+						 		  t1.btitle    like '%' || #{keyword} || '%'	           	 		
+          	 		</when>
+          	 		<!-- 내용 -->
+          	 		<when test="searchType == 'C'.toString()">
+						 		  t1.bcontent  like '%' || #{keyword} || '%'	             	 		
+          	 		</when>
+          	 		<!-- 별칭 -->
+          	 		<when test="searchType == 'N'.toString()">
+						 	  	t1.bnickname  like '%' || #{keyword} || '%'           	 		
+          	 		</when>
+          	 		<!-- 아이디 -->
+          	 		<when test="searchType == 'I'.toString()">
+						 		  t1.bid  like '%' || #{keyword} || '%'           	 		
+          	 		</when>
+          	 		<!-- 전체 -->
+           	 	<when test="searchType == 'A'.toString()">
+						 		  t1.btitle    like '%' || #{keyword} || '%' or	
+						      t1.bcontent  like '%' || #{keyword} || '%' or	            	 	
+						      t1.bnickname like '%' || #{keyword} || '%' or	            	 	
+						      t1.bid  		 like '%' || #{keyword} || '%' 	            	 	
+           	 	</when>
+          	 </choose>
+          	 </if>
+</select>
 </mapper>
 
 

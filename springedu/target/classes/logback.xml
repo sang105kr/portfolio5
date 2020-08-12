@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+ 
+		<!-- console로 log 남기기 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                ▶ %-5level %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    
+ 		<!-- file로 log 남기기 -->   
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>d:\logs\springFile.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>
+                ▶ %-5level %d{HH:mm:ss.SSS} [%thread] %logger[%method:%line] - %msg%n
+<!--                 [%method:%line] : 어떤 메소드에 어떤 라인에서 찍혔는지 %msg%n : 찍고 싶은 로그 -->
+            </pattern>
+        </encoder>
+    </appender>
+    
+		<!-- 파일롤링:날짜별/시간별 로깅파일 분리 -->    
+    <appender name="dailyRolling" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>d:\logs\springRollingFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+           <fileNamePattern>d:\logs\springRollingFile.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+           <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                ▷ %-5level %d{HH:mm:ss} %logger[%method:%line] - %msg%n
+            </pattern>
+        </encoder>    
+    </appender>        
+    <!-- class만 따로 지정해서 이 클래스만 로그를 따로 관리할 수 있다. LoginInterceptor class 파일만 따로 로그 관리 -->
+<!--     <appender name="fileForLoginInterceptor" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>d:\logs\springRollingFile.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        
+            d:\logs\springRollingFile 2019-02-22-09.log 파일 생성
+            <fileNamePattern>d:\logs\springRollingFile.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+        
+            30시간 지난건 지우겠다.
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                ▷ %-5level %d{HH:mm:ss} %logger[%method:%line] - %msg%n
+            </pattern>
+        </encoder>
+    </appender> -->
+           
+    <!-- 이 아래에 있는 애들 다 log로 찍겠다. -->
+    <logger name="org.springframework" level="info" />
+    <logger name="com.kh.portfolio" level="debug" />
+	    
+	  <!-- log4jdbc-log4j2 -->
+	  <logger name="jdbc.sqlonly" level="DEGUG"/>
+	  <logger name="jdbc.sqltiming" level="INFO"/>
+	  <logger name="jdbc.audit" level="WARN"/>
+	  <logger name="jdbc.resultset" level="ERROR"/>
+	  <logger name="jdbc.resultsettable" level="ERROR"/>
+	  <logger name="jdbc.connection" level="INFO"/>
+  
+    <root level="info">
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+        <appender-ref ref="dailyRolling" />
+    </root>  
+    
+</configuration>
+
+<!-- logger	description
+jdbc.sqlonly   	Logs only SQL. SQL executed within a prepared statement is automatically shown with it's bind arguments replaced with the data bound at that position, for greatly increased readability.
+jdbc.sqltiming	Logs the SQL, post-execution, including timing statistics on how long the SQL took to execute.
+jdbc.audit	    Logs ALL JDBC calls except for ResultSets. This is a very voluminous output, and is not normally needed unless tracking down a specific JDBC problem.
+jdbc.resultset	Even more voluminous, because all calls to ResultSet objects are logged.
+jdbc.resultsettable	Log the jdbc results as a table. Level debug will fill in unread values in the result set.
+jdbc.connection	    Logs connection open and close events as well as dumping all open connection numbers. This is very useful for hunting down connection leak problems. -->

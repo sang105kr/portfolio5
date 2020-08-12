@@ -3,6 +3,7 @@ package com.kh.portfolio;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.kh.portfolio.common.page.FindCriteria;
 import com.kh.portfolio.common.page.PageCriteria;
 import com.kh.portfolio.common.page.RecordCriteria;
 
@@ -15,5 +16,9 @@ public class Config {
 	@Bean
 	public PageCriteria pageCriteria() {
 		return new PageCriteria();
+	}
+	@Bean
+	public FindCriteria findCriteria() {
+		return new FindCriteria();
 	}
 }

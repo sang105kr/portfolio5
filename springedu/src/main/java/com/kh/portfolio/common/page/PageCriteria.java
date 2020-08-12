@@ -1,7 +1,5 @@
 package com.kh.portfolio.common.page;
 
-import com.kh.portfolio.exception.BizException;
-
 /*
  * 현재 페이지에서 보여줄 페이지 범위 계산
  * 전제조건: RecordCriteria 정보, 전체레코드수(totalRec)를 입력값으로 받아
@@ -33,8 +31,7 @@ public class PageCriteria {
 		//한페이지에보여줄 시작페이지
 		//한페이지에보여줄 종료페이지 - 한페이지에 보여줄 페이지수 + 1
 		startPage = getEndPage() - getPageNumPerPage() + 1;
-		
-				
+						
 		//최종(마지막) 페이지계산: 올림(전체레코드수/한페이지에보여줄 레코드수)
 		finalEndPage = (int)Math.ceil(getTotalRec() / (double)rc.getRecNumPerPage());
 		

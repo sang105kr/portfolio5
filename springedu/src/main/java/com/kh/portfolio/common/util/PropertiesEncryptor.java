@@ -10,12 +10,12 @@ public class PropertiesEncryptor {
 		enc.setPassword("gkrToa!");
 				
 		//db암호화
-		System.out.println(enc.encrypt("oracle.jdbc.driver.OracleDriver"));
-//		System.out.println(enc.encrypt("net.sf.log4jdbc.sql.jdbcapi.DriverSpy"));
-		System.out.println(enc.encrypt("jdbc:oracle:thin:@127.0.0.1:1521:orcl"));
-//		System.out.println(enc.encrypt("jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:orcl"));
+//		System.out.println(enc.encrypt("oracle.jdbc.driver.OracleDriver"));
+		System.out.println(enc.encrypt("net.sf.log4jdbc.sql.jdbcapi.DriverSpy"));
+//		System.out.println(enc.encrypt("jdbc:oracle:thin:@127.0.0.1:1521:orcl"));
+		System.out.println(enc.encrypt("jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:orcl"));
 		System.out.println(enc.encrypt("portfolio"));
-		System.out.println(enc.encrypt("portfolio1234"));
+		System.out.println(enc.encrypt(""));
 		
 		//mail암호화
 		System.out.println(enc.encrypt("sang105kr@gmail.com"));

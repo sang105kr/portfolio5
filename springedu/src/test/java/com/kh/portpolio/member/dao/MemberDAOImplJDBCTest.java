@@ -20,7 +20,7 @@ import com.kh.portfolio.member.dao.MemberDAO;
 import com.kh.portfolio.member.vo.MemberVO;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/*.xml"})
 public class MemberDAOImplJDBCTest {
 
 	private final static Logger logger

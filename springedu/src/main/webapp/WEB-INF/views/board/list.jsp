@@ -40,7 +40,7 @@
 		        	<c:if test="${rec.bindent > 0 }">
 		        		<i class="fas fa-reply"></i>
 		        	</c:if>
-		        	<a href="./view/${rec.bnum }">${rec.btitle }</a>
+		        	<a href="${contextPath }/board/view/${rec.bnum }">${rec.btitle }</a>
 		        </div>
 		        <div class="rec">${rec.bnickname }</div>
 		        <div class="rec">
@@ -51,47 +51,55 @@
 		      </div>
 		      <div class="btnGrp"><button id="writeBtn">글쓰기</button></div>
 		      <div class="paging">
-	        	<c:if test="${pageCriteria.prev}">
+	        	<c:if test="${findCriteria.pageCriteria.prev}">
 		        <div>
-		        	<a href="${contextPath }/board/list/1"><i class="fas fa-angle-double-left"></i></a>
+		        	<a href="${contextPath }/board/list/1/${findCriteria.searchType}/${findCriteria.keyword}"><i class="fas fa-angle-double-left"></i></a>
 		        </div>
 		        <div>
-		        	<a href="${contextPath }/board/list/${pageCriteria.startPage-1}"><i class="fas fa-angle-left"></i></a>
+		        	<a href="${contextPath }/board/list/${findCriteria.pageCriteria.startPage-1}/${findCriteria.searchType}/${findCriteria.keyword}"><i class="fas fa-angle-left"></i></a>
 		        </div>
 	        	</c:if>
-		        <c:forEach var="pageNum" begin="${pageCriteria.startPage }"
-		        												 end="${pageCriteria.endPage }" >
+		        <c:forEach var="pageNum" begin="${findCriteria.pageCriteria.startPage }"
+		        												 end="${findCriteria.pageCriteria.endPage }" >
 		        
 		        <!-- 현재페이지와 요청페이지가 같으면 -->
-		        <c:if test="${pageNum == pageCriteria.rc.reqPage}">												 
+		        <c:if test="${pageNum == findCriteria.pageCriteria.rc.reqPage}">												 
 		        <div class="active">
 		        </c:if>
 		        <!-- 현재페이지와 요청페이지가 다르면 -->
-		        <c:if test="${pageNum != pageCriteria.rc.reqPage}">
+		        <c:if test="${pageNum != findCriteria.pageCriteria.rc.reqPage}">
 		        <div>
 		        </c:if>			        
-		        	<a href="${contextPath }/board/list/${pageNum }">${pageNum }</a>
+		        	<a href="${contextPath }/board/list/${pageNum }/${findCriteria.searchType}/${findCriteria.keyword}">${pageNum }</a>
 		        </div>
 		        
 		        </c:forEach>
-		        <c:if test="${pageCriteria.next}">
+		        <c:if test="${findCriteria.pageCriteria.next}">
 		        <div>
-		        	<a href="${contextPath }/board/list/${pageCriteria.endPage+1}"><i class="fas fa-angle-right"></i></a>
+		        	<a href="${contextPath }/board/list/${findCriteria.pageCriteria.endPage+1}/${findCriteria.searchType}/${findCriteria.keyword}"><i class="fas fa-angle-right"></i></a>
 		        </div>
 		        <div>
-		        	<a href="${contextPath }/board/list/${pageCriteria.finalEndPage}"><i class="fas fa-angle-double-right"></i></a>
+		        	<a href="${contextPath }/board/list/${findCriteria.pageCriteria.finalEndPage}/${findCriteria.searchType}/${findCriteria.keyword}"><i class="fas fa-angle-double-right"></i></a>
 		        </div>
 		        </c:if>
 		      </div>
 		      <div class="find">
-		        <form method="post" action="">
-		          <select name="" id="">
-		            <option value="">제목</option>
-		            <option value="">내용</option>
-		            <option value="">제목 + 내용</option>
-		            <option value="">작성자</option>
+		        <form>
+		          <select name="searchType" id="searchType">
+		            <option value="TC"
+		            	<c:out value="${findCriteria.searchType == 'TC' ? 'selected':'' }"/>>제목+내용</option>
+		            <option value="T"
+		            	<c:out value="${findCriteria.searchType == 'T' ? 'selected':'' }"/>>제목</option>
+		            <option value="C"
+		            	<c:out value="${findCriteria.searchType == 'C' ? 'selected':'' }"/>>내용</option>
+		            <option value="N"
+		            	<c:out value="${findCriteria.searchType == 'N' ? 'selected':'' }"/>>별칭</option>
+		            <option value="I"
+		            	<c:out value="${findCriteria.searchType == 'I' ? 'selected':'' }"/>>아이디</option>
+		          	<option value="A"
+		          		<c:out value="${findCriteria.searchType == 'A' ? 'selected':'' }"/>>전체</option>
 		          </select>
-		          <input type="text" />
+		          <input type="text" name="keyword" id="keyword" value="${findCriteria.keyword }"/>
 		          <button id="findBtn" type="button">검색</button>
 		        </form>
 		      </div>

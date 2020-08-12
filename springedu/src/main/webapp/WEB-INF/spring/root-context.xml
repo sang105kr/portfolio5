@@ -18,7 +18,7 @@
 	</bean>
 	<bean id="configurationEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
 	    <property name="config" ref="environmentVariablesConfiguration" />
-	    <property name="password" value="gkrToaWkd" />
+	    <property name="password" value="gkrToa!" />
 	</bean>
 	
 	<!-- 환경에따라 자주 변경될 수 있는 내용은 properties파일로 분리하는것이 좋다 -->

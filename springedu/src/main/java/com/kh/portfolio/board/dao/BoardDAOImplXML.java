@@ -83,7 +83,7 @@ public class BoardDAOImplXML implements BoardDAO {
 	public List<BoardVO> list() {
 		List<BoardVO> list = null;
 		
-		list = sqlSession.selectList("mappers.BoardDAO-mapper.list");
+		list = sqlSession.selectList("mappers.BoardDAO-mapper.list2");
 		
 		return list;
 	}
@@ -95,6 +95,18 @@ public class BoardDAOImplXML implements BoardDAO {
 		Map<String,Object> map = new HashMap<>();
 		map.put("startRec", startRec);
 		map.put("endRec", endRec);
+		list = sqlSession.selectList("mappers.BoardDAO-mapper.list3",map);		
+		return list;
+	}
+	//게시글 목록(검색포함)
+	@Override
+	public List<BoardVO> list(int startRec, int endRec, String searchType, String keyword) {
+		List<BoardVO> list = null;
+		Map<String,Object> map = new HashMap<>();
+		map.put("startRec", startRec);
+		map.put("endRec", endRec);
+		map.put("searchType", searchType);
+		map.put("keyword", keyword);
 		list = sqlSession.selectList("mappers.BoardDAO-mapper.list",map);		
 		return list;
 	}
@@ -154,7 +166,13 @@ public class BoardDAOImplXML implements BoardDAO {
 	public int totalRecordCount() {
 		return sqlSession.selectOne("mappers.BoardDAO-mapper.totalRecordCount");
 	}
-
+	@Override
+	public int totalRecordCount(String searchType, String keyword) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("searchType", searchType);
+		map.put("keyword", keyword);
+		return sqlSession.selectOne("mappers.BoardDAO-mapper.searchedTotalRecordCount",map);
+	}
 }
 
 

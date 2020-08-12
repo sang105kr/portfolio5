@@ -25,6 +25,8 @@ public interface BoardDAO {
 	List<BoardVO> list();
 	//게시글 목록
 	List<BoardVO> list(int startRec, int endRec);
+	//게시글 목록
+	List<BoardVO> list(int startRec, int endRec, String searchType, String keyword);
 	
 	//파일첨부
 	int addFile(BoardFileVO boardFileVO);
@@ -40,7 +42,8 @@ public interface BoardDAO {
 	int reply(BoardVO boardVO);
 	
 	//게시글 총 레코드 수 
-	int totalRecordCount();
+	int totalRecordCount();	
+	int totalRecordCount(String searchType, String keyword);
 }
 
 

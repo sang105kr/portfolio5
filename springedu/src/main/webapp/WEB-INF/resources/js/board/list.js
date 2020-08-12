@@ -15,5 +15,21 @@ function writeBtn_f(e) {
 
 //검색 클릭시
 function findBtn_f(e) {
-  console.log("검색 클릭됨");
+  console.log("검색 클릭됨:");
+	const searchTypeTag = document.getElementById("searchType");
+	const keywordTag = document.getElementById("keyword");
+	if(keywordTag.value.trim().length == 0){
+		alert('검색어를 입력하세요');
+		keywordTag.value = "";
+		keywordTag.focus();
+		return false;
+	}
+	
+	console.log(searchTypeTag.value, keywordTag.value);
+	const url = `/portfolio/board/list/1/${searchTypeTag.value}/${keywordTag.value}`;
+	window.location.href = url; 
+	
 }
+
+
+

@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
+import com.kh.portfolio.common.page.FindCriteria;
 import com.kh.portfolio.common.page.PageCriteria;
 
 public interface BoardSVC {
@@ -25,6 +26,8 @@ public interface BoardSVC {
 	List<BoardVO> list();
 	//게시글 목록
 	List<BoardVO> list(int reqPage);
+	//게시글 목록(검색포함)
+	List<BoardVO> list(int reqPage,String searchType,String keyword);
 	
 	//첨부파일 다운로드
 	BoardFileVO viewFile(String fid);
@@ -34,6 +37,9 @@ public interface BoardSVC {
 	
 	//페이징제어 반환
 	PageCriteria getPageCriteria(int reqPage);
+	
+	//페이징제어 + 검색포함
+	FindCriteria getFindCriteria(int reqPage,String searchType, String keyword);
 }
 
 

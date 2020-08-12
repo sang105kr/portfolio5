@@ -94,14 +94,19 @@ public class BoardDAOImplXMLTEST {
 	}
 	@Test
 	@DisplayName("게시글목록")
-	@Disabled
+//	@Disabled
 	void list() {
+		
+		String searchType = "T";
+		String keyword = "제목1";
 		
 		recordCriteria.setReqPage(1);  			//요청페이지
 		recordCriteria.setRecNumPerPage(10);		//한페이지에 보여줄 레코드 수
 		
 		List<BoardVO> list = boardDAO.list(recordCriteria.getStarRec(),
-																			 recordCriteria.getEndRec());
+																			 recordCriteria.getEndRec(),
+																			 searchType,
+																			 keyword);
 		logger.info("레코드갯수:" + list.size());
 		
 //		list.stream().forEach((board)->{
@@ -213,6 +218,7 @@ public class BoardDAOImplXMLTEST {
 	
 	@Test
 	@DisplayName("샘플 게시글 작성")
+	@Disabled
 	void writeSampleData() {
 //    #{cid},
 //    #{btitle},

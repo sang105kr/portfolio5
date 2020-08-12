@@ -1,0 +1,4 @@
+db.driverClass=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+db.url=jdbc:jdbc:log4jdbc:oracle:thin:@127.0.0.1:1521:orcl
+db.username:portfolio
+db.password:

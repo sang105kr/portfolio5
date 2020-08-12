@@ -87,9 +87,13 @@ public class BoardController {
 //	}
 	
 	//게시글 목록
-	@GetMapping({"/list","/list/{reqPage}"})
+	@GetMapping({"/list",
+							 "/list/{reqPage}",
+							 "/list/{reqPage}/{searchType}/{keyword}"})
 	public String list(
-			@PathVariable("reqPage") Optional<Integer> reqPage,
+			@PathVariable(value="reqPage",required = false) Optional<Integer> reqPage,
+			@PathVariable(value="searchType",required = false) String searchType,
+			@PathVariable(value="keyword",required = false) String keyword,
 			Model model
 			) {
 		//url경로상에 reqPage값이 존재하지않으면 1로 설정함.
@@ -101,8 +105,8 @@ public class BoardController {
 //		
 //		logger.info("reqPage:"+reqPage.orElse(1));
 		
-		model.addAttribute("list", boardSVC.list(reqPage.orElse(1)));
-		model.addAttribute("pageCriteria", boardSVC.getPageCriteria(reqPage.orElse(1)));
+		model.addAttribute("list", boardSVC.list(reqPage.orElse(1),searchType,keyword));
+		model.addAttribute("findCriteria", boardSVC.getFindCriteria(reqPage.orElse(1),searchType,keyword));
 		return "/board/list";
 	}
 	

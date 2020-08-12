@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 public class RecordCriteria {
 	
-	private int reqPage;			//요청페이지
+	private int reqPage;					//요청페이지
 	private int recNumPerPage;		//한페이지당 보여줄 레코드수
 
 	//시작레코드 = (요청페이지-1) * 한페이지에 보여줄 레코드수+1
