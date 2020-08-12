@@ -229,11 +229,11 @@ public class BoardSVCImpl implements BoardSVC {
 		pageCriteria.setPageNumPerPage(10);
 		//레코드정보
 		pageCriteria.setRc(recordCriteria);
+		//게시글 총 레코드 건수
+		pageCriteria.setTotalRec(boardDAO.totalRecordCount());
 		//페이징계산
 		pageCriteria.calculatePaging();
 		
-		//게시글 총 레코드 건수
-		pageCriteria.setTotalRec(boardDAO.totalRecordCount());
 
 		return pageCriteria;
 	}
@@ -250,15 +250,14 @@ public class BoardSVCImpl implements BoardSVC {
 		pageCriteria.setPageNumPerPage(10);
 		//레코드정보
 		pageCriteria.setRc(recordCriteria);
+		//게시글 총 레코드 건수
+		pageCriteria.setTotalRec(boardDAO.totalRecordCount(searchType,keyword));
 		//페이징계산
 		pageCriteria.calculatePaging();
 		//검색어정보
 		findCriteria.setPageCriteria(pageCriteria);
 		findCriteria.setSearchType(searchType);
 		findCriteria.setKeyword(keyword);
-		
-		//게시글 총 레코드 건수
-		findCriteria.getPageCriteria().setTotalRec(boardDAO.totalRecordCount(searchType,keyword));
 		
 		return findCriteria;
 	}

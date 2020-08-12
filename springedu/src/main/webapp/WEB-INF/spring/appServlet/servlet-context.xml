@@ -32,6 +32,20 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- interceptor 설정 -->
+	<interceptors>
+		<!-- 로그인 세션 확인 -->
+		<interceptor>
+		<!-- 1) 특정 uri지정-->
+		<mapping path="/admin/**/"/>
+		<mapping path="/board/writeForm/**"/>
+		<mapping path="/board/reply/**"/>
+		<!-- 2) interceptor구현 클래스-->
+		<beans:bean id="loginInterceptor"
+								class="com.kh.portfolio.interceptor.LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<!-- 파일 업로드 -->
 	<beans:bean id="multipartResolver"
 							class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -27,9 +27,7 @@ function findBtn_f(e) {
 	
 	console.log(searchTypeTag.value, keywordTag.value);
 	const url = `/portfolio/board/list/1/${searchTypeTag.value}/${keywordTag.value}`;
-	window.location.href = url; 
-	
+	window.location.href = url; 	
 }
-
 
 

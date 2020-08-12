@@ -30,6 +30,7 @@ import com.kh.portfolio.board.svc.BoardSVC;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
+import com.kh.portfolio.common.page.FindCriteria;
 import com.kh.portfolio.common.page.RecordCriteria;
 
 @Controller
@@ -107,6 +108,7 @@ public class BoardController {
 		
 		model.addAttribute("list", boardSVC.list(reqPage.orElse(1),searchType,keyword));
 		model.addAttribute("findCriteria", boardSVC.getFindCriteria(reqPage.orElse(1),searchType,keyword));
+
 		return "/board/list";
 	}
 	

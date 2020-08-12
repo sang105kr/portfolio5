@@ -149,7 +149,7 @@
 <body>
 	<div class="container">
 		<div class="content">
-			<form id="loginForm" method="post" action="${contextPath }/login">
+			<form id="loginForm" method="post" action="${contextPath }/login?reqURI=${reqURI}">
 				<div class="item">
 					<a href="${contextPath }">
 						<img src="${contextPath }/img/car.jpg" alt="" />

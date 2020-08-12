@@ -1,18 +1,14 @@
 package com.kh.portfolio.aspect;
 
-import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
-@Component // 컨테이너에 빈으로 등록하고자 하는 클래스에 사용
+//@Component // 컨테이너에 빈으로 등록하고자 하는 클래스에 사용
 //@Aspect // 부가기능을 정의한 클래스에 사용
 public class MeasuringExcuteTime {
 	private static final Logger logger = LoggerFactory.getLogger(MeasuringExcuteTime.class);

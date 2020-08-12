@@ -23,10 +23,13 @@ public class LoginController {
 	@Inject
 	MemberSVC memberSVC;
 	
-	//로그인 화면
+	//로그인 화면"/loginForm?reqURI="+reqURI
 	@GetMapping("/loginForm")
-	public String loginForm() {
+	public String loginForm(
+			@RequestParam(value="reqURI",required = false) String reqURI,
+			Model model) {
 		
+		model.addAttribute("reqURI", reqURI);
 		return "/member/loginForm";
 	}
 	
@@ -35,6 +38,7 @@ public class LoginController {
 	public String login(
 			@RequestParam("id") String id,
 			@RequestParam("pw") String pw,
+			@RequestParam("reqURI") String reqURI,
 			HttpSession session,
 			Model model) {
 //		logger.info("String login()호출됨");
@@ -58,7 +62,7 @@ public class LoginController {
 				return "/member/loginForm";
 			}
 		}	
-		return "redirect:/";
+		return "redirect:/"+reqURI;
 	}
 	
 	//로그아웃
