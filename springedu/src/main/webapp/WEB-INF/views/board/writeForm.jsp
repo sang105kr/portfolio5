@@ -32,7 +32,7 @@
 						<li>
 							<form:label path="boardCategoryVO.cid">분류</form:label> 
 							<form:select	path="boardCategoryVO.cid">
-								<option value="0">선택</option>
+								<form:option value="0">선택</form:option>
 								<form:options path="boardCategoryVO.cid"
 															items="${boardCategory }"
 															itemValue="cid"

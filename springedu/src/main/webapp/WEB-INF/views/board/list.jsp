@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <!-- 공통 모듈 -->
 <%@ include file="/WEB-INF/views/include/common.jsp" %>
-
+<!-- spring form태그사용 -->
+<!-- 장점 : 양식(form태그)의 코딩량을 줄일수있다. -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <title>게시글 보기</title>
 <link rel="stylesheet" href="${contextPath }/css/board/board.css">
 <link rel="stylesheet" href="${contextPath }/css/board/list.css">
@@ -84,7 +86,7 @@
 		        </c:if>
 		      </div>
 		      <div class="find">
-		        <form>
+<%-- 		        <form>
 		          <select name="searchType" id="searchType">
 		            <option value="TC"
 		            	<c:out value="${findCriteria.searchType == 'TC' ? 'selected':'' }"/>>제목+내용</option>
@@ -101,7 +103,16 @@
 		          </select>
 		          <input type="text" name="keyword" id="keyword" value="${findCriteria.keyword }"/>
 		          <button id="findBtn" type="button">검색</button>
-		        </form>
+		        </form> --%>
+		        <form:form modelAttribute="findCriteria">
+		          <form:select path="searchType">
+   							<form:options items="${codeDecodeList}" 
+  														itemLabel="decode" 
+  														itemValue="code" />	          
+		          </form:select>
+		          <form:input type="text" path="keyword"/>
+		          <button id="findBtn" type="button">검색</button>
+		        </form:form>		        
 		      </div>
 		    </div>
 			</div>

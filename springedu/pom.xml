@@ -292,6 +292,12 @@
 			<version>5.16.0</version>
 		</dependency>
 
+		<!-- owl carousel -->
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>owl.carousel</artifactId>
+		    <version>2.3.4</version>
+		</dependency>
 		<!-- 웹관련 라이브러리 종료 -->
 
 		<!-- mail 시작 -->

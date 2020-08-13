@@ -33,16 +33,16 @@
 <link rel="stylesheet" href="${contextPath }/css/reset.css" />
 
 <!-- jquery -->
-<script defer src="${contextPath }/webjars/jquery/3.5.1/jquery.js"></script>
+<script src="${contextPath }/webjars/jquery/3.5.1/jquery.js"></script>
 
 <!-- bootstrap -->
-<script defer src="${contextPath }/webjars/bootstrap/4.5.0/js/bootstrap.js"></script>
+<script src="${contextPath }/webjars/bootstrap/4.5.0/js/bootstrap.js"></script>
 
 <!-- popper -->
-<script defer src="${contextPath }/webjars/popper.js/2.0.2/umd/popper.js"></script>
+<script src="${contextPath }/webjars/popper.js/2.0.2/umd/popper.js"></script>
 
 <!-- d3 -->
-<script defer src="${contextPath }/webjars/d3js/5.16.0/d3.js"></script>
+<script src="${contextPath }/webjars/d3js/5.16.0/d3.js"></script>
 
 
 

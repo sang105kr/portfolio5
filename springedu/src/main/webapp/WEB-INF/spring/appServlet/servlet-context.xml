@@ -22,6 +22,7 @@
 	<resources mapping="/css/**" 			location="/WEB-INF/resources/css/" />
 	<resources mapping="/js/**" 			location="/WEB-INF/resources/js/" />
 	<resources mapping="/img/**" 			location="/WEB-INF/resources/img/" />
+	<resources mapping="/video/**" 		location="/WEB-INF/resources/video/" />
 	
 	<!-- 웹컴포넌트 라이브러리 url매핑-->
 	<resources mapping="/webjars/**" 	location="classpath:/META-INF/resources/webjars/"/>

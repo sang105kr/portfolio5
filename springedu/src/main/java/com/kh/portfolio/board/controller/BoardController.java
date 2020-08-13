@@ -1,6 +1,7 @@
 package com.kh.portfolio.board.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -8,7 +9,6 @@ import java.util.Optional;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.apache.ibatis.annotations.Delete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -30,8 +30,7 @@ import com.kh.portfolio.board.svc.BoardSVC;
 import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
-import com.kh.portfolio.common.page.FindCriteria;
-import com.kh.portfolio.common.page.RecordCriteria;
+import com.kh.portfolio.board.vo.CodeDecodeVO;
 
 @Controller
 @RequestMapping("/board")
@@ -47,6 +46,19 @@ public class BoardController {
 	@ModelAttribute("boardCategory") 
 	public List<BoardCategoryVO> getCategory() {
 		return boardSVC.getCategory();
+	}
+	
+	@ModelAttribute("codeDecodeList")
+	public List<CodeDecodeVO> getCode(){
+		List<CodeDecodeVO> codeDecodeList = new ArrayList<>();
+		codeDecodeList.add(new CodeDecodeVO("TC","제목+내용"));
+		codeDecodeList.add(new CodeDecodeVO("T","제목"));
+		codeDecodeList.add(new CodeDecodeVO("C","내용"));
+		codeDecodeList.add(new CodeDecodeVO("I","아이디"));
+		codeDecodeList.add(new CodeDecodeVO("N","별칭"));
+		codeDecodeList.add(new CodeDecodeVO("A","전체"));		
+		
+		return codeDecodeList;
 	}
 	
 	//게시글 작성(화면)
@@ -108,7 +120,6 @@ public class BoardController {
 		
 		model.addAttribute("list", boardSVC.list(reqPage.orElse(1),searchType,keyword));
 		model.addAttribute("findCriteria", boardSVC.getFindCriteria(reqPage.orElse(1),searchType,keyword));
-
 		return "/board/list";
 	}
 	
