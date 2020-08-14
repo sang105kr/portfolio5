@@ -48,6 +48,8 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/webjars/bootstrap/4.5.0/bootstrap-4.5.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/webjars/popper.js/2.0.2/popper.js-2.0.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/webjars/d3js/5.16.0/d3js-5.16.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/webjars/bower/owl.carousel/2.3.4/owl.carousel-2.3.4.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/webjars/bower/jquery/3.5.1/jquery-3.5.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-context-support/5.2.7.RELEASE/spring-context-support-5.2.7.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/javax/mail/javax.mail-api/1.6.2/javax.mail-api-1.6.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2.jar" enabled="true" runInBatchMode="false"/>

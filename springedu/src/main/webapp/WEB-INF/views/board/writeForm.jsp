@@ -26,7 +26,8 @@
 									 method="post"
 									 action="${contextPath }/board/write" 
 									 enctype="multipart/form-data"
-									 modelAttribute="boardVO">
+									 modelAttribute="boardVO">			
+					<form:hidden path="bid" value="${sessionScope.member.id }"/>										 			 
 					<legend>게시글 작성</legend>
 					<ul>
 						<li>
@@ -48,8 +49,8 @@
 							<form:errors cssClass="svr_msg" path="btitle"/>
 						</li>
 						<li>
-							<form:label path="bid">작성자</form:label>
-							<form:input type="text" path="bid" />
+							<label for="bid">작성자</label>
+							<input type="text" id="bid" value="${sessionScope.member.nickname }(${sessionScope.member.id })" readonly="true"/>
 							<span class="client_msg" id="bid.error"></sapn>								
 							<form:errors cssClass="svr_msg" path="bid"/>
 						</li>

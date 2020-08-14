@@ -23,13 +23,16 @@ changeMode(false); //읽기모드
 
 //답글
 function replyBtn_f(e){
+	e.preventDefault();
 	console.log('답글');
 	const bnum = e.target.getAttribute("data-bnum");
-	const url = `/portfolio/board/reply/${bnum}`;
+	const returnPage = e.target.getAttribute("data-returnPage");
+	const url = `/portfolio/board/reply/${bnum}/${returnPage}`;
 	window.location.href= url;
 }
 //수정
 function modifyBtn_f(e){
+	e.preventDefault();
 	console.log('수정');
 	changeMode(true); //수정모드
 }
@@ -68,13 +71,14 @@ function changeMode(modeFlag){
 	}
 }
 
-
 //삭제
 function deleteBtn_f(e){
+	e.preventDefault();
 	console.log('삭제');
 	if(confirm("삭제하시겠습니까?")){
 		const bnum = e.target.getAttribute("data-bnum");
-		const url = `/portfolio/board/delete/${bnum}`;
+		const returnPage = e.target.getAttribute("data-returnPage");
+		const url = `/portfolio/board/delete/${bnum}/${returnPage}`;
 		window.location.href = url;
 	}
 }
@@ -104,10 +108,12 @@ function saveBtn_f(e) {
 
 //목록
 function listBtn_f(e) {
-  console.log("목록");
+	e.preventDefault();
+	const returnPage = e.target.getAttribute('data-returnPage');
   //목록리스트로 이동
-  location.href = "/portfolio/board/list";
+  location.href = "/portfolio/board/list/"+returnPage;
 }
+
 
 //유효성 체크
 function checkValidation(){

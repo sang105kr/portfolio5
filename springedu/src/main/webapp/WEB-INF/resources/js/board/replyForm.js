@@ -31,9 +31,12 @@ function cancelBtn_f(e) {
 }
 //목록
 function listBtn_f(e) {
+	e.preventDefault();
   console.log("목록");
   //목록리스트로 이동
-  location.href = "/portfolio/board/list";
+	const returnPage = e.target.getAttribute("data-returnPage");
+	const url = `/portfolio/board/list/${returnPage}`;
+  location.href = url;
 }
 
 //유효성 체크
@@ -57,7 +60,8 @@ function checkValidation(){
 		return false;
 	}
 	document.getElementById('btitle.error').textContent = "";
-	
+
+	/*	
 	//작성자
 	const bidTag = document.getElementById('bid');
 	if(bidTag.value.trim().length == 0){
@@ -67,12 +71,14 @@ function checkValidation(){
 	}
 	document.getElementById('bid.error').textContent = "";
 	//정규표현식 
+
 	let idExpReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-A]{2,3}$/i;
 	if(!idExpReg.test(bidTag.value)){
 		document.getElementById('bid.error').textContent = "이메일 형식에 맞지 않습니다 ex)aaa@bbb.com";
 		bidTag.select();
 		return false;
 	}
+	*/
 	//내용
 	const bcontentTag = document.getElementById('bcontent');
 	if(bcontentTag.value.trim().length < 4){

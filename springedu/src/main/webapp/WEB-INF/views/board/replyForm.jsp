@@ -24,9 +24,10 @@
 			<div class="content">
 				<form:form id="writeFrm" 
 									 method="post"
-									 action="${contextPath }/board/reply" 
+									 action="${contextPath }/board/reply/${requestScope.returnPage }" 
 									 enctype="multipart/form-data"
 									 modelAttribute="boardVO">
+					<form:hidden path="bid" value="${sessionScope.member.id }"/>				 
 					<form:hidden path="boardCategoryVO.cid" value="${boardVO.boardCategoryVO.cid }"/>				 
 					<form:hidden path="bgroup" value="${boardVO.bgroup }"/>				 
 					<form:hidden path="bstep" value="${boardVO.bstep }"/>				 
@@ -52,8 +53,8 @@
 							<form:errors cssClass="svr_msg" path="btitle"/>
 						</li>
 						<li>
-							<form:label path="bid">작성자</form:label>
-							<form:input type="text" path="bid" />
+							<label for="bid">작성자</label>
+							<input type="text" id="bid" value="${sessionScope.member.nickname }(${sessionScope.member.id })" readonly="true"/>
 							<span class="client_msg" id="bid.error"></sapn>								
 							<form:errors cssClass="svr_msg" path="bid"/>
 						</li>
@@ -69,9 +70,9 @@
 							<span class="client_msg" id="files.error"></sapn>	
 							<form:errors cssClass="svr_msg" path="files"/>
 						<li>
-							<form:button id="writeBtn" 	type="button" class="btn btn-outline-success">등록</form:button>
+							<form:button id="writeBtn" 	type="button" class="btn btn-outline-success" data-returnPage="${requestScope.returnPage }">등록</form:button>
 							<form:button id="cancelBtn" type="button" class="btn btn-outline-danger">취소</form:button>
-							<form:button id="listBtn" 	type="button" class="btn btn-outline-info"> 목록</form:button>
+							<form:button id="listBtn" 	type="button" class="btn btn-outline-info" data-returnPage="${requestScope.returnPage }"> 목록</form:button>
 						</li>
 					</ul>
 				</form:form>

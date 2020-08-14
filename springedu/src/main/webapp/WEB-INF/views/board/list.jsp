@@ -27,6 +27,11 @@
       <div class="content">  
 		    <div id="boardList">
 		      <div><h2>게시글 목록</h2></div>
+		      <div class="totalRec">
+		      	<button type="button" class="btn badge-secondary">
+  						총 <span class="badge badge-light">${findCriteria.pageCriteria.totalRec}</span>건
+						</button>
+					</div>
 		      <div class="wrapper">
 		        <div class="head">번호</div>
 		        <div class="head">분류</div>
@@ -42,7 +47,7 @@
 		        	<c:if test="${rec.bindent > 0 }">
 		        		<i class="fas fa-reply"></i>
 		        	</c:if>
-		        	<a href="${contextPath }/board/view/${rec.bnum }">${rec.btitle }</a>
+		        	<a href="${contextPath }/board/view/${rec.bnum }/${findCriteria.pageCriteria.rc.reqPage}">${rec.btitle }</a>
 		        </div>
 		        <div class="rec">${rec.bnickname }</div>
 		        <div class="rec">
@@ -51,7 +56,7 @@
 		        <div class="rec" style="text-align:right">${rec.bhit }</div>
 		        </c:forEach>
 		      </div>
-		      <div class="btnGrp"><button id="writeBtn">글쓰기</button></div>
+		      <div class="btnGrp"><button id="writeBtn" class="btn btn-outline-dark">글쓰기</button></div>
 		      <div class="paging">
 	        	<c:if test="${findCriteria.pageCriteria.prev}">
 		        <div>
@@ -110,8 +115,8 @@
   														itemLabel="decode" 
   														itemValue="code" />	          
 		          </form:select>
-		          <form:input type="text" path="keyword"/>
-		          <button id="findBtn" type="button">검색</button>
+		          <form:input type="text" path="keyword" />
+		          <button id="findBtn" type="button"  class="btn btn-outline-secondary" >검색</button>
 		        </form:form>		        
 		      </div>
 		    </div>

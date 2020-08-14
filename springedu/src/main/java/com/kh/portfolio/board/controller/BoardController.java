@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -31,6 +32,7 @@ import com.kh.portfolio.board.vo.BoardCategoryVO;
 import com.kh.portfolio.board.vo.BoardFileVO;
 import com.kh.portfolio.board.vo.BoardVO;
 import com.kh.portfolio.board.vo.CodeDecodeVO;
+import com.kh.portfolio.member.vo.MemberVO;
 
 @Controller
 @RequestMapping("/board")
@@ -76,7 +78,8 @@ public class BoardController {
 	@PostMapping("/write")
 	public String write(
 			@Valid @ModelAttribute("boardVO") BoardVO boardVO,
-			BindingResult result
+			BindingResult result,
+			HttpServletRequest request
 			//Model model
 			) {
 
@@ -84,6 +87,10 @@ public class BoardController {
 			//model.addAttribute("boardVO", boardVO);
 			return "/board/writeForm";
 		}
+		
+		MemberVO memberVO = (MemberVO)request.getSession().getAttribute("member");
+		boardVO.setBid(memberVO.getId());
+		boardVO.setBnickname(memberVO.getNickname());
 		
 		boardSVC.write(boardVO);
 
@@ -124,9 +131,10 @@ public class BoardController {
 	}
 	
 	//게시글 보기
-	@GetMapping("/view/{bnum}")
+	@GetMapping("/view/{bnum}/{returnPage}")
 	public String view(
 			@PathVariable("bnum") String bnum,
+			@PathVariable("returnPage") String returnPage,
 			Model model) {
 		
 		Map<String,Object> map = boardSVC.view(bnum);
@@ -140,17 +148,21 @@ public class BoardController {
 		
 		model.addAttribute("boardVO", boardVO);
 		model.addAttribute("files", files);
+		model.addAttribute("returnPage", returnPage);
 		
 		return "/board/readForm";
 	}
 	
 	//게시글삭제
-	@GetMapping("/delete/{bnum}")
-	public String delete(@PathVariable("bnum") String bnum) {
+	@GetMapping("/delete/{bnum}/{returnPage}")
+	public String delete(
+			@PathVariable("bnum") String bnum,
+			@PathVariable("returnPage") String returnPage
+			) {
 		
 		boardSVC.delete(bnum);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/list/"+returnPage;
 	}
 	
 	//첨부파일 다운로드
@@ -182,19 +194,20 @@ public class BoardController {
 	}
 	
 	//게시글 수정
-	@PostMapping("/modify")
+	@PostMapping("/modify/{returnPage}")
 	public String modify(
+			@PathVariable("returnPage") String returnPage,
 			@Valid @ModelAttribute("boardVO") BoardVO boardVO,
 			BindingResult result) {
 		//바인딩시 오류가 발생할경우
 		if(result.hasErrors()) {
-			return "/board/readForm";
+			return "/board/readForm/"+returnPage;
 		}
 		
 		//수정
 		boardSVC.modify(boardVO);
 		
-		return "redirect:/board/view/"+boardVO.getBnum();
+		return "redirect:/board/view/"+boardVO.getBnum()+"/"+returnPage;
 	}
 	
 	//게시글 첨부파일 개별 삭제
@@ -216,8 +229,9 @@ public class BoardController {
 	}
 	
 	//게시글 답글작성(화면)
-	@GetMapping("/reply/{bnum}")
+	@GetMapping("/reply/{bnum}/{returnPage}")
 	public String replyForm(
+			@PathVariable("returnPage") String returnPage,
 			@PathVariable("bnum") String bnum,
 			Model model) {
 		
@@ -233,42 +247,26 @@ public class BoardController {
 		boardVO.setBcontent("[원글] " + boardVO.getBcontent());
 		
 		model.addAttribute("boardVO", boardVO);
+		model.addAttribute("returnPage", returnPage);
 		return "/board/replyForm";
 	}
 	
 	//게시글 답글작성
-	@PostMapping("/reply")
+	@PostMapping("/reply/{returnPage}")
 	public String reply(
+			@PathVariable("returnPage") String returnPage,
 			@Valid @ModelAttribute BoardVO boardVO,
-			BindingResult result) {
+			BindingResult result,
+			HttpServletRequest request) {
 		
-		logger.info("reply:"+boardVO);
 		if(result.hasErrors()) {
 			return "/board/replyForm";
 		}
-		
+		MemberVO memberVO = (MemberVO)request.getSession().getAttribute("member");
+		boardVO.setBid(memberVO.getId());
+		boardVO.setBnickname(memberVO.getNickname());
 		boardSVC.reply(boardVO);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/list/"+returnPage;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
