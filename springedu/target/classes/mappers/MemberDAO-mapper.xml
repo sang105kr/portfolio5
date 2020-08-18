@@ -16,7 +16,11 @@
 		       gender 	= #{gender},
 		       region 	= #{region},
 		       birth 		= #{birth},
-		       udate 		= systimestamp
+		       udate 		= systimestamp,
+		       pic      = #{pic},
+		       fsize    = #{fsize},
+		       ftype    = #{ftype},
+		       fname    = #{fname}
 		 where id 			= #{id}
 		   and pw       = #{pw} 
 </update>
@@ -31,7 +35,8 @@
 <select id="listOneMember"
 				parameterType="string"
 				resultType="com.kh.portfolio.member.vo.MemberVO">
-	select  id,pw,tel,nickname,gender,region,birth,cdate,udate 
+	select  id,pw,tel,nickname,gender,region,birth,cdate,udate,
+					pic,fsize,ftype,fname 
 	  from  member 
 	 where  id = #{id} 
 </select>

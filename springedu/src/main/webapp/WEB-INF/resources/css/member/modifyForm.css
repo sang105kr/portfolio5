@@ -1,0 +1,69 @@
+@charset "UTF-8";
+/* 메뉴 영역 */
+ nav{}
+ nav > .container-n{ height:50px; background-color: #9e00c5; }
+ nav > .container-n > ul{ display:flex; list-style-type: none; height:50px; width:500px; margin: 0px auto; line-height: 50px; }
+ nav > .container-n > ul > li { width:100px; text-align: center; font-size:0.8rem; }
+ nav > .container-n > ul > li > a{ color:white; text-decoration: none; font-weight: bold; }
+ nav > .container-n > ul > li > a:hover{ text-decoration: underline; }
+
+main > .container > .content > section {
+	padding: 50px;
+	display:flex;
+	justify-content: center;
+}
+
+main .container .content form{
+	width: 200px;
+	margin: 50px auto;
+
+}
+main .container .content form h1 {
+	margin: 20px;
+}
+main .container .content form ul {
+	list-style: none;
+}
+main .container .content form li {
+	margin: 5px auto;
+}
+main .container .content form input[type=submit]{
+	width:160px;
+	padding:3px;
+	background-color: lightgreen;
+	border: none;
+	outline: none;
+}
+
+/*프로파일 이미지 첨부*/
+main .container .content form #file{
+	display:none;
+}
+main .container .content form .mypicArea{
+  border:1px solid black;
+  padding:10px;
+  max-width:200px;
+  min-height:200px;
+}  
+main .container .content form #mypic{
+	width:100%;
+	width:100%;
+}  
+main .container .content form .dragover {
+   background-color: gray;
+   outline: 1px solid green;
+   outline-offset:-10px;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+**

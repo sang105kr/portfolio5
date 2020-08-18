@@ -1,5 +1,6 @@
 package com.kh.portfolio.member.svc;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
@@ -35,6 +36,21 @@ public class MemberSVCImpl implements MemberSVC{
 	@Override
 	public int modifyMember(MemberVO memberVO) {
 		int result = 0;
+		//첨부 파일 존재시(회원프로파일사진) multipartfile에서 첨부파일관련 정보 추출
+		if(memberVO.getFile().getSize() > 0) {
+			try {
+				//파일사이즈
+				memberVO.setFsize(String.valueOf(memberVO.getFile().getSize()));
+				//파일타입
+				memberVO.setFtype(memberVO.getFile().getContentType());
+				//파일이름
+				memberVO.setFname(memberVO.getFile().getName());
+				//첨부파일
+				memberVO.setPic(memberVO.getFile().getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		result = memberDAO.modifyMember(memberVO);
 		

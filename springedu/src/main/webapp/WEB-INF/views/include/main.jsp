@@ -12,7 +12,7 @@
  		/*outline: 1px dotted red;*/
  		display:flex;
  		justify-content: center;
- 		align-items: center;
+ 		align-items: flex-end;
  	}
  	main .container .content section article:nth-child(1){
 
@@ -21,7 +21,7 @@
 
  	}
  	main .container .content section article:nth-child(3){
-
+		
  	}
  	main .container .content section article:nth-child(4){
 
@@ -87,8 +87,6 @@
 						  </div>
 						</div>					
 					</article>
-					<article>5</article>
-					<article>6</article>
 					<article>
 						<div class="card border-danger mb-3" style="max-width: 18rem;">
 						  <div class="card-header">Header</div>
@@ -97,8 +95,9 @@
 						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 						  </div>
 						</div>					
-					
 					</article>
+					<article>6</article>
+					<article>7</article>
 					<article>8</article>
 					<article>9</article>
         </section>

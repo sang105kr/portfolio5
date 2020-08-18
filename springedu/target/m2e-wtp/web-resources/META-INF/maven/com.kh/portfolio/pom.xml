@@ -338,6 +338,13 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.4</version>
 		</dependency>
+		<!-- 이미지를 base64로 변환후 img태그에 적용 -->
+		<!-- base64는 임의의 바이트 스트림을 화면에 표시할 수 있는 ASCII문자들로 바꾸는 인코딩방식 -->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.14</version>
+		</dependency>
 
 		<!-- JPA(Java Persitence API) Validation 시작 -->
 		<dependency>

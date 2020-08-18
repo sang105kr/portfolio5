@@ -4,67 +4,8 @@
 <%@ include file="/WEB-INF/views/include/common.jsp" %>
 <title>내정보</title>
 <link rel="stylesheet" href="${contextPath }/css/main.css">
-<style>
-  /* 메뉴 영역 */
-  nav{}
-  nav > .container-n{ height:50px; background-color: #9e00c5; }
-  nav > .container-n > ul{ display:flex; list-style-type: none; height:50px; width:500px; margin: 0px auto; line-height: 50px; }
-  nav > .container-n > ul > li { width:100px; text-align: center; font-size:0.8rem; }
-  nav > .container-n > ul > li > a{ color:white; text-decoration: none; font-weight: bold; }
-  nav > .container-n > ul > li > a:hover{ text-decoration: underline; }
-
-	main > .container > .content > section {
-		padding: 50px;
-		display:flex;
-		justify-content: center;
-	}
-	
-	main .container .content form{
-		width: 200px;
-		margin: 50px auto;
-
-	}
-	main .container .content form h1 {
-		margin: 20px;
-	}
-	main .container .content form ul {
-		list-style: none;
-	}
-	main .container .content form li {
-		margin: 5px auto;
-	}
-	main .container .content form input[type=submit]{
-		width:160px;
-		padding:3px;
-		background-color: lightgreen;
-		border: none;
-		outline: none;
-	}
-
-</style>
-<script>
-	const modifyBtn_f = (event) => {
-		event.preventDefault();
-		console.log('modifyBtn 클릭!');
-		const pwTag 		= document.getElementById("pw");
-		const errmsg_pw = document.getElementById("errmsg_pw");
-		if(!pwTag.value.trim()) {
-			errmsg_pw.textContent = '비밀번호를 입력하세요';
-			pwTag.select();
-			return;
-		}
-		document.getElementById('modifyForm').submit();
-	}
-
-	const init = () => {
-		const modifyBtn = document.getElementById("modifyBtn"); 
-		modifyBtn.addEventListener("click",modifyBtn_f);
-	}
-
-	window.addEventListener("load",init);
-
-</script>		
-
+<link rel="stylesheet" href="${contextPath }/css/member/modifyForm.css" />
+<script defer src="${contextPath }/js/member/modifyForm.js"></script>		
 </head>
 <body>
 	<!-- 최상위메뉴 -->
@@ -81,8 +22,17 @@
 			<div class="content">
 				<section>
 					<form id="modifyForm" method="post"
-							action="${contextPath}/member/modify">
+							action="${contextPath}/member/modify"
+							enctype="multipart/form-data">
 							<ul>
+					      <li><label for="file">프로파일사진</label></li>
+					      <li>
+					        <div class="mypicArea">
+					          <input type="file" name="file" id="file" />${requestScope.pic }
+					          <img id="mypic" src="data:${requestScope.ftype};base64,${requestScope.pic }" alt="" />
+					        </div>
+					      </li>							
+					      <li><span class="errmsg" id="errmsg_file"></span></li>
 								<li><label for="id">아이디</label></li>
 								<li><input type="text" name="id" id="id" value='${sessionScope.member.id }' readonly="readonly"/></li>
 								<li><label for="pw">비밀번호</label></li>
