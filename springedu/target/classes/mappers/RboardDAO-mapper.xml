@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.RboardDAO-mapper">
+
+<!-- 댓글작성 -->
+<insert id="write"
+				parameterType="RboardVO">
+ INSERT INTO RBOARD (
+ 	RNUM, 
+ 	BNUM, 
+ 	RID,
+ 	RCONTENT,
+ 	RGROUP,
+ 	RSTEP,
+ 	RINDENT)
+ VALUES(
+ 	rboard_rnum_seq.nextval,
+ 	#{bnum},
+ 	#{rid},
+ 	#{rcontent},
+ 	rboard_rnum_seq.currval,
+ 	0,
+ 	0)
+</insert>
+
+<!-- 댓글수정 -->	
+<update id="modify" parameterType="RboardVO">
+	update rboard
+		 set rcontent = #{rcontent},
+		     rudate   = systimestamp
+   where rnum = #{rnum} 
+</update>
+
+<!-- 댓글삭제 -->	
+<delete id="delete" parameterType="long">
+	delete from rboard where rnum = #{rnum}
+</delete>
+
+<!-- 댓글목록 -->
+<select id="list"
+				parameterType="map"
+				resultType="RboardVO">
+
+  select   		
+					 rnum,
+           bnum,
+           rid, rnickname, 
+           rcontent,	
+           rcdate, 
+           rgroup, rstep, rindent,
+           prnum
+
+    from (  select  row_number() over( order by rgroup desc, rstep asc) as num,
+    								t1.rnum,
+                    t1.bnum,
+                    t1.rid, t1.rnickname, 
+                    t1.rcontent,	
+                    t1.rcdate, 
+                    t1.rgroup, t1.rstep, t1.rindent,
+                    t1.prnum
+            	from  rboard t1
+					)
+  where  num between #{startRec} and #{endRec} 
+	
+</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

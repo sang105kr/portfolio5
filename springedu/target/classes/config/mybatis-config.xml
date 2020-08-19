@@ -8,5 +8,13 @@
 	 <setting name="cacheEnabled" 	 value="false"/>
 	 <setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
+	
+	<!-- mapper파일에서 긴이름의 타입을 간단한 별칭으로 대체해서 사용할 수 있다. -->
+	<typeAliases>
+		<typeAlias type="com.kh.portfolio.member.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.kh.portfolio.board.vo.BoardVO" alias="BoardVO"/>
+		<typeAlias type="com.kh.portfolio.board.vo.RboardVO" alias="RboardVO"/>
+	</typeAliases>
+	
 	<!-- mybatis에서 null값 허용 세팅 종료-->
 </configuration>

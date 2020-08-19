@@ -28,7 +28,7 @@
 					      <li><label for="file">프로파일사진</label></li>
 					      <li>
 					        <div class="mypicArea">
-					          <input type="file" name="file" id="file" />${requestScope.pic }
+					          <input type="file" name="file" id="file" />
 					          <img id="mypic" src="data:${requestScope.ftype};base64,${requestScope.pic }" alt="" />
 					        </div>
 					      </li>							
