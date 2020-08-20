@@ -21,6 +21,12 @@
  	rboard_rnum_seq.currval,
  	0,
  	0)
+ 	
+	<!-- 댓글 생성되고 이생성된 번호를 읽어와서 RboardVO.setRnum()에 넣어줌 -->
+	<selectKey keyProperty="rnum" resultType="long" order="AFTER">
+		select RBOARD_RNUM_SEQ.currval
+		  from dual
+	</selectKey> 	
 </insert>
 
 <!-- 댓글수정 -->	
@@ -35,6 +41,20 @@
 <delete id="delete" parameterType="long">
 	delete from rboard where rnum = #{rnum}
 </delete>
+
+<!-- 댓글조회 -->
+<select id="replyView"
+				parameterType="long"
+				resultType="RboardVO">
+
+	select rnum, bnum, rid, rnickname, rcontent, 
+				 rcdate,rudate,
+         rgroup, rstep, rindent,
+         prnum, prid, prnickname				 
+	  from rboard
+   where rnum = #{rnum}
+
+</select>
 
 <!-- 댓글목록 -->
 <select id="list"
@@ -63,6 +83,57 @@
   where  num between #{startRec} and #{endRec} 
 	
 </select>
+<insert id="reply"
+				parameterType="RboardVO">
+ INSERT INTO RBOARD (
+ 	RNUM, 
+ 	BNUM, 
+ 	RID,
+ 	RCONTENT,
+ 	RGROUP,
+ 	RSTEP,
+ 	RINDENT,
+ 	PRNUM,
+ 	PRID,
+ 	PRNICKNAME)
+ VALUES(
+ 	rboard_rnum_seq.nextval,
+ 	#{bnum},
+ 	#{rid},
+ 	#{rcontent},
+ 	#{rgroup},
+ 	#{rstep} + 1,
+ 	#{rindent} + 1,
+ 	#{prnum},
+ 	#{prid},
+ 	#{prnickname})	
+</insert>
+<!-- 이전댓글 step 업데이트 -->
+<update id="updateStep"
+				parameterType="map">
+	update rboard
+	   set rstep = rstep + 1
+   where rgroup = #{rgroup}
+     and rstep > #{rstep}
+</update>
+<!-- 댓글 호감, 비호감 -->
+<!--투표이력 없으면 추가 있으면 변경-->
+<!--CDATA : SQL내용에 <,>,특수문자 를 XML파서 해석하지 않고 문자열로 인식함. -->
+<update id="vote"
+				parameterType="VoteVO">
+<![CDATA[				 
+MERGE INTO rboard_vote
+USING DUAL
+   ON ( rnum=#{rnum} AND bnum=#{bnum} AND rid=#{rid})
+--키값이 존재하는경우     
+WHEN MATCHED THEN 
+     UPDATE SET vote = #{vote}
+--키값이 없는경우
+WHEN NOT MATCHED THEN 
+     INSERT (rnum,bnum,rid,vote) 
+     VALUES (#{rnum},#{bnum},#{rid},#{vote})
+]]>         
+</update>
 </mapper>
 
 

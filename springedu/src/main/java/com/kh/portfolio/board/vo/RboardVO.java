@@ -12,7 +12,7 @@ public class RboardVO {
 	private String rnickname;			//	RNICKNAME	VARCHAR2(20 BYTE)	Yes		4	댓글작성자별칭
 	private Timestamp rcdate;			//	RCDATE	DATE	No	SYSTIMESTAMP 	5	작성일시
 	private Timestamp rudate;			//	RUDATE	DATE	Yes	"SYSTIMESTAMP "	6	수정일시
-	private String rcontnet;			//	RCONTENT	CLOB	No		7	댓글본문내용
+	private String rcontent;			//	RCONTENT	CLOB	No		7	댓글본문내용
 	
 	//선호도
 	private int rgood;						//	RGOOD	NUMBER(5,0)	Yes		8	선호
@@ -26,7 +26,7 @@ public class RboardVO {
 	//부모댓글 참조
 	private long prnum;						//	PRNUM	NUMBER(10,0)	Yes		13	부모댓글번호
 	private String prid;					//	PRID	VARCHAR2(40 BYTE)	Yes		14	부모댓글아이디
-	private String pnickname;			//	PRNICNAME	VARCHAR2(30 BYTE)	Yes		15	부대댓글작성자(별칭)
+	private String prnickname;		//	PRNICNAME	VARCHAR2(30 BYTE)	Yes		15	부대댓글작성자(별칭)
 	
 	//프로파일 이미지
 	private String ftype;					//파일의 mime타입   image/png
