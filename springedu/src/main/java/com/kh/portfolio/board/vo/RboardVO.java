@@ -2,16 +2,34 @@ package com.kh.portfolio.board.vo;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 import lombok.Data;
 
+@Entity
 @Data
 public class RboardVO {
-	private long rnum;						//	RNUM	NUMBER(10,0)	No		1	댓글번호
-	private long bnum;						//	BNUM	NUMBER(10,0)	No		2	최초원글
+
+	@NotNull
+	private int rnum;						//	RNUM	NUMBER(10,0)	No		1	댓글번호
+	@NotNull
+	private int bnum;						//	BNUM	NUMBER(10,0)	No		2	최초원글
+	@NotNull
+	@Email
+//	@Pattern(regexp = "\\w+@\\w+\\.\\w+(\\.\\w+)?",
+//	 message = "이메일 형식으로 입력바랍니다. ex)test@gmail.com")
 	private String rid;						//	RID	VARCHAR2(40 BYTE)	No		3	"댓글작성자ID"
-	private String rnickname;			//	RNICKNAME	VARCHAR2(20 BYTE)	Yes		4	댓글작성자별칭
+	@NotNull
+	@Size(min=2,max=10,message = "별칭은 최대 10자까지 가능합니다.")
+	private String rnickname;			//	RNICKNAME	VARCHAR2(30 BYTE)	Yes		4	댓글작성자별칭
 	private Timestamp rcdate;			//	RCDATE	DATE	No	SYSTIMESTAMP 	5	작성일시
 	private Timestamp rudate;			//	RUDATE	DATE	Yes	"SYSTIMESTAMP "	6	수정일시
+	@NotNull
 	private String rcontent;			//	RCONTENT	CLOB	No		7	댓글본문내용
 	
 	//선호도

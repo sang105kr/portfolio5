@@ -69,6 +69,8 @@
 	<context:component-scan base-package="com.kh.portfolio">
 		<context:exclude-filter type="annotation" 
 														expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" 
+														expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
 	
 	<!-- @Aspect가 적용된 클래스를 자동으로 실행시점에 타겟(핵심기능)에 위빙(삽입과정)하는 설정-->

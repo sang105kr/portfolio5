@@ -61,7 +61,10 @@
 	<context:component-scan base-package="com.kh.portfolio"
 													use-default-filters="false">
 		<context:include-filter type="annotation" 
-														expression="org.springframework.stereotype.Controller"/>
+														expression="org.springframework.stereotype.Controller"/>												
+		<!-- 예외 처리 컨트롤러 -->														
+		<context:include-filter type="annotation" 
+														expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
 	
 	
