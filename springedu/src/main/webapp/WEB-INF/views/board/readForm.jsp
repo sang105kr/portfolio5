@@ -102,7 +102,9 @@
 						</li>
 					</ul>
 				</form:form>
-			</div>
+				<!-- 댓글 -->
+				<%@include file="/WEB-INF/views/board/rereply.jsp" %>
+			</div>			
 		</div>
 	</main>
 	<!-- 푸터 -->

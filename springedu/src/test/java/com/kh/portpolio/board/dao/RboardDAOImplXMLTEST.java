@@ -32,12 +32,12 @@ public class RboardDAOImplXMLTEST {
 //	int write(RboardVO rboardVO);
 	@Test
 	@DisplayName("댓글작성")
-	@Disabled
+//	@Disabled
 	void write() {
 		RboardVO rboardVO = new RboardVO();
-		rboardVO.setBnum(1129);
-		rboardVO.setRid("test@test.com");
-		rboardVO.setRcontent("1129게시글에 대한 댓글 테스트중");
+		rboardVO.setBnum(1130);
+		rboardVO.setRid("test3@test.com");
+		rboardVO.setRcontent("1130게시글에 대한 댓글 테스트중");
 		rboardDAO.write(rboardVO);		
 		
 		rboardVO = rboardDAO.replyView(rboardVO.getRnum());

@@ -16,9 +16,9 @@ import lombok.Data;
 public class RboardVO {
 
 	@NotNull
-	private int rnum;						//	RNUM	NUMBER(10,0)	No		1	댓글번호
+	private long rnum;						//	RNUM	NUMBER(10,0)	No		1	댓글번호
 	@NotNull
-	private int bnum;						//	BNUM	NUMBER(10,0)	No		2	최초원글
+	private long bnum;						//	BNUM	NUMBER(10,0)	No		2	최초원글
 	@NotNull
 	@Email
 //	@Pattern(regexp = "\\w+@\\w+\\.\\w+(\\.\\w+)?",

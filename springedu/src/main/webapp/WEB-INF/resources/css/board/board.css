@@ -47,7 +47,8 @@
     background-size: 800px 150px; height:150px; text-align: center; background-color: gray; opacity: 0.8; }
 
   /* 메뉴 영역 */
-  nav{}
+  nav{
+  	position:sticky; top:30px; z-index:100px;}
   nav > .container-n{ height:50px; background-color: black; }
   nav > .container-n > ul{ display:flex; list-style-type: none; height:50px; width:500px; margin: 0px auto; line-height: 50px; }
   nav > .container-n > ul > li { width:100px; text-align: center; font-size:0.8rem; }
@@ -58,7 +59,10 @@
   main{ display:flex; justify-content: center}
 
   /* 푸터 영역 */
-  footer{position:sticky; bottom:0px; z-index:100px;}
+  footer{
+  	margin-top:30px;
+  /*position:sticky; bottom:0px; z-index:100px;*/
+  }
   footer > .container-f{ height:70px; line-height: 70px; text-align: center; background-color: gray;
     color:white; font-weight: bold; font-size:0.8rem; }
 
