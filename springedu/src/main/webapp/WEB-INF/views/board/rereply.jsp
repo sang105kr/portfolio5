@@ -19,8 +19,8 @@
         data-placeholder="댓글추가..."
       ></div>
       <div class="btngrp">
-        <button class="btn btn-cancel">취소</button>
-        <button class="btn btn-write">댓글</button>
+        <button class="mybtn btn-cancel">취소</button>
+        <button class="mybtn btn-write">댓글</button>
       </div>
     </div>
   </div>
@@ -37,22 +37,22 @@
         </div>
         <div class="rcontent" contenteditable="false">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, laborum odio pariatur esse optio rem nisi cupiditate debitis ut quos quas dolorum doloribus tenetur consequuntur! Consequatur quasi veniam nulla praesentium!</div>
         <div class="btngrp">
-          <i class="fas fa-thumbs-up btn btn-thumbs-up"></i>
+          <i class="fas fa-thumbs-up mybtn btn-thumbs-up"></i>
           <span class="vote">10</span>
-          <i class="fas fa-thumbs-down btn btn-thumbs-down"></i>
+          <i class="fas fa-thumbs-down mybtn btn-thumbs-down"></i>
           <span class="vote">3</span>
-          <a href="#" class="btn btn-rereply">답글</a>
+          <a href="#" class="mybtn btn-rereply">답글</a>
         </div>
       </div>
       <div class="hiddenItem">
-        <i class="fas fa-ellipsis-v btn btn-ellipsis"></i>
+        <i class="fas fa-ellipsis-v mybtn btn-ellipsis"></i>
         <ul class="hiddenMenu">
           <li>
-            <span class="btn btn-modify">
+            <span class="mybtn btn-modify">
               <i class="fas fa-eraser"></i>수정</span >
           </li>
           <li>
-            <span class="btn btn-delete">
+            <span class="mybtn btn-delete">
               <i class="far fa-trash-alt"></i>삭제</span >
           </li>
         </ul>
@@ -70,22 +70,22 @@
         </div>
         <div class="rcontent" contenteditable="false">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi odio ad recusandae adipisci deleniti officia laudantium ipsa repellat dolores ducimus quo, quidem perspiciatis iure quibusdam eius! Facilis saepe a vitae?</div>
         <div class="btngrp">
-          <i class="fas fa-thumbs-up btn btn-thumbs-up"></i>
+          <i class="fas fa-thumbs-up mybtn btn-thumbs-up"></i>
           <span class="vote">10</span>
-          <i class="fas fa-thumbs-down btn btn-thumbs-down"></i>
+          <i class="fas fa-thumbs-down mybtn btn-thumbs-down"></i>
           <span class="vote">3</span>
-          <a href="#" class="btn btn-rereply">답글</a>
+          <a href="#" class="mybtn btn-rereply">답글</a>
         </div>
       </div>
       <div class="hiddenItem">
-        <i class="fas fa-ellipsis-v btn btn-ellipsis"></i>
+        <i class="fas fa-ellipsis-v mybtn btn-ellipsis"></i>
         <ul class="hiddenMenu">
           <li>
-            <span class="btn btn-modify">
+            <span class="mybtn btn-modify">
               <i class="fas fa-eraser"></i>수정</span>
           </li>
           <li>
-            <span class="btn btn-delete">
+            <span class="mybtn btn-delete">
               <i class="far fa-trash-alt"></i>삭제</span>
           </li>
         </ul>
@@ -123,8 +123,8 @@
       </div>
       <div class="modal__body">댓글을 완전히 삭제할까요?</div>
       <div class="modal__footer">
-        <button class="btn modal__cancel">취소</button>
-        <button class="btn modal__delete">삭제</button>
+        <button class="mybtn modal__cancel">취소</button>
+        <button class="mybtn modal__delete">삭제</button>
       </div>
     </div>
   </div>  

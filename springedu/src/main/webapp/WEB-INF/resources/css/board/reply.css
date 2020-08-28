@@ -29,11 +29,13 @@
 
 .wrapper-rereply {
   font-size: var(--font-medium);
+  margin:50px;
 }
 
-.comment .rcontent,
-.comments .rcontent {
+.wrapper-rereply .comment .rcontent,
+.wrapper-rereply .comments .rcontent {
   font-size: var(--font-regular);
+  line-height: 1.8em;
 }
 
 .comment button {
@@ -88,14 +90,14 @@
   display: none;
   margin-top: var(--spacing-micro);
 }
-.comment .replybody .btngrp .btn {
+.comment .replybody .btngrp .mybtn {
   border: none;
   outline: none;
 }
-.comment .replybody .btngrp .btn.btn-cancel {
-  background-color: transparent;
+.comment .replybody .btngrp .btn-cancel {
+  background-color: var(--color-white);
 }
-.comment .replybody .btngrp .btn.btn-write {
+.comment .replybody .btngrp .btn-write {
   color: var(--color-white);
   background-color: var(--color-gray-dark);
 }
@@ -271,7 +273,7 @@
   border-top:1px solid lightgray;
   text-align: right;
 }
-.modal .modal__footer .btn{
+.modal .modal__footer .mybtn {
   all:unset;
   padding: 0px 3px;
 }
