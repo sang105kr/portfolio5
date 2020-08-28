@@ -9,6 +9,7 @@
  	RNUM, 
  	BNUM, 
  	RID,
+ 	RNICKNAME,
  	RCONTENT,
  	RGROUP,
  	RSTEP,
@@ -17,6 +18,7 @@
  	rboard_rnum_seq.nextval,
  	#{bnum},
  	#{rid},
+ 	#{rnickname},
  	#{rcontent},
  	rboard_rnum_seq.currval,
  	0,
@@ -35,6 +37,7 @@
 		 set rcontent = #{rcontent},
 		     rudate   = systimestamp
    where rnum = #{rnum} 
+     and rid  = #{rid}
 </update>
 
 <!-- 댓글삭제 -->	
@@ -60,35 +63,50 @@
 <select id="list"
 				parameterType="map"
 				resultType="RboardVO">
-
-  select   		
-					 rnum,
-           bnum,
-           rid, rnickname, 
-           rcontent,	
-           rcdate, 
-           rgroup, rstep, rindent,
-           prnum
-
-    from (  select  row_number() over( order by rgroup desc, rstep asc) as num,
-    								t1.rnum,
-                    t1.bnum,
-                    t1.rid, t1.rnickname, 
-                    t1.rcontent,	
-                    t1.rcdate, 
-                    t1.rgroup, t1.rstep, t1.rindent,
-                    t1.prnum
-            	from  rboard t1
-					)
-  where  num between #{startRec} and #{endRec} 
+select 
+    t1.rnum,
+    t1.bnum,
+    t1.rid, rnickname, 
+    t1.rcontent,	
+    t1.rcdate, 
+    t1.rgroup, rstep, rindent,
+    t1.prnum,
+    nvl(t2.good,0) rgood,
+    nvl(t2.bad,0)  rbad
+  from
+     ( select   		
+               rnum,
+               bnum,
+               rid, rnickname, 
+               rcontent,	
+               rcdate, 
+               rgroup, rstep, rindent,
+               prnum
+        from (  select  row_number() over( order by rgroup desc, rstep asc) as num,
+                        t1.rnum,
+                        t1.bnum,
+                        t1.rid, t1.rnickname, 
+                        t1.rcontent,	
+                        t1.rcdate, 
+                        t1.rgroup, t1.rstep, t1.rindent,
+                        t1.prnum
+                    from  rboard t1
+                        )
+      where  num between #{startRec} and #{endRec} ) t1,
+     ( select rnum, nvl(count(decode(vote,'GOOD',1)),0) good, nvl(count(decode(vote,'BAD',2)),0) bad
+         from rboard_vote
+      group by rnum ) t2
+   where t1.rnum = t2.rnum(+)
 	
 </select>
+<!-- 대댓글작성 -->
 <insert id="reply"
 				parameterType="RboardVO">
  INSERT INTO RBOARD (
  	RNUM, 
  	BNUM, 
  	RID,
+ 	RNICKNAME,
  	RCONTENT,
  	RGROUP,
  	RSTEP,
@@ -100,6 +118,7 @@
  	rboard_rnum_seq.nextval,
  	#{bnum},
  	#{rid},
+ 	#{rnickname},
  	#{rcontent},
  	#{rgroup},
  	#{rstep} + 1,

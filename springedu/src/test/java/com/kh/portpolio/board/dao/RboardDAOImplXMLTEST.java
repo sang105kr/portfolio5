@@ -36,7 +36,8 @@ public class RboardDAOImplXMLTEST {
 	void write() {
 		RboardVO rboardVO = new RboardVO();
 		rboardVO.setBnum(1130);
-		rboardVO.setRid("test3@test.com");
+		rboardVO.setRid("test@test.com");
+		rboardVO.setRnickname("테스트터");
 		rboardVO.setRcontent("1130게시글에 대한 댓글 테스트중");
 		rboardDAO.write(rboardVO);		
 		
@@ -100,6 +101,7 @@ public class RboardDAOImplXMLTEST {
 //	int vote(VoteVO voteVO);	
 	@Test
 	@DisplayName("호감도투표")
+	@Disabled
 	void vote() {
 		VoteVO voteVO = new VoteVO();
 		

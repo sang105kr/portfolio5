@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -26,8 +28,7 @@ import com.kh.portfolio.board.vo.RboardVO;
 import com.kh.portfolio.board.vo.VoteVO;
 import com.kh.portfolio.exception.ErrorMsg;
 import com.kh.portfolio.exception.RestAccessException;
-
-import net.bytebuddy.implementation.bind.annotation.BindingPriority;
+import com.kh.portfolio.member.vo.MemberVO;
 
 @RestController
 @RequestMapping("/rboard")
@@ -43,12 +44,20 @@ public class RboardController {
 	@PostMapping(value="", produces="application/json")
 	public ResponseEntity<String> write(
 			@Valid @RequestBody RboardVO	rboardVO,
-			BindingResult result
+			BindingResult result,
+			HttpServletRequest request
 			){
 		ResponseEntity<String> res = null;
 		
 		if(result.hasErrors()) {
 			throwRestAccessException(result);
+		}
+		
+		// 세션에서 아이디,별칭 가져오기 
+		MemberVO memberVO = (MemberVO)request.getSession(false);
+		if(memberVO != null) {
+			rboardVO.setRid(memberVO.getId());
+			rboardVO.setRnickname(memberVO.getNickname());
 		}
 		
 		int cnt = rboardSVC.write(rboardVO);
@@ -98,7 +107,8 @@ public class RboardController {
 	@PostMapping(value="/reply",produces = "application/json")
 	public ResponseEntity<String> reply(
 		@Valid @RequestBody RboardVO rboardVO,	
-		BindingResult result){
+		BindingResult result,
+		HttpServletRequest request){
 		
 		ResponseEntity<String> res = null;
 		
@@ -106,8 +116,15 @@ public class RboardController {
 			throwRestAccessException(result);
 		}
 		
+		// 세션에서 아이디,별칭 가져오기 
+		MemberVO memberVO = (MemberVO)request.getSession(false);
+		if(memberVO != null) {
+			rboardVO.setRid(memberVO.getId());
+			rboardVO.setRnickname(memberVO.getNickname());
+		}
+		
 		int cnt = rboardSVC.reply(rboardVO);
-		//성공
+		//성공	
 		if(cnt==1) {	
 			res = new ResponseEntity<String>("success",HttpStatus.OK); //200
 		}			

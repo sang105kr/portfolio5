@@ -24,7 +24,7 @@ public class RboardVO {
 //	@Pattern(regexp = "\\w+@\\w+\\.\\w+(\\.\\w+)?",
 //	 message = "이메일 형식으로 입력바랍니다. ex)test@gmail.com")
 	private String rid;						//	RID	VARCHAR2(40 BYTE)	No		3	"댓글작성자ID"
-	@NotNull
+//	@NotNull
 	@Size(min=2,max=10,message = "별칭은 최대 10자까지 가능합니다.")
 	private String rnickname;			//	RNICKNAME	VARCHAR2(30 BYTE)	Yes		4	댓글작성자별칭
 	private Timestamp rcdate;			//	RCDATE	DATE	No	SYSTIMESTAMP 	5	작성일시
