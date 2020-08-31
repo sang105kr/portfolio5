@@ -64,7 +64,7 @@ public class RboardSVCImpl implements RboardSVC {
 		//댓글목록
 		recordCriteria.setReqPage(reqPage);
 		//한페이이지에보여줄 레코드수 셋팅
-		recordCriteria.setRecNumPerPage(10);
+		recordCriteria.setRecNumPerPage(20);
 		list = rboardDAO.list(bnum,
 													recordCriteria.getStarRec(),
 													recordCriteria.getEndRec());

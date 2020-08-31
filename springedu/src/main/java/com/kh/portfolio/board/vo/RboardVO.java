@@ -19,7 +19,7 @@ public class RboardVO {
 	private long rnum;						//	RNUM	NUMBER(10,0)	No		1	댓글번호
 	@NotNull
 	private long bnum;						//	BNUM	NUMBER(10,0)	No		2	최초원글
-	@NotNull
+//	@NotNull
 	@Email
 //	@Pattern(regexp = "\\w+@\\w+\\.\\w+(\\.\\w+)?",
 //	 message = "이메일 형식으로 입력바랍니다. ex)test@gmail.com")

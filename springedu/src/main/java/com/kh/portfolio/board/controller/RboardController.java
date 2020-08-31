@@ -57,7 +57,7 @@ public class RboardController {
 		}
 		
 		// 세션에서 아이디,별칭 가져오기 
-		MemberVO memberVO = (MemberVO)request.getSession(false);
+		MemberVO memberVO = (MemberVO)request.getSession(false).getAttribute("member");
 		if(memberVO != null) {
 			rboardVO.setRid(memberVO.getId());
 			rboardVO.setRnickname(memberVO.getNickname());
@@ -76,12 +76,20 @@ public class RboardController {
 	@PutMapping(value="",produces = "application/json")
 	public ResponseEntity<String> modify(
 		@Valid @RequestBody RboardVO rboardVO,	
-		BindingResult result	
+		BindingResult result,
+		HttpServletRequest request
 			){
 		ResponseEntity<String> res = null;
 		
 		if(result.hasErrors()) {
 			throwRestAccessException(result);
+		}
+		
+		// 세션에서 아이디,별칭 가져오기 
+		MemberVO memberVO = (MemberVO)request.getSession(false).getAttribute("member");
+		if(memberVO != null) {
+			rboardVO.setRid(memberVO.getId());
+			rboardVO.setRnickname(memberVO.getNickname());
 		}
 		
 		int cnt = rboardSVC.modify(rboardVO);
@@ -120,7 +128,7 @@ public class RboardController {
 		}
 		
 		// 세션에서 아이디,별칭 가져오기 
-		MemberVO memberVO = (MemberVO)request.getSession(false);
+		MemberVO memberVO = (MemberVO)request.getSession(false).getAttribute("member");
 		if(memberVO != null) {
 			rboardVO.setRid(memberVO.getId());
 			rboardVO.setRnickname(memberVO.getNickname());
