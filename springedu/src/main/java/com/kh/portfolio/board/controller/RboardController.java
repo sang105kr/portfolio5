@@ -1,11 +1,13 @@
 package com.kh.portfolio.board.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kh.portfolio.board.svc.RboardSVC;
 import com.kh.portfolio.board.vo.RboardVO;
 import com.kh.portfolio.board.vo.VoteVO;
+import com.kh.portfolio.common.page.PageCriteria;
 import com.kh.portfolio.exception.ErrorMsg;
 import com.kh.portfolio.exception.RestAccessException;
 import com.kh.portfolio.member.vo.MemberVO;
@@ -131,15 +134,26 @@ public class RboardController {
 		return res;
 	}	
 	//댓글목록
-	@GetMapping(value="/{reqPage}",produces = "application/json")
-	public ResponseEntity<List<RboardVO>> list(
-		@PathVariable(value="reqPage", required = true) String reqPage	
+	@GetMapping(value="/{reqPage}/{bnum}",produces = "application/json")
+	public ResponseEntity<Map<String,Object>> list(
+		@PathVariable(value="reqPage", required = false) Optional<Integer> reqPage,
+		@PathVariable(value="bnum",required = true) long bnum
 			){
-		ResponseEntity<List<RboardVO>> res = null;
-				
-		List<RboardVO> list =	rboardSVC.list();
+		ResponseEntity<Map<String,Object>> res = null;
+		Map<String,Object> map = new HashMap();
+		
+		//1)댓글목록
+		List<RboardVO> list =	rboardSVC.list(reqPage.orElse(1), bnum);
+		
+		//2)페이징정보
+		PageCriteria pc = rboardSVC.getPageCriteria(reqPage.orElse(1));
+		
+		//3)Map에 댓글정보+페이정보담기
+		map.put("list",list);
+		map.put("pc",pc);
+		
 		if(list.size() > 0) {
-			res = new ResponseEntity<List<RboardVO>>(list,HttpStatus.OK); //200
+			res = new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK); //200
 		}
 		
 		return res;
