@@ -72,7 +72,8 @@ select
     t1.rgroup, rstep, rindent,
     t1.prnum,
     nvl(t2.good,0) rgood,
-    nvl(t2.bad,0)  rbad
+    nvl(t2.bad,0)  rbad,
+    t1.pic, t1.ftype
   from
      ( select   		
                rnum,
@@ -81,7 +82,8 @@ select
                rcontent,	
                rcdate, 
                rgroup, rstep, rindent,
-               prnum
+               prnum,
+               pic, ftype
         from (  select  row_number() over( order by rgroup desc, rstep asc) as num,
                         t1.rnum,
                         t1.bnum,
@@ -89,10 +91,12 @@ select
                         t1.rcontent,	
                         t1.rcdate, 
                         t1.rgroup, t1.rstep, t1.rindent,
-                        t1.prnum
-                  from  rboard t1
-                 where  t1.bnum = #{bnum} 
-                        )
+                        t1.prnum,
+                        t2.pic, t2.ftype
+                  from  rboard t1, member t2
+                 where  t1.rid = t2.id
+                 	 and 	t1.bnum = #{bnum} 
+             )
       where  num between #{startRec} and #{endRec} ) t1,
      ( select rnum, nvl(count(decode(vote,'GOOD',1)),0) good, nvl(count(decode(vote,'BAD',2)),0) bad
          from rboard_vote

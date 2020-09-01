@@ -8,7 +8,7 @@
 
   <!--댓글작성-->
   <div class="comment">
-    <div class="profileImg">
+<%--     <div class="profileImg">
       <img src="https://via.placeholder.com/50x50.png" alt="" />
     </div>
     <div class="replybody">
@@ -22,7 +22,7 @@
         <button class="mybtn btn-cancel">취소</button>
         <button class="mybtn btn-write">댓글</button>
       </div>
-    </div>
+    </div> --%>
   </div>
   <!--댓글목록-->
   <div class="comments"></div>

@@ -10,39 +10,7 @@ const comments = document.querySelector(".comments");
 const paging = document.querySelector(".paging");
 const modal = document.querySelector('.modal');
 
-//댓글작성 foucs이벤트 발생시 버튼활성화
-comment.querySelector('.rcontent')
-       .addEventListener("focus", (e) => 
-  e.target.nextElementSibling.style.display = "block"  
-);
 
-//댓글작성 이벤트 등록
-comment.addEventListener("click",(e)=>{
-  const rcontent = comment.querySelector('.rcontent');
-
-  //댓글 입력시
-  rcontent.addEventListener("keyup", (e)=>{
-    console.log(e.target.textContent.trim().length);
-    const writeBtn = e.target.parentElement.querySelector(".btn-write");
-    if (rcontent.textContent.trim().length > 0) {
-      writeBtn.style.backgroundColor = "#0000ff";   
-    } else {
-      writeBtn.style.backgroundColor = "#909090";
-    }
-  });
-
-  //취소
-  if(e.target.classList.contains("btn-cancel")){
-    console.log("취소");
-    comment.querySelector('.btngrp').style.display = "none";
-    comment.querySelector('.rcontent').textContent = "";    
-  }
-  //댓글
-  if(e.target.classList.contains("btn-write")){
-    console.log("댓글");
-		writeComment(e);
-  }
-});
 
 //댓글목록 이벤트 등록
 comments.addEventListener("click",(e)=>{
@@ -346,9 +314,6 @@ function replyComment(e){
 	
 }
 
-
-
-
 //댓글 수정
 function modifyComment(e){
 	//1)XMLHTTPRequest 객체 생성
@@ -445,12 +410,20 @@ function replyList(reqPage){
 		if(e.target.readyState == 4 && e.target.status == 200){
 			//console.log(e.target.response);
 			const jsonObj = JSON.parse(e.target.response);
-			//console.log(jsonObj.list);
-			//console.log(jsonObj.pc);
+			
+			console.log(jsonObj.memberImg);
+			console.log(jsonObj.list);
+			console.log(jsonObj.pc);
+			
+			const memberImg = jsonObj.memberImg;
 			const list = jsonObj.list;
 			const pc = jsonObj.pc;
 			
+			//댓글작성
+			addComment(memberImg);
+			//댓글목록
 			addComments(list);
+			//페이징
 			addPaging(pc);
 		}
 	});
@@ -462,6 +435,90 @@ function replyList(reqPage){
 	//6) 요청
 	xhttp.send();	
 }
+//댓글등록
+function addComment(memberImg){
+	let str ="";
+	
+		//로그인한경우
+		if("rid" in memberImg){
+			
+			str += `<div class="profileImg">`;
+			//회원 프로파일 이미지가 존재하는경우
+			if("pic" in memberImg){
+				str += `  <img src="data:${memberImg.ftype};base64,${memberImg.pic}" alt="" />`;			
+			}else{
+				str += `  <img src="https://via.placeholder.com/50x50.png" alt="" />`;
+			}	
+			str += `</div>`;
+			str += `<div class="replybody">`;
+			str += `  <div class="writer">${memberImg.nickname}</div>`;
+			str += `  <div`;
+			str += `    class="rcontent"`;
+			str += `    contenteditable="true"`;
+			str += `    data-placeholder="댓글추가..."`;
+			str += `  ></div>`;
+			str += `  <div class="btngrp">`;
+			str += `    <button class="mybtn btn-cancel">취소</button>`;
+			str += `    <button class="mybtn btn-write">댓글</button>`;
+			str += `  </div>`;
+			str += `</div>`;	
+					
+		}else{
+			//로그인하지 않은 경우
+			str += `<div class="profileImg">`;
+			str += `  <img src="https://via.placeholder.com/50x50.png" alt="" />`;
+			str += `</div>`;
+			str += `<div class="replybody">`;
+			str += `  <div class="writer">손님</div>`;
+			str += `  <div`;
+			str += `    class="rcontent"`;
+			str += `    contenteditable="true"`;
+			str += `    data-placeholder="댓글추가..."`;
+			str += `  ></div>`;
+			str += `  <div class="btngrp">`;
+			str += `    <button class="mybtn btn-cancel">취소</button>`;
+			str += `    <button class="mybtn btn-write">댓글</button>`;
+			str += `  </div>`;
+			str += `</div>`;
+		}	
+		
+		comment.innerHTML = str;
+		
+		//댓글작성 foucs이벤트 발생시 버튼활성화
+		comment.querySelector('.rcontent')
+		       .addEventListener("focus", (e) => 
+		  e.target.nextElementSibling.style.display = "block"  
+		);
+		
+		//댓글작성 이벤트 등록
+		comment.addEventListener("click",(e)=>{
+		  const rcontent = comment.querySelector('.rcontent');
+		
+		  //댓글 입력시
+		  rcontent.addEventListener("keyup", (e)=>{
+		    console.log(e.target.textContent.trim().length);
+		    const writeBtn = e.target.parentElement.querySelector(".btn-write");
+		    if (rcontent.textContent.trim().length > 0) {
+		      writeBtn.style.backgroundColor = "#0000ff";   
+		    } else {
+		      writeBtn.style.backgroundColor = "#909090";
+		    }
+		  });
+		
+		  //취소
+		  if(e.target.classList.contains("btn-cancel")){
+		    console.log("취소");
+		    comment.querySelector('.btngrp').style.display = "none";
+		    comment.querySelector('.rcontent').textContent = "";    
+		  }
+		  //댓글
+		  if(e.target.classList.contains("btn-write")){
+		    console.log("댓글");
+				writeComment(e);
+		  }
+		});		
+}
+
 
 //댓글목록
 function addComments(list){
@@ -476,7 +533,8 @@ function addComments(list){
 		  str += `<div class="child" data-rnum="${comment.rnum}" data-prnum="${comment.prnum}">`;  
 		}
 		str += `  <div class="profileImg">`;
-		str += `    <img src="https://via.placeholder.com/50x50.png" alt="" />`;
+//		str += `    <img src="https://via.placeholder.com/50x50.png" alt="" />`;
+		str += `    <img src="data:${comment.ftype};base64,${comment.pic}" alt="" />`;
 		str += `  </div>`;
 		str += `  <div class="replybody">`;
 		str += `    <div class="writer">`;
@@ -489,7 +547,7 @@ function addComments(list){
 		str += `      <span class="vote">${comment.rgood}</span>`;
 		str += `      <i class="fas fa-thumbs-down mybtn btn-thumbs-down"></i>`;
 		str += `      <span class="vote">${comment.rbad}</span>`;
-		str += `      <a href="#" class="mybtn btn-rereply">답글</a>`;
+		str += `      <a href="javascript:void(0)" class="mybtn btn-rereply">답글</a>`;
 		str += `    </div>`;
 		str += `  </div>`;
 		str += `  <div class="hiddenItem">`;

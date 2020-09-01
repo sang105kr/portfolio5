@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ import com.kh.portfolio.board.vo.VoteVO;
 import com.kh.portfolio.common.page.PageCriteria;
 import com.kh.portfolio.exception.ErrorMsg;
 import com.kh.portfolio.exception.RestAccessException;
+import com.kh.portfolio.member.svc.MemberSVC;
 import com.kh.portfolio.member.vo.MemberVO;
 
 @RestController
@@ -42,6 +44,9 @@ public class RboardController {
 	
 	@Inject
 	RboardSVC rboardSVC;
+	
+	@Inject
+	MemberSVC memberSVC;
 	
 	//댓글작성
 	@PostMapping(value="", produces="application/json")
@@ -145,7 +150,8 @@ public class RboardController {
 	@GetMapping(value="/{reqPage}/{bnum}",produces = "application/json")
 	public ResponseEntity<Map<String,Object>> list(
 		@PathVariable(value="reqPage", required = false) Optional<Integer> reqPage,
-		@PathVariable(value="bnum",required = true) long bnum
+		@PathVariable(value="bnum",required = true) long bnum,
+		HttpServletRequest request
 			){
 		ResponseEntity<Map<String,Object>> res = null;
 		Map<String,Object> map = new HashMap();
@@ -156,7 +162,27 @@ public class RboardController {
 		//2)페이징정보
 		PageCriteria pc = rboardSVC.getPageCriteria(reqPage.orElse(1));
 		
-		//3)Map에 댓글정보+페이정보담기
+		//3)로그인상태이고 프로파일 이미지가 있는경우 
+		//  이미지정보를 가져와서 base64변환
+		MemberVO memberVO = (MemberVO)request.getSession(false).getAttribute("member");
+		Map<String,String> memberImg = new HashMap();
+		if(memberVO != null) {
+			MemberVO member = memberSVC.listOneMember(memberVO.getId());
+			
+			//이미지 base64로 변환후 img태그에 적용하기위함
+			//BASE64의 핵심은 바이너리 데이터를 ASCII코드로 변경하는 인코딩 방식
+			if(member.getPic() != null) {
+				byte[] encoded = Base64.encodeBase64(member.getPic());
+				memberImg.put("pic", new String(encoded));
+				memberImg.put("ftype",member.getFtype());
+			}
+			
+			memberImg.put("rid",member.getId());
+			memberImg.put("nickname",member.getNickname());
+		}
+		
+		//4)Map에 댓글정보+페이정보담기
+		map.put("memberImg",memberImg);
 		map.put("list",list);
 		map.put("pc",pc);
 		

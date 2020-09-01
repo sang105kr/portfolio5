@@ -82,7 +82,7 @@ public class RboardDAOImplXMLTEST {
 	@DisplayName("댓글목록")
 	@Disabled
 	void list() {
-		List<RboardVO> list = rboardDAO.list();
+		List<RboardVO> list = rboardDAO.list(1130,1,100);
 		
 		for(RboardVO rboardVO : list) {
 			logger.info(rboardVO.toString());
