@@ -70,8 +70,12 @@
 						<li class="btnGrp">
 							<!-- 읽기모드 버튼 -->	
 							<form:button id="replyBtn" 	class="btn rmode btn-outline-success" data-bnum="${requestScope.boardVO.bnum }" data-returnPage="${requestScope.returnPage }">답글</form:button>
+							<!-- 작성자만 수정,삭제 가능 시작 -->
+							<c:if test="${sessionScope.member.id == boardVO.bid }">
 							<form:button id="modifyBtn" class="btn rmode btn-outline-danger">수정</form:button>
 							<form:button id="deleteBtn" class="btn rmode btn-outline-info" data-bnum="${requestScope.boardVO.bnum }" data-returnPage="${requestScope.returnPage }"> 삭제</form:button>
+							</c:if>
+							<!-- 작성자만 수정,삭제 가능 끝 -->
 							<!-- 수정모드 버튼 -->
 							<form:button id="cancelBtn" class="btn umode btn-outline-danger">취소</form:button>
 							<form:button id="saveBtn" 	class="btn umode btn-outline-success" data-returnPage="${requestScope.returnPage }">저장</form:button>

@@ -76,14 +76,15 @@ public class RboardDAOImplXML implements RboardDAO {
 
 	//게시글 총 레코드 수 
 	@Override
-	public int totalRecordCount() {
-		return sqlSession.selectOne("mappers.RboardDAO-mapper.totalRecordCount");
+	public int totalRecordCount(long bnum) {
+		return sqlSession.selectOne("mappers.RboardDAO-mapper.totalRecordCount",bnum);
 	}
 	@Override
-	public int totalRecordCount(String searchType, String keyword) {
+	public int totalRecordCount(String searchType, String keyword, long bnum) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("searchType", searchType);
 		map.put("keyword", keyword);
+		map.put("bnum",bnum);
 		return sqlSession.selectOne("mappers.RboardDAO-mapper.searchedTotalRecordCount",map);
 	}
 

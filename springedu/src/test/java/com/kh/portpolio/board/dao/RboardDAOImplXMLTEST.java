@@ -32,7 +32,7 @@ public class RboardDAOImplXMLTEST {
 //	int write(RboardVO rboardVO);
 	@Test
 	@DisplayName("댓글작성")
-//	@Disabled
+	@Disabled
 	void write() {
 		RboardVO rboardVO = new RboardVO();
 		rboardVO.setBnum(1130);
@@ -44,6 +44,21 @@ public class RboardDAOImplXMLTEST {
 		rboardVO = rboardDAO.replyView(rboardVO.getRnum());
 		logger.info(rboardVO.toString());
 	}
+	
+	@Test
+	@DisplayName("댓글작성 샘플 434건")
+	void write2() {
+		for(int i=0; i<434; i++) {
+		RboardVO rboardVO = new RboardVO();
+		rboardVO.setBnum(1130);
+		rboardVO.setRid("test@test.com");
+		rboardVO.setRnickname("테스트터");
+		rboardVO.setRcontent("1130게시글에 대한 댓글 테스트중");
+		rboardDAO.write(rboardVO);		
+		}
+//		rboardVO = rboardDAO.replyView(rboardVO.getRnum());
+//		logger.info(rboardVO.toString());
+	}	
 	
 //	//댓글수정
 //	int modify(RboardVO rboardVO);

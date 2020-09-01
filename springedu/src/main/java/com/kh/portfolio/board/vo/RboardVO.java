@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Entity
@@ -27,6 +29,7 @@ public class RboardVO {
 //	@NotNull
 	@Size(min=2,max=10,message = "별칭은 최대 10자까지 가능합니다.")
 	private String rnickname;			//	RNICKNAME	VARCHAR2(30 BYTE)	Yes		4	댓글작성자별칭
+	@JsonFormat(pattern = "yyyy-MM-dd h:mm a",timezone = "Asia/Seoul")
 	private Timestamp rcdate;			//	RCDATE	DATE	No	SYSTIMESTAMP 	5	작성일시
 	private Timestamp rudate;			//	RUDATE	DATE	Yes	"SYSTIMESTAMP "	6	수정일시
 	@NotNull

@@ -64,7 +64,7 @@ public class RboardSVCImpl implements RboardSVC {
 		//댓글목록
 		recordCriteria.setReqPage(reqPage);
 		//한페이이지에보여줄 레코드수 셋팅
-		recordCriteria.setRecNumPerPage(20);
+		recordCriteria.setRecNumPerPage(10);
 		list = rboardDAO.list(bnum,
 													recordCriteria.getStarRec(),
 													recordCriteria.getEndRec());
@@ -87,9 +87,9 @@ public class RboardSVCImpl implements RboardSVC {
 		rboardVO.setRindent(parentRboardVO.getRindent());
 		
 		//4)부모댓글 아이디
-		rboardVO.setPrid(parentRboardVO.getPrid());
+		rboardVO.setPrid(parentRboardVO.getRid());
 		//5)부모댓글별칭
-		rboardVO.setPrnickname(parentRboardVO.getPrnickname());
+		rboardVO.setPrnickname(parentRboardVO.getRnickname());
 		//6)대댓글 작성
 		int cnt = rboardDAO.reply(rboardVO);
 		
@@ -105,10 +105,10 @@ public class RboardSVCImpl implements RboardSVC {
 	
 	//페이징제어 반환
 	@Override
-	public PageCriteria getPageCriteria(int reqPage) {
+	public PageCriteria getPageCriteria(int reqPage, long bnum) {
 
 		//한페이지에 보여줄 레코드수
-		recordCriteria.setRecNumPerPage(20);
+		recordCriteria.setRecNumPerPage(10);
 		//사용자의 요청페이지
 		recordCriteria.setReqPage(reqPage);
 		//한페이지에보여줄 페이지수
@@ -116,7 +116,7 @@ public class RboardSVCImpl implements RboardSVC {
 		//레코드정보
 		pageCriteria.setRc(recordCriteria);
 		//게시글 총 레코드 건수
-		pageCriteria.setTotalRec(rboardDAO.totalRecordCount());
+		pageCriteria.setTotalRec(rboardDAO.totalRecordCount(bnum));
 		//페이징계산
 		pageCriteria.calculatePaging();
 		
@@ -126,10 +126,10 @@ public class RboardSVCImpl implements RboardSVC {
 
 	//페이징제어 + 검색어포함
 	@Override
-	public FindCriteria getFindCriteria(int reqPage, String searchType, String keyword) {
+	public FindCriteria getFindCriteria(int reqPage, String searchType, String keyword, long bnum) {
 
 		//한페이지에 보여줄 레코드수
-		recordCriteria.setRecNumPerPage(20);
+		recordCriteria.setRecNumPerPage(10);
 		//사용자의 요청페이지
 		recordCriteria.setReqPage(reqPage);
 		//한페이지에보여줄 페이지수
@@ -137,7 +137,7 @@ public class RboardSVCImpl implements RboardSVC {
 		//레코드정보
 		pageCriteria.setRc(recordCriteria);
 		//게시글 총 레코드 건수
-		pageCriteria.setTotalRec(rboardDAO.totalRecordCount(searchType,keyword));
+		pageCriteria.setTotalRec(rboardDAO.totalRecordCount(searchType,keyword,bnum));
 		//페이징계산
 		pageCriteria.calculatePaging();
 		//검색어정보

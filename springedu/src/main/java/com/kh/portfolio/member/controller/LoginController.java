@@ -3,6 +3,7 @@ package com.kh.portfolio.member.controller;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,11 @@ public class LoginController {
 		//2)회원id가 존재할경우
 			//2-1) 비밀번호가 일치하는경우
 			if(memberVO.getPw().equals(pw)) {
-				memberVO.setPic(null);
+				if(memberVO.getPic() != null) {
+					byte[] encoded = Base64.encodeBase64(memberVO.getPic());
+					memberVO.setPicBase64(new String(encoded));
+					memberVO.setPic(null);
+				}				
 				session.setAttribute("member", memberVO);
 			}else {
 			//2-2) 비밀번호가 틀린경우

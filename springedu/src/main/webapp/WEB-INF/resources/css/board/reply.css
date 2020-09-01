@@ -207,6 +207,21 @@
   height:calc(var(--spacing-medium) * 3);
 }
 
+.comments .replybody .btngrp .fa-thumbs-up,
+.comments .replybody .btngrp .fa-thumbs-down{
+	cursor:pointer;
+}
+
+/* 게시원글 작성자 */
+.comments .replybody .writer .bnumWriter{
+	color:var(--color-red);
+}
+/* 대댓글 대상자 */
+.comments .replybody .writer .replyTo{
+	color:var(--color-orange);
+}
+
+
 /* 댓글 페이징 */
 .paging{
   margin-top: 3rem;
@@ -229,6 +244,12 @@
   list-style: none;
   padding: calc(var(--spacing-medium) * 0);
 }
+
+.paging ul li a.active{
+	background-color:var(--color-blue);
+	color:var(--color-white);
+}
+
 
 /*모달*/
 .modal.hidden{

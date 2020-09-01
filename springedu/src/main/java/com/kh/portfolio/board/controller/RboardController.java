@@ -160,29 +160,8 @@ public class RboardController {
 		List<RboardVO> list =	rboardSVC.list(reqPage.orElse(1), bnum);
 		
 		//2)페이징정보
-		PageCriteria pc = rboardSVC.getPageCriteria(reqPage.orElse(1));
+		PageCriteria pc = rboardSVC.getPageCriteria(reqPage.orElse(1), bnum);
 		
-		//3)로그인상태이고 프로파일 이미지가 있는경우 
-		//  이미지정보를 가져와서 base64변환
-		MemberVO memberVO = (MemberVO)request.getSession(false).getAttribute("member");
-		Map<String,String> memberImg = new HashMap();
-		if(memberVO != null) {
-			MemberVO member = memberSVC.listOneMember(memberVO.getId());
-			
-			//이미지 base64로 변환후 img태그에 적용하기위함
-			//BASE64의 핵심은 바이너리 데이터를 ASCII코드로 변경하는 인코딩 방식
-			if(member.getPic() != null) {
-				byte[] encoded = Base64.encodeBase64(member.getPic());
-				memberImg.put("pic", new String(encoded));
-				memberImg.put("ftype",member.getFtype());
-			}
-			
-			memberImg.put("rid",member.getId());
-			memberImg.put("nickname",member.getNickname());
-		}
-		
-		//4)Map에 댓글정보+페이정보담기
-		map.put("memberImg",memberImg);
 		map.put("list",list);
 		map.put("pc",pc);
 		
@@ -196,7 +175,8 @@ public class RboardController {
 	@PutMapping(value="/vote",produces = "application/json")
 	public ResponseEntity<String> vote(
 		@Valid @RequestBody VoteVO voteVO,
-		BindingResult result
+		BindingResult result,
+		HttpServletRequest request
 			){
 		ResponseEntity<String> res = null;
 		
@@ -204,6 +184,11 @@ public class RboardController {
 			throwRestAccessException(result);
 		}
 		
+		// 세션에서 아이디 
+		MemberVO memberVO = (MemberVO)request.getSession(false).getAttribute("member");
+		if(memberVO != null) {
+			voteVO.setRid(memberVO.getId());
+		}		
 		int cnt = rboardSVC.vote(voteVO);
 		
 		//성공

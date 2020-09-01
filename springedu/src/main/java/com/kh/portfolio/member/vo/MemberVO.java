@@ -25,5 +25,6 @@ public class MemberVO {
 	private String ftype;					//	FTYPE	VARCHAR2(50 BYTE)	Yes		12	파일유형
 	private String fname;					//	FNAME	VARCHAR2(150 BYTE)	Yes		13	파일명
 	private byte[] pic;						//	FDATA	BLOB	Yes		6	첨부파일
+	private String picBase64;
 
 }

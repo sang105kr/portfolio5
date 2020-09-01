@@ -13,7 +13,7 @@ public class VoteVO {
 	private long rnum;			//	RNUM	NUMBER(10,0)	No		1	댓글번호
 	@NotNull
 	private long bnum;			//	BNUM	NUMBER(10,0)	No		2	최초원글
-	@NotNull
+//	@NotNull
 	@Email
 	private String rid;			//	RID	VARCHAR2(40 BYTE)	No	3	댓글아이디
 	@NotNull

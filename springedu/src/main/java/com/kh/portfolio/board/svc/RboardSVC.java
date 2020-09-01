@@ -26,9 +26,9 @@ public interface RboardSVC {
 	int vote(VoteVO voteVO);	
 	
 	//페이징제어 반환
-	PageCriteria getPageCriteria(int reqPage);
+	PageCriteria getPageCriteria(int reqPage,long bnum);
 	
 	//페이징제어 + 검색포함
-	FindCriteria getFindCriteria(int reqPage,String searchType, String keyword);
+	FindCriteria getFindCriteria(int reqPage,String searchType, String keyword, long bnum);
 	
 }
