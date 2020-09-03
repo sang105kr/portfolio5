@@ -14,6 +14,8 @@
         <li><a href="#"><fmt:message key="menu.db"/></a></li>
         <!-- 스프링 -->
         <li><a href="#"><fmt:message key="menu.spring"/></a></li>
+        <!-- 영화 -->
+        <li><a href="${contextPath }/movie"><fmt:message key="menu.movie"/></a></li>
       </ul>
       </fmt:bundle>
     </div>

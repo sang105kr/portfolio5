@@ -218,7 +218,7 @@
 }
 /* 대댓글 대상자 */
 .comments .replybody .writer .replyTo{
-	color:var(--color-orange);
+	color:violet;
 }
 
 
