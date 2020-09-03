@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <!-- 공통 모듈 -->
 <%@ include file="/WEB-INF/views/include/common.jsp" %>
-<title>최신영화 순위 보기</title>
+<title>코로나19 감염_현황</title>
 <link rel="stylesheet" href="${contextPath }/css/board/board.css">
-<script defer src="${contextPath }/js/openapi/movie.js"></script>
+<script defer src="${contextPath }/js/openapi/covid.js"></script>
   <style>
     table{
       border-collapse: collapse;
@@ -56,14 +56,14 @@
       <div class="content">  
 				<div id="movie_rank" class="cont_reserve">
 				  <table>
-				    <caption>영화 순위</caption>
+				    <caption>코로나 현황</caption>
 				    <thead>
 				      <tr>
-				        <th>순위</th>
-				        <th>제목</th>
-				        <th>개봉일</th>
-				        <th>당일매출액</th>
-				        <th>당일관객수</th>
+				        <th>기준일</th>
+				        <th>확진자 수</th>
+				        <th>격리해제 수</th>
+				        <th>검사진행 수</th>
+				        <th>사망자 수</th>
 				      </tr>
 				    </thead>
 				    <tbody class="movie-body">
