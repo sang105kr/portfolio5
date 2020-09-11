@@ -16,6 +16,10 @@
         <li><a href="#"><fmt:message key="menu.spring"/></a></li>
         <!-- 영화 -->
         <li><a href="${contextPath }/movie"><fmt:message key="menu.movie"/></a></li>
+        <!-- 코비드19 -->
+        <li><a href="${contextPath }/covid"><fmt:message key="menu.covid19"/></a></li>
+        <!-- 메모리현황 -->
+        <li><a href="${contextPath }/sse/memorystatus"><fmt:message key="menu.memorystatus"/></a></li>
       </ul>
       </fmt:bundle>
     </div>
