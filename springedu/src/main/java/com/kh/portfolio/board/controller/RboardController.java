@@ -156,6 +156,8 @@ public class RboardController {
 		ResponseEntity<Map<String,Object>> res = null;
 		Map<String,Object> map = new HashMap();
 		
+		logger.info("댓글목록-세션정보: " +request.getSession(false).toString());
+		
 		//1)댓글목록
 		List<RboardVO> list =	rboardSVC.list(reqPage.orElse(1), bnum);
 		

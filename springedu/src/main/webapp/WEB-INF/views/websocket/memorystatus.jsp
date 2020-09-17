@@ -72,25 +72,28 @@ $(function() {
 	           '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a']
 	});
 });
+
 function requestMemoryInfo() {
-	const source = new EventSource("<c:url value='/sse/memorymonitor'/>");
-	source.addEventListener("message", (event)=>{
+	const ws = new WebSocket("ws://localhost:9080/portfolio/websocket/memorymonitor");
+	ws.addEventListener("message",(event)=>{
+		console.log(event.data);
 		const series = heapMemoryChart.series[0];
 		const shift = series.data.length > 20;
-		
-		//서버로 부터 테이터를 수신하여 js객체로 변환
+
 		const data = JSON.parse(event.data);
-		console.log(data);
 		const time = parseInt(data.time, 10);
 		const used = parseInt(data.used, 10);
 		const max = parseInt(data.max, 10);
 		const committed = parseInt(data.committed, 10);
-	
+
 	 	heapMemoryChart.series[0].addPoint([ time, used ], true, shift);
 		heapMemoryChart.series[1].addPoint([ time, max ], true, shift);
 		heapMemoryChart.series[2].addPoint([ time, committed ], true, shift); 
+		
+		ws.send(event.data);
 	},false);
 }
+
 requestMemoryInfo();
 </script>
 </head>

@@ -50,7 +50,7 @@
   /* 메뉴 영역 */
   nav{position:sticky; top:280px; z-index:200;}
   nav > .container-n{ height:50px; background-color: black;}
-  nav > .container-n > ul{ display:flex; list-style-type: none; height:50px; width:500px; margin: 0px auto; line-height: 50px; }
+  nav > .container-n > ul{ display:flex; list-style-type: none; height:50px; width:70%; margin: 0px auto; line-height: 50px; }
   nav > .container-n > ul > li { width:100px; text-align: center; font-size:0.8rem; }
   nav > .container-n > ul > li > a{ color:white; text-decoration: none; font-weight: bold; }
   nav > .container-n > ul > li > a:hover{ text-decoration: underline; }

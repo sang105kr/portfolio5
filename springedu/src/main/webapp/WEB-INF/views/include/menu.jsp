@@ -20,6 +20,9 @@
         <li><a href="${contextPath }/covid"><fmt:message key="menu.covid19"/></a></li>
         <!-- 메모리현황 -->
         <li><a href="${contextPath }/sse/memorystatus"><fmt:message key="menu.memorystatus"/></a></li>
+        <li><a href="${contextPath }/websocket/memorystatus"><fmt:message key="menu.memorystatus2"/></a></li>
+        <!-- chat -->
+        <li><a href="${contextPath }/chat"><fmt:message key="menu.chat"/></a></li>        
       </ul>
       </fmt:bundle>
     </div>
