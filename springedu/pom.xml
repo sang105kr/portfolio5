@@ -15,7 +15,7 @@
 		<org.slf4j-version>1.7.30</org.slf4j-version>
 		<jackson-databind-version>2.11.1</jackson-databind-version>
 		<junit-jupiter-version>5.6.2</junit-jupiter-version>
-		<hibernate-core-version>5.4.19.Final</hibernate-core-version>
+		<hibernate-core-version>5.4.24.Final</hibernate-core-version>
 	</properties>
 
 	<!-- oracle driver 저장소 -->
